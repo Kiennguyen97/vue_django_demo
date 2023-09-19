@@ -1,0 +1,21 @@
+{% for customer in data %}
+  <tr>
+    <td data-th="Name">{{ customer.first_name }} {{ customer.last_name }}</td>
+    <td data-th="Email">{{ customer.email }}</td>
+    <td data-th="Role">
+      {% if customer.role == 'admin' %}
+        Admin
+      {% else %}
+        Staff
+      {% endif %}
+    </td>
+    <td data-th="Date Of Invitation">
+      {% if customer.date_of_invitation %}
+        {{ customer.date_of_invitation | date:'d M Y' }}
+      {% else %}
+        {{ '' }}
+      {% endif %}
+    </td>
+    <td data-th="Status">Pending</td>
+  </tr>
+{% endfor %}

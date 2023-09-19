@@ -1,0 +1,80 @@
+{% extends 'base-newtech.html' %}
+
+{% block pagetitle %} {{category.meta_title}} {% endblock %}
+{% block og-pagetitle %}{{category.meta_title}}{% endblock %}
+{% block page-content %}{{category.meta_description}}{% endblock %}
+
+{% block css_bottom %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom/list-product.css' %}">
+{% endblock %}
+
+{% block content %} {% load static %}
+{{ config|json_script:"config" }}
+<script type="text/javascript">
+    const config = document.getElementById('config').textContent;
+    const context = JSON.parse(config);
+</script>
+
+<div class="container">
+    {% include 'breadcrumbs.html' %}
+    {% if not search_term %}
+		{% if not category.show_logo %}
+    	<h1 class="category-heading">{{category.get_title}}</h1>
+		{% else %}
+		<div class="category-heading">
+			<img src="{{category.get_img_url}}" width="200" alt="{{category.get_title}}" />
+		</div>
+		{% endif %}
+    {% endif %}
+    <!-- {{category.get_resource_html}} -->
+    <div class="clearFix"></div>
+    <section class="page-wrapper-message">
+        {% include 'message.html' %}
+    </section>
+
+    <!-- PRODUCT LIST AREA START -->
+    <div id="vue-app">
+        <!-- Loading animation -->
+        <div class="loading-mask" v-show="loading">
+            <div class="loader">
+                <div class="loading-icon"></div>
+            </div>
+        </div>
+        <!-- end Loading animation -->
+
+        <!-- snippet location search -->
+        <div class="nav" v-if="is_search">
+            <div class="search-results-heading">
+                <h1 class="page-heading" v-text="search_header"></h1>
+            </div>
+            <!-- snippet location forms_search -->
+        </div>
+        <section class="page">
+            {% include 'products/list/sidebar.html' %}
+            <main class="page-content" id="product-listing-container" v-show="show_products" v-if="items.length">
+                {% include 'products/list/toolbar.html' %}
+                    <ul class="product-grid" v-if="items.length">
+                        <li class="product" v-for="item in items">
+                            {% include 'products/list/item/default.html' %}
+                        </li>
+                    </ul>
+                {% include 'products/list/pagination.html' %}
+            </main>
+            <main class="page-content" id="product-listing-container" v-if="is_show_empty_alert && !is_search">
+                  <div id="empty-category"><div class="inside-alert" :style="{ display: is_show_empty_alert ? 'flex':'none' }"><img src="{%static 'img/alert-warning.png'%}"/>There is no product in this category</div></div>
+            </main>
+        </section>
+    </div>
+    <!-- PRODUCT LIST AREA END -->
+</div>
+
+{% endblock content %}
+{% block scripts %}
+{% if DJANGO_ENVIRON == "prod" %}
+    <script src="{% static 'js/npm/vue.min.js' %}"></script>
+{% else %}
+    <script src="{% static 'js/npm/vue.js' %}"></script>
+{% endif %}
+<script src="{% static 'js/custom/product-list.js' %}"></script>
+{% endblock %}

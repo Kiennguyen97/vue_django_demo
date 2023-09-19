@@ -1,0 +1,16 @@
+{% load static %}
+<div class="product-view-image" data-my-image-gallery>
+    <div class="main-wrap">
+        <div class="main-wrap2">
+            <div class="main-wrap3"></div>
+            <img class="main" v-bind:src="config.base_image" v-bind:data-src="config.base_image">
+        </div>
+        <div class="cover-slider">
+            <ul class="product-slider">
+                <li class="product-thumb-item" v-bind:data-sku="img.sku_matching" v-for="img in config.gallery" v-if="!img.hide_thumbnail">
+                    <img class="thumb-img" v-bind:src="img.thumb" v-bind:data-src="img.image" v-bind:alt="config.name" v-bind:title="config.name">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

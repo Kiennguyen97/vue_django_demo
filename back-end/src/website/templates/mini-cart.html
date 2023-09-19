@@ -1,0 +1,60 @@
+{% load static %}
+<div class="mini-cart-icon"
+     x-data="{ cart: { cart_count: {{ cart_count }}, subtotal: 0, }, items: [], loading: false, show: false, showMiniCart(){ if (this.show == false) { this.show = true; let event = new CustomEvent('update-page-wrapper', { detail: { cls: 'minicart-open' } }); window.dispatchEvent(event); } else { this.show = false; let event = new CustomEvent('update-page-wrapper', { detail: { cls: '' } }); window.dispatchEvent(event); } }, hideMiniCart(){ this.show = false; let event = new CustomEvent('update-page-wrapper', { detail: { cls: '' } }); window.dispatchEvent(event); }, get_cart_count(){ if(this.cart.cart_count > 999){ return '999+'; }else{ return this.cart.cart_count; } } }"
+     @update-mini-cart.window="cart=$event.detail.cart"
+     @update-mini-cart-items.window="items=$event.detail.items"
+     @update-mini-cart-loading.window="loading=$event.detail.loading"
+     x-bind:class="cart.cart_count > 0 ? 'count-positive' : ''">
+    <button @click="showMiniCart()"
+            @click.outside="hideMiniCart()"
+            :aria-expanded="show ? 'true' : 'false'"
+            data-target="#ltn__utilize-cart-menu"
+            class="ltn__utilize-toggle cart-action"
+            :class="show ? 'minicart-open' : ''">
+        <img class="cart-icon" src="{% static 'img/cms/cart-icon.png' %}" alt="Cart">
+        <div class="cart-label">My Cart</div>
+        <span class="cart-quantity" x-text="get_cart_count()"
+              x-bind:class="cart.cart_count > 0 ? 'count-positive' : ''"></span>
+    </button>
+    <!-- Utilize Cart Menu Start -->
+    <div id="ltn__utilize-cart-menu"
+         class="ltn__utilize ltn__utilize-cart-menu dropdown-menu"
+         x-show="show">
+        <div class="ltn__utilize-menu-inner ltn__scrollbar mini-cart" x-show="cart.cart_count > 0">
+            <div class="mini-cart-list ltn__scrollbar" x-show="items.length">
+                <template x-for="item in items">
+                    <div class="mini-cart-item clearfix">
+                        <div class="mini-cart-img">
+                            <a x-bind:href="item.product_full_url">
+                                <img x-bind="{'src': item.product_img, 'alt': item.product_title}">
+                            </a>
+                        </div>
+                        <div class="mini-cart-info">
+                            <h6 class="mini-cart-name">
+                                <a x-bind:href="item.product_full_url" x-text="item.product_title"></a>
+                            </h6>
+                            <span class="mini-cart-quantity"
+                                  x-text="item.product_quantity + ' x $' + item.product_price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="btn-wrapper mini-cart-action">
+                <div>
+                    <div class="action-checkout">
+                        <a href="{% url 'cart' %}?action=checkout" class="button button--small button--primary">
+                            Proceed to Checkout
+                        </a>
+                    </div>
+                    <div class="action-cart">
+                        <a href="{% url 'cart' %}" class="button button--small button--action">
+                            View Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mini-cart-empty" x-show="cart.cart_count == 0">Your cart is empty.</div>
+    </div>
+    <!-- Utilize Cart Menu End -->
+</div>

@@ -1,0 +1,157 @@
+{% load static %}
+<nav class="nav-pages">
+    <div class="container">
+        <ul class="nav-pages-list">
+            <li class="nav-pages-item categories">
+                <a class="nav-pages-action has-submenu" href="javascript:void(0)" aria-expanded="false">
+                    Products <i class="fa fa-light fa-chevron-down nav-pages-action-icon"></i>
+                </a>
+                <div class="nav-page-submenu" id="nav-pages-categories" aria-hidden="true" tabindex="-1">
+                    <ul class="nav-page-submenu-list">
+                        {% for cat_tree in CATEGORY_TREE %}
+                        <li class="nav-pages-item nav-page-submenu-item{% if cat_tree.has_children %}{% else %} no-children{% endif %}">
+                            {% if cat_tree.has_children %}
+                            <a class="nav-pages-action submenu-action has-submenu" href="{{cat_tree.slug}}"
+                               data-collapsible="nav-pages-{{cat_tree.uuid}}"
+                               data-collapsible-disabled-breakpoint="medium"
+                               data-collapsible-disabled-state="open"
+                               data-collapsible-enabled-state="closed"
+                               aria-expanded="false"
+                               aria-controls="nav-pages-{{cat_tree.uuid}}">
+                                {{cat_tree.name}}
+                                <i class="fa fa-light fa-chevron-down nav-pages-action-icon"></i>
+                            </a>
+                            <ul class="nav-page-child-list" id="nav-pages-{{cat_tree.uuid}}" aria-hidden="true">
+                                {% for children in cat_tree.children %}
+                                <li class="nav-page-child child-list-item">
+                                    <a class="nav-page-child child-list-action nav-pages-action"
+                                       href="{{children.slug}}">{{children.name}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <a class="nav-pages-action submenu-action" href="{{cat_tree.slug}}">{{cat_tree.name}}</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                        <li class="nav-pages-item nav-page-submenu-item no-children">
+                            <a class="nav-pages-action submenu-action" href="https://newtechoutlet.co.nz"
+                               target="_blank">Outlet Store</a>
+                        </li>
+                        <li class="nav-pages-item nav-page-submenu-item no-children">
+                            <a class="nav-pages-action submenu-action"
+                               href="https://www.trademe.co.nz/stores/Newtech-Bathroomware" target="_blank">TradeMe
+                                Store</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-pages-item">
+                <a class="nav-pages-action has-submenu" href="javascript:void(0)"
+                   data-collapsible="nav-pages-design-at-home" aria-controls="nav-pages-design-at-home"
+                   aria-expanded="false">
+                    Design@Home <i class="fa fa-light fa-chevron-down nav-pages-action-icon"></i>
+                </a>
+                <div class="nav-page-submenu nav-page-submenu-narrow" id="nav-pages-design-at-home" aria-hidden="true"
+                     tabindex="-1">
+                    <ul class="nav-pages-item nav-page-submenu-item">
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="{% url 'bathroom-planner' %}">Bathroom Planner</a></li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="{% url 'laundry-planner' %}">Laundry Planner</a></li>
+                    </ul>
+                </div>
+            </li>
+			<li class="nav-pages-item nav-pages-item-page">
+				<a class="nav-pages-action" href="{% url 'serenity' %}">Serenity</a>
+            </li>
+{#            <li class="nav-pages-item">#}
+{#                <a class="nav-pages-action has-submenu" href="javascript:void(0)" data-collapsible="nav-pages-serenity"#}
+{#                   aria-controls="nav-pages-serenity" aria-expanded="false">#}
+{#                    Serenity <i class="fa fa-light fa-chevron-down nav-pages-action-icon"></i>#}
+{#                </a>#}
+{#                <div class="nav-page-submenu nav-page-submenu-narrow" id="nav-pages-serenity" aria-hidden="true"#}
+{#                     tabindex="-1">#}
+{#                    <ul class="nav-pages-item nav-page-submenu-item">#}
+{#                        <li class="nav-page-child child-list-item"><a#}
+{#                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'serenity' %}">Serenity#}
+{#                            Range</a></li>#}
+{#                        <li class="nav-page-child child-list-item"><a#}
+{#                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'harrow' %}">Harrow</a>#}
+{#                        </li>#}
+{#                        <li class="nav-page-child child-list-item"><a#}
+{#                                class="nav-page-child child-list-action nav-pages-action"#}
+{#                                href="{% url 'oxley' %}">Oxley</a></li>#}
+{#                        <li class="nav-page-child child-list-item"><a#}
+{#                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'francisco' %}">Francisco</a>#}
+{#                        </li>#}
+{#                        <li class="nav-page-child child-list-item"><a#}
+{#                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'porscha' %}">Porscha</a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </li>#}
+            <li class="nav-pages-item nav-pages-item-page">
+                <a class="nav-pages-action" href="{% url 'page-laundry' %}">Laundry</a>
+            </li>
+            <li class="nav-pages-item">
+                <a class="nav-pages-action has-submenu" href="javascript:void(0)" data-collapsible="nav-pages-resources"
+                   aria-controls="nav-pages-resources" aria-expanded="false">
+                    Resources <i class="fa fa-light fa-chevron-down nav-pages-action-icon"></i>
+                </a>
+                <div class="nav-page-submenu nav-page-submenu-narrow" id="nav-pages-resources" aria-hidden="true"
+                     tabindex="-1">
+                    <ul class="nav-pages-item nav-page-submenu-item">
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'video' %}">Videos</a>
+                        </li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'catalogues' %}">Catalogues</a>
+                        </li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="{% url 'catalogues' %}#design-room">DesignRoom</a></li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="{% url 'catalogues' %}#additional-info">Product&nbsp;Info</a></li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="{% url 'catalogues' %}#spares">Spare&nbsp;Parts</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-pages-item">
+                <a class="nav-pages-action has-submenu" href="javascript:void(0)" data-collapsible="nav-pages-locations"
+                   aria-controls="nav-pages-locations" aria-expanded="false">
+                    Locations <i class="fa fa-light fa-chevron-down nav-pages-action-icon"></i>
+                </a>
+                <div class="nav-page-submenu nav-page-submenu-narrow" id="nav-pages-locations" aria-hidden="true"
+                     tabindex="-1">
+                    <ul class="nav-pages-item nav-page-submenu-item">
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="{%url 'concept-showroom' %}">Concept Showroom</a></li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action" href="{% url 'store_locations' %}">Nationwide
+                            Stockists</a></li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="https://newtechoutlet.co.nz" target="_blank">Outlet Store</a></li>
+                        <li class="nav-page-child child-list-item"><a
+                                class="nav-page-child child-list-action nav-pages-action"
+                                href="https://www.trademe.co.nz/stores/Newtech-Bathroomware" target="_blank">TradeMe
+                            Store</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-pages-item nav-pages-item-page">
+                <a class="nav-pages-action" href="{% url 'about-us' %}">About Us</a>
+            </li>
+            <li class="nav-pages-item nav-pages-item-page">
+                <a class="nav-pages-action" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+</nav>

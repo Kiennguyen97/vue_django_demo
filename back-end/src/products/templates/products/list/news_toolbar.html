@@ -1,0 +1,10 @@
+<div class="actionBar">
+    <div class="form-fieldset actionBar-section">
+        <div class="form-field">
+            <label class="form-label" for="for">Sort By:</label>
+            <select class="form-select form-select--small" id="sort" @change="sortByNews($event)" v-model="sort_options_news.default_value">
+                <option v-for="opt in sort_options_news.options" v-bind:value="opt.value" v-text="opt.label"></option>
+            </select>
+        </div>
+    </div>
+</div>

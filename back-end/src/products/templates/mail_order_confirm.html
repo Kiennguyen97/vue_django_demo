@@ -1,0 +1,164 @@
+{% extends 'base-email.html' %}
+{% block pagetitle %}Thanks for your order at Newtech{% endblock %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+<table style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;width: 100%; max-width: 1000px; margin: 0 auto;">
+    <tr>
+        <td>
+            <div style="font-weight: bold; text-align: right; font-size: 32px; line-height: 40px">
+                Order Confirmation
+            </div>
+            <table style="width: 100%; border-collapse:collapse;">
+                <tbody>
+                <tr>
+                    <td style="vertical-align: top; padding-right: 10px">
+                        <div style="font-weight: bold; color: #18becd;">
+                            Customer Details
+                        </div>
+                        <table style="border-collapse:collapse;">
+                            <tr>
+                                <td style="vertical-align: top;"><strong style="padding-right: 0.75em;">Name:</strong></td>
+                                <td style="vertical-align: top;">{{ user_obj.full_name }}</td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;"><strong style="padding-right: 0.75em;">Email:</strong></td>
+                                <td style="vertical-align: top;">{{ user_email }}</td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;"><strong style="padding-right: 0.75em;">Phone:</strong></td>
+                                <td style="vertical-align: top;">{{ user_obj.phone }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td align="right" style="vertical-align: top;">
+                        <table style="border-collapse:collapse;">
+                            <tr>
+                                <td style="color: #18becd; padding-right: 0.75em; vertical-align: top;">
+                                    <strong>Order #:</strong>
+                                </td>
+                                <td style="vertical-align: top;">{{ order_obj.get_pleasant_id }}</td>
+                            </tr>
+                            <tr>
+                                <td style="color: #18becd; padding-right: 0.75em; vertical-align: top;"><strong>Date:</strong></td>
+                                <td style="vertical-align: top;">{{ order_obj.create_date | date:'d-M-Y' }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table style="width: 100%; border-collapse:collapse;">
+                <tbody>
+                <tr>
+                    <td style="height: 10px"></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; width: 33%">
+                        <label style="font-weight: bold; color: #18becd;">Delivery Address:</label>
+                        <div>Pickup from delivery partner</div>
+                    </td>
+                    <td style="width: .5%"></td>
+                    <td style="vertical-align: top; width: 33%">
+                        <label style="font-weight: bold; color: #18becd;">Billing Address:</label>
+                        <div>
+                            {% for address in billing_address %}
+                            <span>{{ address }}</span><br />
+                            {% endfor %}
+                        </div>
+                    </td>
+                    <td style="width: .5%"></td>
+                    <td style="vertical-align: top; width: 33%">
+                        <label style="font-weight: bold; color: #18becd;">Delivery Partner:</label>
+                        <div>
+                            {% for address in partner_address %}
+                            <span>{{ address }}</span><br />
+                            {% endfor %}
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                <tr>
+                    <th style="height: 10px"></th>
+                </tr>
+                <tr>
+                    <th style="color: #18becd; border: 1px solid #18becd; padding: 5px;">
+                        Item
+                    </th>
+                    <th style="color: #18becd; border: 1px solid #18becd; padding: 5px;">
+                        Qty
+                    </th>
+                    <th style="color: #18becd; border: 1px solid #18becd; padding: 5px;">
+                        Each
+                    </th>
+                    <th style="color: #18becd; border: 1px solid #18becd; padding: 5px;">
+                        Total
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td style="vertical-align: top; border: 1px solid #18becd; padding: 5px;">
+						<div>
+							<strong>{{ item.product.name }}</strong> ({{ item.product_sku }})
+						</div>
+						{% if item.long_description %}
+							<div class="long-description">
+								{{ item.long_description | safe }}
+							</div>
+						{% else %}
+							<div>
+								<b>Code: </b>
+								<span class="sku">{{ item.get_product_sku }}</span>
+							</div>
+							{% if item.items %}
+								<div>
+									{% for item_option in item.items %}
+									<b>{{item_option.option.get_option_label}}: </b>
+									<span>{{item_option.option.get_option_name_no_html}}</span>
+									{% endfor %}
+								</div>
+							{% endif %}
+						{% endif %}
+					</td>
+                    <td style="vertical-align: top; border: 1px solid #18becd; padding: 5px; text-align: center">{{ item.product_quantity }}</td>
+                    <td style="vertical-align: top; border: 1px solid #18becd; padding: 5px; text-align: right">${{ item.product_price | floatformat:2 | intcomma }}</td>
+                    <td style="vertical-align: top; border: 1px solid #18becd; padding: 5px; text-align: right">${{ item.get_subtotal | floatformat:2 | intcomma }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td style="vertical-align: top; padding: 5px" colspan="3"><span>Order includes</span> ${{ order_obj.order_tax | floatformat:2 | intcomma }} <span>of GST.</span></td>
+                    <td style="vertical-align: top; border: 1px solid #18becd; padding: 5px; text-align: right">${{ order_obj.order_total | floatformat:2 | intcomma }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <br />
+			{% if payment_type == 'd_d' %}
+				<p style="margin: 0 0 1em 0; padding: 0;">
+					Please make payment of <b>${{ order_obj.order_total | floatformat:2 | intcomma  }}</b> to bank account <span class="im-inliner-orig-text"><b>{{ BANK_ACCOUNT }}</b></span> with reference <b>{{ order_obj.get_pleasant_id }}</b>. Your order will be processed by our team as soon as
+					we have received your payment.
+				</p>
+			{% elif payment_type == 'c_d_card' %}
+				<p style="margin: 0 0 1em 0; padding: 0;">
+					Thank you for your payment, our team are currently processing your order
+				</p>
+			{% endif %}
+            <p style="margin: 0 0 1em 0; padding: 0;">This is an order confirmation. We will email you your Tax Invoice when the order is dispatched to your delivery partner.</p>
+            <div>Standard delivery times:</div>
+            <ul style="margin-top: 0;">
+                <li>North Island orders – one to two business days</li>
+                <li>South Island orders – up to five business days</li>
+            </ul>
+            <p style="margin: 0 0 1em 0; padding: 0;">
+                We will notify you of any unexpected delays to your order. Please feel free to contact our Customer Service Team on 0800 728 662 or <a href="mailto:sales@newtech.co.nz" target="_blank">sales@newtech.co.nz</a> if you have any
+                questions.
+            </p>
+            <br />
+        </td>
+    </tr>
+</table>
+{% endblock content %}

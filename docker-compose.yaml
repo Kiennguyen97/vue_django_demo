@@ -1,0 +1,92 @@
+version: "3.3"
+
+services:
+  db:
+    container_name: vue_db
+    image: postgres:13.0-alpine
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=website
+    ports:
+      - "5440:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+
+#  web:
+#    container_name: alsco_service_web
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    restart: always
+#    command:
+#      - /bin/sh
+#      - -c
+#      - |
+#        python3 manage.py runserver 0.0.0.0:8100 --insecure &
+#        cd ../alsco_service_frontend && yarn host
+#    volumes:
+#      - ./back-end/:/alsco_service_web
+#      - ./front-end/src:/alsco_service_frontend/src
+#    ports:
+#      - "8102:8100" # for back-end
+#      - "8103:5173" # for front-end
+#    env_file:
+#      - ./.env
+#
+#    environment:
+#      - ALLOWED_HOST=alsco_service_web.net,
+#
+#    links:
+#      - db
+#
+#    depends_on:
+#      - db
+
+
+  meilisearch:
+    container_name: vue_meilisearch_services
+    image: getmeili/meilisearch
+    environment:
+      - MEILI_MASTER_KEY=vue
+    ports:
+      - "7702:7700"
+
+  web:
+    container_name: vue_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: python3 manage.py runserver 0.0.0.0:8100 --insecure
+    volumes:
+      - ./back-end/src/:/vue-web
+    ports:
+      - "8110:8100"
+    env_file:
+      - ./back-end/src/.env
+
+    environment:
+      - REDIS_URL=redis://redis/0
+      - ALLOWED_HOST=vue-web.net
+
+    links:
+      - db
+      - redis
+      - meilisearch
+
+    depends_on:
+      - db
+      - redis
+      - meilisearch
+
+  redis:
+    container_name: vue-redis-services
+    image: redis:latest
+    ports:
+      - "6490:6379"
+
+
+
+volumes:
+  pgdata:

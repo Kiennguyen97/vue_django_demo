@@ -1,0 +1,58 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}{{ product.name }}{% endblock %}
+{% block og-pagetitle %}{{ product.name }}{% endblock %}
+{% block page-content %}{{ product.description_long|striptags|truncatewords:20 }}{% endblock %}
+{% block canonical %}<meta rel="canonical" href="{{ PRODUCT_CANONICAL }}">{% endblock %}
+{% load static %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/productpage.css' %}">
+{% endblock %}
+{% block content %}
+
+{{ config|json_script:"config" }}
+
+<script type="text/javascript">
+  const config = document.getElementById('config').textContent;
+  const context = JSON.parse(config);
+</script>
+
+<main id="maincontent" class="page-main">
+  <div class="main-container normal-prod-detail">
+    <!-- BREADCRUMB AREA START -->
+    {% include 'breadcrumbs.html' %}
+    <!-- BREADCRUMB AREA END -->
+    <section class="page-wrapper-message">
+      {% include 'message.html' %}
+    </section>
+    <div itemscope="" itemtype="http://schema.org/Product" id="vue-app">
+      <!-- Loading animation -->
+      <div class="loading-mask" v-show="loading">
+        <div class="loader">
+          <div class="loading-icon"></div>
+        </div>
+      </div>
+      <!-- end Loading animation -->
+      <div class="bothProductView">
+        <div class="ntProductView">
+          {% include 'product/media.html' %}
+          {% include 'product/form.html' %}
+        </div>
+        {% include 'product/related-product.html' %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+{% block scripts %}
+{% if DJANGO_ENVIRON == "prod" %}
+  <script src="{% static 'js/npm/vue.min.js' %}"></script>
+{% else %}
+  <script src="{% static 'js/npm/vue.js' %}"></script>
+{% endif %}
+<script src="{% static 'js/custom/product-details.js' %}"></script>
+{% endblock %}
+
+{% block postscript %}
+
+{% endblock %}

@@ -1,0 +1,413 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}{{ object.name }}{% endblock %}
+{% block og-pagetitle %}{{ object.name }}{% endblock %}
+{% block page-content %}{{ object.description_long|striptags|truncatewords:20 }}{% endblock %}
+{% load static %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/custom/product-page.css' %}">
+{% endblock %}
+{% block content %}
+  <style>
+  .uaccordion li.level0 {
+    background-color: rgb(244, 244, 244) !important;
+  }
+
+  li.level1 {
+    background-color: white !important;
+    color: black !important;
+    border-bottom: 2px solid rgb(244, 244, 244);
+  }
+
+  .subcat {
+    color: black !important;
+    font-weight: bold;
+  }
+
+  .active-dropdown {
+    background-color: var(--safety-orange) !important;
+  }
+
+  .active-dropdown span {
+    color: white !important;
+    font-weight: 900;
+  }
+
+  .uaccordion .nav-item a {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+
+  .fas.fa-home {
+    color: var(--safety-orange) !important;
+  }
+
+  .ltn__pagination .page-item a.page-link {
+    border-color: var(--safety-gray) !important;
+    color: var(--safety-gray) !important;
+  }
+
+  .ltn__pagination .page-item.active span.page-link {
+    background-color: var(--safety-orange) !important;
+    border-color: var(--safety-gray) !important;
+  }
+
+  .shop-details-info h3,
+  .product-price *,
+  .info-sku * {
+    color: black !important;
+    font-family: "nova", Arial, Helvetica, sans-serif !important;
+  }
+
+  .shop-details-info h3 {
+    font-family: "nova-bold" !important;
+    text-transform: capitalize !important;
+    color: rgb(79, 79, 79) !important;
+  }
+
+  h2.id-title {
+    font-family: "nova-bold" !important;
+  }
+
+  .info-description p {
+    font-family: "nova" !important;
+  }
+
+  .shop-details-info h3 {
+    font-size: 2rem !important;
+    font-weight: bold !important;
+  }
+
+  .product-price * {
+    color: black !important;
+    font-family: "nova", Arial, Helvetica, sans-serif;
+  }
+
+  .cart-plus-minus {
+    max-width: 200px !important;
+  }
+
+  #product-details-add-to-cart {
+    font-family: "nova-bold", Arial, Helvetica, sans-serif !important;
+    background-color: var(--safety-gray) !important;
+    color: var(--safety-orange) !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+  }
+
+  .info-description {
+    padding-top: 0 !important;
+  }
+
+  .info-description * {
+    color: black !important;
+  }
+
+  .info-description li {
+    font-family: "nova", Arial, Helvetica, sans-serif;
+  }
+
+  .cart-plus-minus *,
+  .cart-plus-minus {
+    border-radius: 0 !important;
+  }
+
+  .prod-name {
+    font-family: "nova-bold" !important;
+    text-transform: uppercase !important;
+  }
+
+  .text-b {
+    font-family: "nova-bold" !important;
+  }
+
+  .text-b span {
+    font-family: "nova-bold" !important;
+  }
+
+  .text-g {
+    color: rgb(79, 79, 79) !important;
+  }
+
+  .favourites-box {
+    padding-top: 0 !important;
+  }
+  
+
+  /* product gallery height / adjustment */
+.ltn__shop-details-large-img .slick-slide {
+height: 400px;
+}
+
+.ltn__shop-details-small-img .slick-slide {
+height: 100px;
+}
+
+
+  </style>
+  <main id="maincontent" class="page-main">
+    <div class="main-container safety-prod-detail"
+         data-cy="safety-prod-detail">
+      <!-- BREADCRUMB AREA START -->
+      <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="ltn__breadcrumb-inner">
+                <div class="ltn__breadcrumb-list">
+                  <ul>
+                    <li>
+                      <a href="{% url 'index' %}">
+                        <span class="breadcrumb-icon"></span>
+                        Home
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'products' %}">Products</a>
+                    </li>
+                    <li>{{ object.name }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- BREADCRUMB AREA END -->
+      <div class="message-cart">
+        <div class="container"></div>
+      </div>
+      <section class="page-wrapper-message">
+        {% include 'message.html' %}
+      </section>
+      <!-- SHOP DETAILS AREA START -->
+      <div class="ltn__shop-details-area pb-85">
+        <div class="container">
+          <div class="row">
+            <!-- Side Accordion -->
+            <div class="sidebar sidebar-main col-lg-3 col-md-4 col-sm-12 col-xs-12">
+              <div class="block block-vertnav clearfix hide-below-768">
+                <div class="block-content">
+                  <ul class="uaccordion uaccordion-style1 sideacco">
+                    {{ cat_html }}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- end of side accordion -->
+            <div class="column main search-page col-lg-9 col-md-8 col-sm-12 col-xs-12">
+              <div class="ltn__shop-details-inner mb-60">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="ltn__shop-details-img-gallery">
+                      <div class="modal-product-info shop-details-info mobile-show">
+                        <h3 class="prod-name text-g">{{ object.name }}</h3>
+                        <input type="hidden"
+                               value="{{ object.get_product_sku }}"
+                               name="product-sku"
+                               class="product-sku"/>
+                        {% if object.is_product_simple %}
+                          <div class="info-sku">
+                            <span class="type text-g">SKU</span>
+                            <span class="value text-g" itemprop="sku">{{ object.get_product_sku }}</span>
+                          </div>
+                        {% endif %}
+                      </div>
+                      <!-- image start-->
+                      {% comment %}
+                        -- how images work
+                        -- main image is referred to direclty in the src tag
+                        -- secondary images & the small thumbnails are lazy loaded in
+                        -- done by slick carousel (data-lazy) attr
+                        -- this saves bandwith initially and less layout shift
+                        -- slick-carousel also handles the actual carousel.
+                      {% endcomment %}
+                      <div class="ltn__shop-details-large-img">
+                        {% if object.is_on_sale %}
+                          <span class="product-label on-sale">
+                            <span class="label">
+                              <span>On Sale</span>
+                            </span>
+                          </span>
+                        {% endif %}
+                        {% for img in object.get_image_hi_res_urls %}
+                          <div class="single-large-img">
+                            <a href="{{ img }}" data-rel="lightcase:myCollection">
+                              <img class="product-img"
+                                   height="400"
+                                   width="414"
+                                   {% if forloop.counter == 1 %} src="{{ img }}" {% else %} data-lazy="{{ img }}" {% endif %}
+                                   alt="{{ object.name }}"/>
+                            </a>
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div class="ltn__shop-details-small-img slick-arrow-2">
+                        {% for img in object.get_image_hi_res_urls %}
+                          <div class="single-small-img">
+                            <img data-lazy="{{ img }}" width="100" height="100" alt="" />
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <!-- image end -->
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="modal-product-info product-details shop-details-info pl-0">
+                      <h3 class="prod-name text-g mobile-none">{{ object.name }}</h3>
+                      <input type="hidden"
+                             value="{{ object.get_product_sku }}"
+                             name="product-sku"
+                             class="product-sku"/>
+                      {% if object.is_product_simple %}
+                        <div class="info-sku mobile-none">
+                          <span class="type text-g">SKU</span>
+                          <span class="value text-g" itemprop="sku">{{ object.get_product_sku }}</span>
+                        </div>
+                        <div class="part-block">
+                          {% if object.is_access_purchase %}
+                            <div class="product-price">
+                              <span class="price-container">
+                                <span class="price-wrapper">
+                                  {% if object.is_on_sale %}
+                                    <span class="special-price">
+                                      <span class="price">${{ object.get_discount_price }}</span>
+                                      <span class="gst text-uppercase">+gst</span>
+                                    </span>
+                                    <span class="old-price">
+                                      <span class="price">Usually ${{ object.get_price }}</span>
+                                    </span>
+                                  {% else %}
+                                    <span class="price">${{ object.get_price }}</span>
+                                    <span class="gst text-uppercase">+gst</span>
+                                  {% endif %}
+                                </span>
+                              </span>
+                              {% if object.carton_qty and object.carton_qty > 1 %}
+                                <p class="delivery-timeframe safety-text">
+                                  Carton Quantity <span class="text-content">{{ object.carton_qty }}
+                                  <img src="{% static 'img/home-new/package-icon-safety.png' %}" alt="">
+                                </span>
+                              </p>
+                            {% endif %}
+                          </div>
+                          {% if object.is_active == True %}
+                            {% include 'products/product-content-partial.html' %}
+                          {% endif %}
+                        {% else %}
+                          <em style="font-size: 16px">This product is available through our authorised resellers</em>
+                        {% endif %}
+                      </div>
+                      {% if object.get_description or object.benefits %}
+                        <div class="info-description">
+                          <h2 class="id-title text-g">Description & Features</h2>
+                          <div x-data="{ isCollapsed: false, originalContent: '', isShow: false}"
+                               x-ref="container"
+                               x-init="originalContent = $refs.container.offsetHeight, isShow = originalContent > 200 ? true : false"
+                               :class="[(isShow && !isCollapsed) ? 'hideContent' : '']">
+                            <div class="content-description">
+                              {{ object.get_description|safe }}
+                              {% if object.benefits %}
+                                <div class="info-description">
+                                  {%  comment %}
+                                  don't need this title, MBA
+                                  <h6 class="id-title text-g">Benefits</h6>
+                                  {%  endcomment %}
+                                  <div>
+                                    <div class="content-benefits">{{ object.benefits|safe }}</div>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            </div>
+                            <button @click="isCollapsed = !isCollapsed"
+                                    class="btn-actions"
+                                    x-show="isShow"
+                                    x-text="isCollapsed ? 'Show less' : 'Show more'">
+                            </button>
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                  {% if object.delivery_timeframe %}
+                    <div class="ltn__product-details-menu-3">
+                      <ul>
+                        <li>
+                          <p class="carton-qty">
+                            <span class="icon-cartonqty"><i class="fas fa-truck"></i></span>
+                            <span class="text-cartonqty">{{ object.delivery_timeframe }}</span>
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  {% endif %}
+                  {% if object.qty_order_limit %}
+                    <em>Purchases are restricted to {{ object.qty_order_limit }}
+                    units</em>
+                  {% endif %}
+                  <br />
+                  {% if object.is_active != True and object.is_product_simple and object.is_access_purchase %}
+                    <div class="alert alert-success">
+                      <a href="#" id="product-register-now">This product is currently unavailable</a>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div x-data="{tabs: {{ tabs }}, current_tab: '{{ current_tab }}' }">
+          <template x-if="tabs.length > 0">
+            <div class="tab-panels">
+              <div class="tab-title">
+                <div class="tab-title-content">
+                  <template x-for="(tab, index) in tabs">
+                    <span x-text="tab.label"
+                          x-on:click="current_tab = tab.value"
+                          :class="current_tab == tab.value ? 'active' : ''"></span>
+                  </template>
+                </div>
+              </div>
+              <div class="tab-content">
+                <template x-for="(tab, index) in tabs">
+                  <div class="container">
+                    <template x-if="tab.value =='tab-p-group'">
+                      <div class="row" x-show="tab.value == current_tab">{% include 'products/product-group.html' %}</div>
+                    </template>
+                    <template x-if="tab.value =='tab-p-resource'">
+                      <div class="row" x-show="tab.value == current_tab">{% include 'products/product-resource.html' %}</div>
+                    </template>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="bottom-banner">
+        <a href="/product/g237-help-it-p2-respirator-moulded-cup-mask-without-valve-nzs-17162012-box-20">
+          <img src="{% static 'img/safety/banner-footer.jpg' %}"
+               alt="special product banner"/>
+        </a>
+      </div>
+    </div>
+    <!-- SHOP DETAILS AREA END -->
+    <!-- PROMISE BANNER START -->
+    {% include 'promise-banner.html' %}
+    <!-- PROMISE BANNER END -->
+  </div>
+</div>
+<script>
+    document.querySelectorAll(".level-1-expand").forEach((x) => {
+      x.addEventListener("click", () => {
+        // toggle the expanded category background to be orange
+        x.parentNode.parentNode.classList.toggle("active-dropdown");
+      });
+    });
+</script>
+</main>
+{% endblock content %}
+{% block postscript %}
+  <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+  <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+{% endblock %}

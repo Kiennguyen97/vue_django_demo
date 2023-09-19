@@ -1,0 +1,34 @@
+<div class="pagination" v-if="items.length">
+    <ul class="pagination-list">
+        <!-- previous button -->
+        <li class="pagination-item pagination-item--previous" v-if="pagination.has_previous">
+            <a class="pagination-link"
+                @click.prevent="selectePage(pagination.previous_page_number)">
+                <span class="btn-icon btn-left"></span>
+                Previous
+            </a>
+        </li>
+        <!-- page ranges button -->
+        <li class="pagination-item"
+            v-for="i in pagination.page_ranges"
+            v-bind:class="i==pagination.number ? 'pagination-item--current' : ''"
+            v-if="i > pagination.number_previous_hellip && i < pagination.number_next_hellip">
+            <span class="pagination-link page-link" v-text="i" v-if="i==pagination.number">
+                <span class="sr-only">(current)</span>
+            </span>
+            <a class="pagination-link"
+                v-text="i"
+                v-if="i!=pagination.number"
+                @click.prevent="selectePage(i)">    
+            </a>
+        </li>
+        <!-- next button -->
+        <li class="pagination-item pagination-item--next" v-if="pagination.has_next">
+            <a class="pagination-link"
+               @click.prevent="selectePage(pagination.next_page_number)">
+               Next
+                <span class="btn-icon btn-right"></span>
+            </a>
+        </li>
+    </ul>
+</div>

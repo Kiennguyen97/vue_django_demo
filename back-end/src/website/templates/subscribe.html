@@ -1,0 +1,45 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Subscribe{% endblock %}
+{% block og-pagetitle %}Subscribe{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+	  type="text/css"
+	  href="{% static 'css/custom/subscribe.css' %}">
+{% endblock %}
+{% block content %}
+{% load static %}
+{% if is_error %}
+<div class="body">
+	<main class="page-main">
+		<div class="page-content page-content-container">
+			<h1 class="page-heading">Oops...</h1>
+			<div class="alert-box alert-box-error">
+				<div class="alert-box-column alert-box-icon">
+					<img src="{% static 'img/cms/error.svg' %}">
+				</div>
+				<div class="alert-box-column alert-box-message">
+					{% include 'message.html' %}
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+{% else %}
+<div class="body">
+	<main class="page-main">
+		<div class="page-content page-content-container">
+			<h1 class="page-heading">Thanks for Subscribing!</h1>
+			<div class="alert-box alert-box-success">
+				<div class="alert-box-column alert-box-icon">
+					<img src="{% static 'img/cms/success.svg' %}">
+				</div>
+				<div class="alert-box-column alert-box-message">
+					{% include 'message.html' %}
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+{% endif %}
+{% endblock content %}

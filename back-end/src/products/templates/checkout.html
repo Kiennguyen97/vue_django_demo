@@ -1,0 +1,823 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Checkout{% endblock %}
+{% block og-pagetitle %}Checkout{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/address-add.css' %}">
+{% endblock %}
+{% load static %}
+{% block content %}
+  <!-- BREADCRUMB AREA START -->
+  <div class="text-left" data-bs-bg="{% static 'img/bg/14.jpg' %}">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ltn__breadcrumb-inner">
+            <div class="ltn__breadcrumb-list">
+              <ul>
+                <li>
+                  <a href="{% url 'index' %}">
+                    <span class="ltn__secondary-color">
+                      <i class="fas fa-home"></i>
+                    </span>
+                    Home
+                  </a>
+                </li>
+                <li>Checkout</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BREADCRUMB AREA END -->
+  {% include 'message.html' %}
+  <div class="message-cart">
+    <div class="container"></div>
+  </div>
+  <!-- WISHLIST AREA START -->
+  <div class="ltn__checkout-area mb-105">
+    <div class="section-title-area ltn__section-title-2 text-center">
+      <h1 class="page-title">SHIPPING & PAYMENT</h1>
+    </div>
+    <!-- temporary spacer -->
+    <div style="margin-bottom:50px;"></div>
+    <!-- expose json data to vue app -->
+    {{ json|json_script:"json" }}
+    <script>const vueData = document.getElementById('json').textContent;</script>
+    <!-- start of vue app -->
+    {% verbatim %}
+      <div id="vue-app">
+        <div class="container"
+             style="display: flex; justify-content: center"
+             v-if="initialLoad">
+          <i class="pi pi-spin pi-spinner" style="font-size: 4rem; color:#4c5a85;"></i>
+        </div>
+        <div class="container" v-cloak>
+          <div class="row">
+            <div class="col-lg-8">
+              <p -accordion v-model:active-index="active">
+                <p -accordiontab header="Shipping Address">
+                  <p>
+                    Please select a delivery address, pick up unavailable.
+                  </p>
+                  <div class="address-collection">
+                  <address -card
+                           v-for="address in ctx.shipping_addresses"
+                           :address="address"
+                           :is-selected="selectedAddress !== null && selectedAddress.uuid === address.uuid"
+                           :set-address="setAddress"
+                           type="shipping"></address-card>
+                </div>
+                <p -button
+                   type="button"
+                   label="Create new address"
+                   class="p-button-outlined create-new-addy-btn"
+                   data-bs-toggle="modal"
+                   data-bs-target="#add_new_address_modal">
+                </p-button>
+                <p -button
+                   type="button"
+                   label="Next"
+                   icon="pi pi-forward"
+                   iconPos="right"
+                   @click="navigateNext('shipping')">
+                </p-button>
+                <p -inlinemessage severity="error" v-if="addressError.active">
+                  {{ addressError.message }}
+                </p-inlinemessage>
+              </p-accordiontab>
+              <p -accordiontab header="Billing Address">
+                <div class="field-checkbox">
+                  <p -checkbox
+                     id="binary"
+                     v-model="useShippingAddressForBilling"
+                     :binary="true"
+                     @click="toggleSameAddressBilling">
+                  </p-checkbox>
+                  <label for="binary">Use shipping address as billing address</label>
+                </div>
+                <div class="address-collection">
+                <address -card
+                         v-for="address in ctx.billing_addresses"
+                         :address="address"
+                         :is-selected="selectedBilling !== null && selectedBilling.uuid === address.uuid"
+                         :set-billing="setBilling"
+                         type="billing"
+                         :uncheck-same-address="uncheckSameAddress"></address-card>
+              </div>
+              <p -button
+                 type="button"
+                 label="Create new billing address"
+                 class="p-button-outlined create-new-addy-btn"
+                 data-bs-toggle="modal"
+                 data-bs-target="#add_new_billing_modal">
+              </p-button>
+              <p -button
+                 type="button"
+                 icon="pi pi-forward"
+                 label="Next"
+                 iconPos="right"
+                 @click="navigateNext('billing')">
+              </p-button>
+              <p -inlinemessage severity="error" v-if="billingError.active">
+                {{ billingError.message }}
+              </p-inlinemessage>
+            </p-accordiontab>
+            <p -accordiontab header="Other Information">
+              <h4>Order Notes</h4>
+              <p -textarea v-model="orderNotes" rows="5" cols="30">
+              </p-textarea>
+              <h4>Purchase Order Ref</h4>
+              <p -inputtext
+                 type="text"
+                 class="p-inputtext"
+                 placeholder=""
+                 v-model="orderRef">
+              </p-inputtext>
+              <p -button
+                 type="button"
+                 icon="pi pi-forward"
+                 label="Next"
+                 iconPos="right"
+                 @click="navigateNext('other')">
+              </p-button>
+            </p-accordiontab>
+            <p -accordiontab header="Payment Method">
+              <div id="payment-accordian">
+                <p -message
+                   severity="success"
+                   style="margin-top: 0"
+                   :closable="false"
+                   v-if="selectedPaymentType">
+                  You have selected to pay by {{ displayPaymentType() }}
+                </p-message>
+                <p -accordion
+                   v-model:active-index="activePayment"
+                   @tab-open="setPaymentOnTabOpen($event)">
+                  <p -accordiontab
+                     header="Credit Card"
+                     v-if="ctx.payment_methods.includes('c_d_card')">
+                    <div>
+                      <p style="margin-bottom:0;">
+                        Credit Card usage incurs a {{ ctx.credit_card_surcharge[1] }} surcharge
+                      </p>
+                      <div id="dropin-container"></div>
+                    </div>
+                    <!-- <p -button
+    type="button"
+    label="Select Pay By Credit Card"
+    @click="setPaymentMethod('c_d_card')"></p-button> -->
+                  </p-accordiontab>
+                  <p -accordiontab
+                     header="Internet Banking"
+                     v-if="ctx.payment_methods.includes('d_d')">
+                    <div >
+                      <p>
+                        Please make payment to our bank account as below:
+                        <br />
+                        ASB Bank: {{ ctx.bank_account }}
+                        <br />
+                        Upon order confirmation, you will receive a confirmation email with an ORD order number.
+                        Please use this order number as reference to ensure it is promptly reconciled.
+                      </p>
+                      <strong>Please make payment as soon as possible, to ensure your stock is promptly shipped.</strong>
+                      <br />
+                      <strong>Goods remain the property of Amtech Medical until payment has been received.
+                        <br />
+                      Your order will not ship until this is confirmed.</strong>
+                    </div>
+                    <!-- <p -button
+    type="button"
+    label="Select Pay By Internet Banking"
+    @click="setPaymentMethod('d_d')"
+    style="margin-top: 15px"></p-button> -->
+                  </p-accordiontab>
+                  <!-- <p -accordiontab header="Credit Account"> -->
+                  <p -accordiontab
+                     header="Credit Account"
+                     v-if="ctx.payment_methods.includes('credit')">
+                    <div>
+                      <p style="margin-bottom: 0;">
+                        Your credit account will be charged.
+                      </p>
+                    </div>
+                    <!-- <p -button
+    type="button"
+    label="Select Pay By Credit"
+    @click="setPaymentMethod('credit')"
+    style="margin-top: 15px"></p-button> -->
+                  </p-accordiontab>
+                </p-accordion>
+              </div>
+              <p -message
+                 severity="error"
+                 v-for="error in finalErrors"
+                 :closable="false">
+                {{ error }}
+              </p-message>
+              <p -button
+                 type="button"
+                 id="submit-button"
+                 icon="pi pi-shopping-cart"
+                 :loading="placeOrderLoading"
+                 label="Place Order"
+                 iconPos="right"
+                 style="margin-top: 15px">
+              </p-button>
+            </p-accordiontab>
+          </p-accordion>
+        </div>
+        <div class="col-lg-4">
+          <p -panel header="Cart Totals">
+            <table class="table" style="margin-bottom: 0;">
+              <tbody>
+                <tr>
+                  <td>Subtotal</td>
+                  <td class='cart-subtotal'>${{ ctx.info_cart.total_carts }}</td>
+                </tr>
+                <tr v-if="ctx.info_cart.cart_coupon">
+                  <td>
+                    <em>{{ ctx.info_cart.cart_coupon.name }}</em>
+                  </td>
+                  <td id="cart-coupon">
+                    <em>- ${{ ctx.info_cart.coupon_value }}</em>
+                  </td>
+                </tr>
+                <!-- <p v-if="!ctx.info_cart.cart_coupon" id="cart-coupon"></p> -->
+                <!-- weird vue bug, v-else doesnt work here -->
+                <tr>
+                  <td>Shipping & Handling</td>
+                  <td class='cart-shipping-handling'>${{ ctx.info_cart.total_shipping }}</td>
+                </tr>
+                <tr>
+                  <td>Admin Fee</td>
+                  <td class='cart-shipping-handling'>${{ ctx.info_cart.admin_fee }}</td>
+                </tr>
+                <tr>
+                  <td>GST</td>
+                  <td class='cart-gst'>${{ ctx.info_cart.total_gst }}</td>
+                </tr>
+                <tr id="cc-surcharge-block" v-if="selectedPaymentType === 'c_d_card'">
+                  <td>Credit Card Surcharge - {{ ctx.credit_card_surcharge[1] }}</td>
+                  <td id="cc-surcharge">${{ creditCardSurcharge }}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Order Total</strong>
+                  </td>
+                  <td id="cart-total-total">
+                    <strong>${{ grandTotal }}</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </p-panel>
+        </div>
+      </div>
+    </div>
+  <address -modal :ctx="ctx" :set-address="setAddress"></address-modal>
+  <billing-modal :ctx="ctx" :set-billing="setBilling"></billing-modal>
+</div>
+<!-- vue component templates -->
+<!-- address card -->
+<template id="address-card">
+  <p -card
+     class="address-card"
+     :class="[isSelected ? 'card-border' : 'card-border-inactive']"
+     @click="setAddy">
+    <template #content>
+      <p>
+        {{ address.name }}
+      </p>
+      <p>
+        {{ address.street_address_1 }}
+      </p>
+      <p v-if="address.street_address_2">
+        {{ address.street_address_2 }}
+      </p>
+      <p>
+        {{ address.city }}
+      </p>
+      <p>
+        {{ address.phone }}
+      </p>
+      <p>
+        {{ address.address_postal }}
+      </p>
+      <div class="space-filler"></div>
+    </template>
+    <template #footer>
+      <p -button
+         icon="pi pi-check"
+         class="p-button-rounded"
+         :class="[isSelected ? '' : 'p-button-outlined']">
+      </p-button>
+    </template>
+  </p-card>
+</template>
+<!-- address modal -->
+<template id="address-modal">
+  <div class="ltn__modal-area ltn__add_new_address_modal-area">
+    <div class="modal fade" id="add_new_address_modal" tabindex="-1">
+      <form>
+        <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button"
+                      class="close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h2 class="modal-title mb-50">
+                New Shipping Address
+              </h2>
+              <p>
+                <label for="id_name">
+                  Name:
+                </label>
+                <input type="text"
+                       name="name"
+                       placeholder="Name"
+                       v-model="shipping_name"
+                       required=""
+                       id="id_name"
+                       tabindex="101">
+              </p>
+              <p>
+                <label for="id_phone">
+                  Phone:
+                </label>
+                <input type="text"
+                       name="phone"
+                       v-model="shipping_phone"
+                       placeholder="Phone"
+                       id="id_phone"
+                       tabindex="102">
+              </p>
+              <div class="search-for-address">
+                <label>
+                  Search For Address
+                </label>
+                <div class="action-search-address">
+                  <p class="action-search-address-label">
+                    Enter address manually
+                  </p>
+                  <div class="switch">
+                    <input type="checkbox" @click="changeSearchMethod()">
+                    <span class="slider round"></span>
+                  </div>
+                </div>
+                <input type="text"
+                       id="id_address_suggestion"
+                       name="address_suggestion"
+                       placeholder="Enter a suggested address"
+                       required
+                       @input="debounce"
+                       tabindex="103"
+                       :readOnly="!isSuggestSearch"
+                       ref="address_suggestion_ref">
+                <template v-if="suggestAddresses?.length">
+                  <ul class="ui-autocomplete ui-items">
+                    <li class="close-search-address" @click="closeSearchAddress()">
+                      <span>x</span>
+                    </li>
+                    <template v-for="item in suggestAddresses">
+                      <li class="ui-item">
+                        <span v-text="item.label" @click="selectAddress(item.id, item.label)"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+              </div>
+              <p>
+                <label for="id_city">
+                  City:
+                </label>
+                <input type="text"
+                       name="city"
+                       placeholder="City"
+                       required=""
+                       id="id_city"
+                       v-model="id_city"
+                       :readOnly="isSuggestSearch"
+                       tabindex="104">
+              </p>
+              <p>
+                <label for="id_street_address_1">
+                  Street address 1:
+                </label>
+                <input type="text"
+                       name="street_address_1"
+                       placeholder="Street address 1"
+                       required=""
+                       id="id_street_address_1"
+                       v-model="id_street_address_1"
+                       :readOnly="isSuggestSearch"
+                       tabindex="105">
+              </p>
+              <p>
+                <label for="id_street_address_2">
+                  Street address 2:
+                </label>
+                <input type="text"
+                       name="street_address_2"
+                       placeholder="Street address 2"
+                       id="id_street_address_2"
+                       v-model="id_street_address_2"
+                       :readOnly="isSuggestSearch"
+                       tabindex="106">
+              </p>
+              <p hidden>
+                <label for="id_latitude">
+                  Latitude:
+                </label>
+                <input type="number"
+                       name="latitude"
+                       step="any"
+                       id="id_latitude"
+                       v-model="id_latitude"
+                       :readOnly="isSuggestSearch"
+                       tabindex="107">
+              </p>
+              <p hidden>
+                <label for="id_longitude">
+                  Longitude:
+                </label>
+                <input type="number"
+                       name="longitude"
+                       step="any"
+                       id="id_longitude"
+                       v-model="id_longitude"
+                       :readOnly="isSuggestSearch"
+                       tabindex="108">
+              </p>
+              <p>
+                <label for="id_address_postal">
+                  Postal Code:
+                </label>
+                <input type="text"
+                       name="address_postal"
+                       placeholder="Postal Code"
+                       required=""
+                       v-model="id_address_postal"
+                       id="id_address_postal"
+                       :readOnly="isSuggestSearch"
+                       tabindex="108">
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button"
+                      ref="close_shipping_modal"
+                      class="btn btn-secondary theme-btn-7"
+                      data-bs-dismiss="modal"
+                      aria-label="Close">
+                Close
+              </button>
+              <button :disabled="isFullField()"
+                      type="button"
+                      @click="sendShippingPayment()"
+                      class="btn btn-primary theme-btn-1">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+<!-- billing modal -->
+<template id="billing-modal">
+  <div class="ltn__modal-area ltn__add_new_billing_modal-area">
+    <div class="modal fade" id="add_new_billing_modal" tabindex="-1">
+      <form>
+        <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button"
+                      class="close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h2 class="modal-title mb-50">
+                New Billing Address
+              </h2>
+              <!-- Modal -->
+              <p>
+                <label for="id_billing_name">
+                  Name:
+                </label>
+                <input type="text"
+                       v-model="billing_name"
+                       name="name"
+                       placeholder="Name"
+                       required=""
+                       id="id_billing_name"
+                       tabindex="103">
+              </p>
+              <p>
+                <label for="id_billing_phone">
+                  Phone:
+                </label>
+                <input type="text"
+                       v-model="billing_phone"
+                       name="phone"
+                       placeholder="Phone"
+                       id="id_billing_phone"
+                       tabindex="104">
+              </p>
+              <div class="search-for-address">
+                <label>
+                  Search For Address
+                </label>
+                <div class="action-search-address">
+                  <p class="action-search-address-label">
+                    Enter address manually
+                  </p>
+                  <div class="switch">
+                    <input type="checkbox" @click="changeSearchMethod()">
+                    <span class="slider round"></span>
+                  </div>
+                </div>
+                <input type="text"
+                       id="id_billing_address_suggestion"
+                       name="address_suggestion"
+                       placeholder="Enter a suggested address"
+                       required
+                       tabindex="105"
+                       @input="debounce"
+                       :readOnly="!isSuggestSearch"
+                       ref="billing_address_suggestion_ref">
+                <template v-if="suggestAddresses?.length">
+                  <ul class="ui-autocomplete ui-items">
+                    <li class="close-search-address" @click="closeSearchAddress()">
+                      <span>x</span>
+                    </li>
+                    <template v-for="item in suggestAddresses">
+                      <li class="ui-item">
+                        <span v-text="item.label" @click="selectAddress(item.id, item.label)"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+              </div>
+              <p>
+                <label for="id_billing_city">
+                  City:
+                </label>
+                <input type="text"
+                       name="city"
+                       placeholder="City"
+                       required=""
+                       id="id_billing_city"
+                       v-model="id_billing_city"
+                       :readOnly="isSuggestSearch">
+              </p>
+              <p>
+                <label for="id_billing_street_address_1">
+                  Street address 1:
+                </label>
+                <input type="text"
+                       name="street_address_1"
+                       placeholder="Street address 1"
+                       id="id_billing_street_address_1"
+                       v-model="id_billing_street_address_1"
+                       :readOnly="isSuggestSearch">
+              </p>
+              <p>
+                <label for="id_billing_street_address_2">
+                  Street address 2:
+                </label>
+                <input type="text"
+                       name="street_address_2"
+                       placeholder="Street address 2"
+                       id="id_billing_street_address_2"
+                       v-model="id_billing_street_address_2"
+                       :readOnly="isSuggestSearch">
+              </p>
+              <p hidden>
+                <label for="id_billing_latitude">
+                  Latitude:
+                </label>
+                <input type="number"
+                       name="latitude"
+                       id="id_billing_latitude"
+                       v-model="id_billing_latitude"
+                       :readOnly="isSuggestSearch">
+              </p>
+              <p hidden>
+                <label for="id_billing_longitude">
+                  Longitude:
+                </label>
+                <input type="number"
+                       name="longitude"
+                       v-model="id_billing_longitude"
+                       id="id_billing_longitude"
+                       :readOnly="isSuggestSearch">
+              </p>
+              <p>
+                <label for="id_billing_address_postal">
+                  Postal Code:
+                </label>
+                <input type="text"
+                       name="address_postal"
+                       placeholder="Postal Code"
+                       v-model="id_billing_address_postal"
+                       required=""
+                       id="id_billing_address_postal"
+                       :readOnly="isSuggestSearch">
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button"
+                      ref="close_billing_modal"
+                      class="btn btn-secondary theme-btn-7"
+                      data-bs-dismiss="modal"
+                      aria-label="Close">
+                Close
+              </button>
+              <button :disabled="isFullField()"
+                      type="button"
+                      @click="sendBillingPayment()"
+                      class="btn btn-primary theme-btn-1">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<!-- vue styles -->
+<style>
+          button[iconpos="right"] {
+            flex-direction: row-reverse;
+            margin-right: 15px;
+          }
+
+            button[iconpos="right"] .p-button-label {
+              margin-right: 8px;
+              margin-top: 3px;
+            }
+
+            button.create-new-addy-btn {
+              display: block;
+              margin-bottom: 15px;
+            }
+
+            .address-collection {
+              display: flex;
+              flex-wrap: wrap;
+              -webkit-flex-wrap: wrap;
+              margin-bottom: 15px;
+            }
+
+            .p-card .p-card-body {
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+            }
+
+            .space-filler {
+              flex-grow: 1;
+            }
+
+            .p-card-footer {
+              margin-top: auto;
+            }
+
+            .address-card {
+              max-width: calc((100% - 30px) / 3);
+              margin-right: 15px;
+              width: 100%;
+            }
+
+            /* remove margin on right most card  */
+            .address-card:nth-child(3n) {
+              margin-right: 0;
+            }
+
+            /* add top margin to cards 4 onwards  */
+            .address-card:nth-child(n+4) {
+              margin-top: 15px;
+            }
+
+            @media only screen and (max-width: 767px) {
+              .address-card {
+                max-width: 100%;
+                margin-right: 0;
+                margin-top: 15px;
+              }
+
+              .address-card:first-child {
+                margin-top: 0;
+              }
+            }
+
+            .address-card p {
+              margin-bottom: 0;
+            }
+
+            .card-border {
+              border: 1px solid #0d89ec;
+            }
+
+            .card-border-inactive {
+              border: 1px solid transparent;
+            }
+
+            .field-checkbox label {
+              margin-bottom: 0;
+              margin-top: 3px;
+            }
+
+            .p-inline-message {
+              margin-top: 2px;
+            }
+
+            @media only screen and (max-width: 991px) {
+              #vue-app > .container > .row {
+                flex-direction: column-reverse;
+              }
+
+              #vue-app > .container > .row > .col-lg-4 > .p-panel {
+                margin-bottom: 15px;
+              }
+            }
+
+            [v-cloak] {
+              display: none;
+            }
+
+            /* nested accordian doesnt have top border for some reason */
+            #payment-accordian .p-accordion-tab:first-child a {
+              border-top: 1px solid #dee2e6;
+            }
+
+</style>
+{% endverbatim %}
+<!-- end of vue app -->
+<!-- <form id="brain-form">
+        <div id="credit-card-body">
+        <div id="dropin-container" class="card-body"></div>
+        </div>
+</form> -->
+</div>
+{% endblock content %}
+<!-- PrimeVue -->
+{% block css_top %}
+  <link rel="stylesheet" href="{% static 'css/cdn/prime-vue/theme.css' %}">
+  <link rel="stylesheet"
+        href="{% static 'css/cdn/prime-vue/primeflex.min.css' %}">
+  <link rel="stylesheet"
+        href="{% static 'css/cdn/prime-vue/primevue.min.css' %}">
+  <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet">
+{% endblock css_top %}
+{% block scripts %}{% endblock %}
+{% block postscript %}
+  <script src="{% static 'js/custom/checkout/checkout-loader.js' %}"></script>
+  {% if DJANGO_ENVIRON == "prod" %}
+    <script src="{% static 'js/cdn/vue3/vue.min.js' %}"></script>
+  {% else %}
+    <script src="{% static 'js/cdn/vue3/vue.js' %}"></script>
+  {% endif %}
+  <script src="{% static 'js/cdn/sentry/bundle.tracing.min.js' %}">
+  </script>
+  <script type="text/javascript">
+  Sentry.init({
+    dsn: '{{SENTRY_DSN}}',
+    // this assumes your build process replaces `process.env.npm_package_version` with a value
+    // release: "RELEASE-CHANGEME",
+    environment: '{{DJANGO_ENVIRON}}',
+    integrations: [new Sentry.BrowserTracing()],
+
+    // We recommend adjusting this value in production, or using tracesSampler
+    // for finer control
+    tracesSampleRate: 1.0,
+  });
+  </script>
+  <!-- prime vue components -->
+  <script src="{% static 'js/cdn/prime-vue/core.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/accordion.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/accordiontab.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/card.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/inlinemessage.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/checkbox.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/panel.js' %}"></script>
+  <script src="{% static 'js/cdn/prime-vue/textarea.js' %}"></script>
+  <script src="{% static 'js/custom/checkout/checkout-vue.js' %}" type="module"></script>
+  <script src="https://js.braintreegateway.com/web/dropin/1.32.0/js/dropin.js"></script>
+{% endblock postscript %}

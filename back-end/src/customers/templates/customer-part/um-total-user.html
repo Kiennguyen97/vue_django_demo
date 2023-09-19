@@ -1,0 +1,26 @@
+{% for customer in data %}
+  <tr>
+    <td data-th="Username">{{ customer.name }}</td>
+    <td data-th="Email">{{ customer.email }}</td>
+    <td data-th="Role">
+      {% if customer.role == 'admin' %}
+        Admin
+      {% else %}
+        Staff
+      {% endif %}
+    </td>
+    <td data-th="Date Created">{{ customer.date_joined | date:'d M Y' }}</td>
+    <td data-th="Status">
+      {% if customer.is_active %}
+        Active
+      {% else %}
+        Inactive
+      {% endif %}
+    </td>
+    <td data-th="Action" id-customer="{{ customer.id }}">
+      {% if customer.is_active and user.id != customer.id %}
+        {% include 'customer-part/modal-delete.html' with customer_id=customer.id %}
+      {% endif %}
+    </td>
+  </tr>
+{% endfor %}

@@ -1,0 +1,301 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Invoices{% endblock %}
+{% block og-pagetitle %}Invoices{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/invoices.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/npm/litepicker.css' %}">
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      <!-- ORDER DETAIL START -->
+      <div class="dashboard-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">Invoices</h1>
+            </div>
+          </div>
+          <section class="page-wrapper-message">
+            {% include 'message.html' %}
+          </section>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <script type="text/javascript">var picker;</script>
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="order-notification">
+                <p>
+                  View invoices associated with your Amtech account. Download or raise
+                  a query on these invoices using the buttons on the right.
+                  <br>
+                  If you have paid your invoice recently, this may be shown as 'Unpaid'
+                  for up to 48 hours post payment receipt.
+                </p>
+              </div>
+              <div x-data="{ items: [], pagination: {}, loading: false, is_empty: false, is_search: false, search_temp: '', time_range: '', filters: {}, init(){ this.reload(); }, reload(){ let self = this; this.loading = true; fetch( '/customers/api/reload', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}', 'Class-Name': 'customer_invoices' }, body: JSON.stringify(self.filters) } ).then((response) => response.json()) .then((json) => { self.loading = false; self.items = json['items']; self.pagination = json['pagination']; if(!self.is_search && self.items.length == 0){ self.is_empty = true; } }); }, search(){ if (this.search_temp != ''){ this.filters['query'] = this.search_temp; this.is_search = true; this.reload(); } }, reset(){ this.is_search = false; this.filters = {}; this.time_range = ''; this.search_temp = ''; this.filters['page'] = 1; picker.clearSelection(); this.reload(); }, resetTimeRange(){ this.time_range = ''; this.filters = {}; if (this.search_temp != ''){ this.filters['query'] = this.search_temp; this.is_search = true; } this.filters['page'] = 1; picker.clearSelection(); this.reload(); }, previous(){ this.filters['page'] = this.pagination.previous_page_number; this.reload(); }, next(){ this.filters['page'] = this.pagination.next_page_number; this.reload(); }, selectedPage(i){ this.filters['page'] = i; this.reload(); }, submitQuery(id){ let input = form_modal_el.getElementsByTagName('input'); input[0].value = id; modal.show(); } }"
+                   x-init="$nextTick(() => { picker = new Litepicker({ element: document.getElementById('custom-range-tab'), autoApply: false, singleMode: false, position: 'left' }); picker.on('button:apply', (d1, d2) => { let from_date = d1.getFullYear() + '-' + ('0' + (d1.getMonth() + 1)).slice(-2) + '-' + ('0' + d1.getDate()).slice(-2), to_date = d2.getFullYear() + '-' + ('0' + (d2.getMonth() + 1)).slice(-2) + '-' + ('0' + d2.getDate()).slice(-2),  params_string = '', url = ''; $data.filters['from'] = from_date; $data.filters['to'] = to_date; $data.is_search = true; $data.time_range = ('0' + d1.getDate()).slice(-2) + '/' + ('0' + (d1.getMonth() + 1)).slice(-2) + '/' + d1.getFullYear() + ' - ' + ('0' + d2.getDate()).slice(-2) + '/' + ('0' + (d2.getMonth() + 1)).slice(-2) + '/' + d2.getFullYear(); $data.reload(); }); })">
+                <template x-if="loading">
+                  <div class="loading">
+                    <div class="loading-icon"></div>
+                  </div>
+                </template>
+                <div class="form-search">
+                  <form class="bd-search d-flex">
+                    <div class="filter-date">
+                      <button class="nav-link btn-time-range theme-btn-6"
+                              x-bind:id="'custom-range-tab'"
+                              type="button"
+                              x-text="'Time Range'">
+                      </button>
+                    </div>
+                    <div class="input-search">
+                      <span class="algolia-autocomplete">
+                        <input type="search"
+                               class="form-control ds-input"
+                               x-model="search_temp"
+                               id="search-input"
+                               placeholder="Search invoice..."
+                               aria-label="Search for..."
+                               autocomplete="off">
+                        <button class="btn btn-link" type="button">Search</button>
+                      </div>
+                      <div class="list-actions">
+                        <button class="btn btn-search theme-btn-1" type="button" @click="search">Search</button>
+                        <button class="btn btn-reset theme-btn-5" type="button" @click="reset">Reset</button>
+                      </div>
+                      <div id="current-selected"
+                           class="current-selected"
+                           x-show="time_range != ''">
+                        <p>
+                          Current Selected:
+                          <span x-text="time_range"></span>
+                        </p>
+                        <button class="reset-selected-date" type="button" @click="resetTimeRange">X</button>
+                      </div>
+                    </form>
+                  </div>
+                  <!--<template x-if="is_empty">
+                <p id="order-history-no-order" class="no-order">
+                  <span x-text="`You haven't made any order yet.`"></span>
+                  <a href="{% url 'products' %}" x-text="`Go shopping now!`"></a>
+                </p>
+              </template> -->
+                  <div class="invoices-wrapper table-responsive">
+                    <table class="table invoices-content">
+                      <thead>
+                        <tr>
+                          <th>Invoice Name</th>
+                          <th>
+                            Total Price <span>(exc GST)</span>
+                          </th>
+                          <th>
+                            Total Price <span>(inc GST)</span>
+                          </th>
+                          <th>Invoice Date</th>
+                          <th>Invoice Due Date</th>
+                          <th>Invoice Source</th>
+                          <th>Payment Status</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="invoices_tbody">
+                        <template x-if="items.length">
+                          <template x-for="item in items">
+                            <tr>
+                              <td data-th="Invoice Name" x-text="item.name"></td>
+                              <td data-th="Total Price exc GST" x-text="'$' + item.total_exc_gst"></td>
+                              <td data-th="Total Price inc GST" x-text="'$' + item.total_inc_gst"></td>
+                              <td data-th="Invoice Date" x-text="item.date_invoice"></td>
+                              <td data-th="Invoice Due Date" x-text="item.due_date"></td>
+                              <td data-th="Invoice Source" x-text="item.invoice_source"></td>
+                              <td data-th="Payment Status" x-text="item.payment_status">
+                              </td>
+                              <td data-th="Download" class="table-actions">
+                                <a x-bind:href="item.pdf_url"
+                                   x-bind:target="'_blank'"
+                                   x-show="item.is_download">
+                                  <img src="{% static 'img/icons/pdf-icon.png' %}" alt="Download PDF">
+                                </a>
+                                <button @click="submitQuery(item.id)"
+                                        data-placement="bottom"
+                                        title="Query"
+                                        data-toggle="tooltip">
+                                  <img src="{% static 'img/icons/query.png' %}">
+                                </button>
+                              </td>
+                            </tr>
+                          </template>
+                        </template>
+                        <template x-if="!items.length">
+                          <tr class="items-no-result">
+                            <td colspan="8">
+                              No results found
+                            </td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!--Pagination-->
+                  <template x-if="items.length">
+                    <div class="ltn__pagination-area text-center col-lg-12 order-lg-2">
+                      <div class="ltn__pagination">
+                        <ul>
+                          <!-- previous button -->
+                          <template x-if="pagination.has_previous">
+                            <li class="page-item">
+                              <a class="page-link page-link-previous" @click="previous">
+                                <i class="fas fa-angle-double-left"></i>
+                              </a>
+                            </li>
+                          </template>
+                          <template x-if="!pagination.has_previous">
+                            <li class="page-item page-link-previous disabled">
+                              <a class="page-link" tabindex="-1" aria-disabled="True">
+                                <span class="btn-icon btn-left"></span>
+                              </a>
+                            </li>
+                          </template>
+                          <!-- End block-->
+                          <!-- previous hellip button -->
+                          <template x-if="pagination.previous_hellip > 1">
+                            <li class="page-item">
+                              <a class="page-link"
+                                 @click="selectedPage(pagination.number_previous_hellip)">
+                                &hellip;
+                              </a>
+                            </li>
+                          </template>
+                          <!-- End block-->
+                          <template x-for="i in pagination.page_ranges">
+                            <template x-if="i > pagination.number_previous_hellip && i < pagination.number_next_hellip">
+                              <li class="page-item" :class="i==pagination.number ? 'active' : ''">
+                                <template x-if="i==pagination.number">
+                                  <span class="page-link" x-text="i">
+                                    <span class="sr-only">(current)</span>
+                                  </span>
+                                </template>
+                                <template x-if="i!=pagination.number">
+                                  <a class="page-link" x-text="i" @click="selectedPage(i)"></a>
+                                </template>
+                              </li>
+                            </template>
+                          </template>
+                          <!-- previous next button -->
+                          <template x-if="pagination.num_pages > pagination.next_hellip">
+                            <li class="page-item">
+                              <a class="page-link"
+                                 @click="selectedPage(pagination.number_next_hellip)">
+                                &hellip;
+                              </a>
+                            </li>
+                          </template>
+                          <!-- End block-->
+                          <!-- next button -->
+                          <template x-if="pagination.has_next">
+                            <li class="page-item">
+                              <a class="page-link page-link-next" @click="next">
+                                <span class="btn-icon btn-right"></span>
+                              </a>
+                            </li>
+                          </template>
+                          <template x-if="!pagination.has_next">
+                            <li class="page-item disabled">
+                              <a class="page-link page-link-next" tabindex="-1" aria-disabled="True">
+                                <span class="btn-icon btn-right"></span>
+                              </a>
+                            </li>
+                          </template>
+                          <!-- End block-->
+                        </ul>
+                      </div>
+                    </div>
+                  </template>
+                  <!-- End Pagination-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ORDER DETAIL END -->
+      </div>
+      <div class="modal fade modal-listcate invoice-query"
+           id="modal-form-invoice-query"
+           tabindex="-1"
+           role="dialog"
+           aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Raise Invoice Query
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input id="uuid" type="hidden" name="order_invoice_id">
+              <div class="field">
+                <label>
+                  Query Type
+                </label>
+                <select name="query_type" id="invoice-query_type-select">
+                  {% for type in query_type %}
+                    <option value="{{ type.label }}">
+                      {{ type.label }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="field">
+                <label>
+                  Query Message
+                </label>
+                <textarea id="invoice-query_message"
+                          name="query_message"
+                          placeholder="Type something here"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button"
+                      id="btn-submit"
+                      class="btn-save btn btn-secondary"
+                      hx-post="{% url 'customer_invoice_query' %}"
+                      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                      hx-swap="innerHTML"
+                      hx-include="#uuid, #invoice-query_type-select, #invoice-query_message"
+                      hx-target=".page-wrapper-message">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  {% endblock content %}
+  {% block scripts %}
+    <script src="{% static 'js/npm/litepicker.js' %}"></script>
+    <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+    <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+    <script type="text/javascript">
+    var form_modal_el = document.getElementById("modal-form-invoice-query"),
+      modal = new bootstrap.Modal(form_modal_el);
+    </script>
+    <script>
+    window.addEventListener('load', function () {
+        htmx.on("htmx:afterSwap", function(evt) {
+          if (evt.detail.requestConfig.elt.id == "btn-submit"){
+            modal.hide();
+          }
+        })
+    })
+    </script>
+  {% endblock %}

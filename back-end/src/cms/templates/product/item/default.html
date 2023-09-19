@@ -1,0 +1,31 @@
+{%load static%}
+<article class="card">
+  <figure class="card-figure">
+    <a href="{{prod.get_absolute_url}}">
+      <div class="card-img-container">
+        <img class="card-image lazyautosizes lazyload"
+          data-sizes="auto"
+          src="{% static 'img/cms/loading.svg' %}"
+          data-src="{{prod.get_img_urls.0}}"
+          alt="{{prod.name}}"
+          title="{{prod.name}}"
+          sizes="263px"
+        />
+      </div>
+    </a>
+    <figcaption class="card-figcaption"></figcaption>
+  </figure>
+  <div class="card-body">
+    <h4 class="card-title">
+      <a href="{{prod.get_absolute_url}}">{{prod.get_name}}</a>
+    </h4>
+    <div class="card-text" data-test-info-type="price">
+      <div class="price-section price-section--withTax">
+        <span data-product-price-with-tax=""
+          class="price price--withTax">
+          {{prod.get_price_html}}
+        </span>
+      </div>
+    </div>
+  </div>
+</article>

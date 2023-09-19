@@ -1,0 +1,607 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}About Us | Innovative Bathroomware Products & Design in New Zealand{% endblock %}
+{% block og-pagetitle %}About Us | Innovative Bathroomware Products & Design in New Zealand{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/cms-custom.css' %}">
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/about-us.css' %}">
+{% endblock %}
+{% block content %}
+<div class="body body-special about-us">
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ltn__breadcrumb-inner">
+                        <div class="ltn__breadcrumb-list">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'index' %}">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>About Us</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB AREA END -->
+    <main class="page-main">
+        <div class="banner-container" >
+            <img
+                    class="banner lazyload"
+                    src="{% static 'img/cms/loading.svg' %}"
+                    data-src="{% static 'img/about-us/banner.jpg' %}"
+            />
+        </div>
+        <div class="values-box">
+            <h1>Our Values</h1>
+            <div class="values">
+                <div class="value">
+                    <img
+                            class="lazyload"
+                            src="{% static 'img/cms/loading.svg' %}"
+                            data-src="{% static 'img/about-us/value1.svg' %}"
+                    />
+                    <h2>We show that we care</h2>
+                    <p>
+                        We care a great deal for our customers, suppliers and staff. We are a community that works together to get exceptional outcomes. We care that everybody is successful, happy and achieving what they need to.
+                    </p>
+                </div>
+                <div class="value">
+                    <img
+                            class="lazyload"
+                            src="{% static 'img/cms/loading.svg' %}"
+                            data-src="{% static 'img/about-us/value2.svg' %}"
+                    />
+                    <h2>We get it done</h2>
+                    <p>
+                        We stop at nothing. We don’t let others down. We function as a team - if one of us fails, we all fail.
+                    </p>
+                </div>
+                <div class="value">
+                    <img
+                            class="lazyload"
+                            src="{% static 'img/cms/loading.svg' %}"
+                            data-src="{% static 'img/about-us/value3.svg' %}"
+                    />
+                    <h2>We trust each other</h2>
+                    <p>
+                        We trust each other to make the right decisions. Everyone is empowered to make decisions and take initiative.
+                    </p>
+                </div>
+                <div class="value">
+                    <img
+                            class="lazyload"
+                            src="{% static 'img/cms/loading.svg' %}"
+                            data-src="{% static 'img/about-us/value4.svg' %}"
+                    />
+                    <h2>We are loyal</h2>
+                    <p>
+                        We are in this together. We are loyal people who enjoy the great times and share in the tough times. We are loyal to each other, loyal to our customers and loyal to our suppliers. We have honest discussions and tell
+                        it like it is.
+                    </p>
+                </div>
+                <div class="value">
+                    <img
+                            class="lazyload"
+                            src="{% static 'img/cms/loading.svg' %}"
+                            data-src="{% static 'img/about-us/value5.svg' %}"
+                    />
+                    <h2>We depend on each other</h2>
+                    <p>
+                        We are a community. We support and encourage. We are dependent on each other, we combine our strengths, and we continuously learn, grow, and take on new responsibilities. We trust each other to make the right
+                        decisions. Everyone is empowered to make decisions and take initiative.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="story">
+            <div class="story-box">
+                <img
+                        class="lazyload"
+                        src="{% static 'img/cms/loading.svg' %}"
+                        data-src="{% static 'img/about-us/showroom.jpg' %}"
+                />
+                <h1>Our Story</h1>
+
+                <p>
+                    <b>Simple, Practical</b> and <b>Great Value</b> bathroom products are at the heart of what makes us successful. Founded in the regional city of Whanganui in 2000, Newtech has established itself as a fast-growing leader in
+                    the bathroomware space in New Zealand.
+                </p>
+
+                <p>
+                    We believe your <b>bathroom</b> is the most important space in your home. This is where you spend time alone; relaxing, making plans and dreaming of the future. Your bathroom should reflect <b>who you are</b> and
+                    <b>what you are about</b>.
+                </p>
+
+                <p>
+                    So, its important that you make your bathroom decisions <b>wisely</b>. Our commitment to <b>innovation</b>, to <b>improvement</b> and, most of all, delivering <b>great value</b> should put Newtech in the
+                    <b><i>‘must consider’</i></b> category for your bathroom.
+                </p>
+
+                <p>
+                    We have a huge range of <b>baths, toilets, vanities</b> and other <b>bathroom essentials</b> available in our warehouse for immediate dispatch. These are available to purchase from most bathroom merchants in New Zealand.
+                    Check out our list of stockists <a href="{% url 'store_locations' %}">here</a> to find your nearest supplier of Newtech bathroomware products or feel free to drop into our <a href="{% url 'concept-showroom' %}">fantastic showroom</a> in Penrose,
+                    Auckland.
+                </p>
+            </div>
+        </div>
+        <div class="team">
+            <h1>Our Team</h1>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Jeremy_Anderson_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Jeremy Anderson</div>
+                    <div class="role">CEO</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Craig_Anderson.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Craig Anderson</div>
+                    <div class="role">Director</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Tony_Hart_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Tony Hart</div>
+                    <div class="role">Innovations & Procurement Director</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Marcus_Wycherley_jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Marcus Wycherley</div>
+                    <div class="role">Sales & Marketing Director</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Joshua_Olykan.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Joshua Olykan</div>
+                    <div class="role">Group Home Builder Manager</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Terry_Sorensen_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Terry Sorensen</div>
+                    <div class="role">Akl North Sales Territory Manager</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Shane_Farley_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Shane Farley</div>
+                    <div class="role">Sales Executive – Auckland</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Ben_Wood_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Ben Wood</div>
+                    <div class="role">Sales Executive – BOP/Waikato</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Gareth_Wycherley_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Gareth Wycherley</div>
+                    <div class="role">Sales Executive – Lower North Island</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Nathan_Roberts_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Nathan Robberts</div>
+                    <div class="role">Sales Executive – South Island</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Rochelle_Taylor.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Rochelle Taylor</div>
+                    <div class="role">Showroom Consultant</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Anna_Champion.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Anna Murdoch Champion</div>
+                    <div class="role">Showroom Consultant</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/placeholder.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Natasha Phillips</div>
+                    <div class="role">Outlet Showroom Consultant</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Brandi_Anderson_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Brandi Anderson</div>
+                    <div class="role">Sales Action Team Leader</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Shamini_Shanmugan.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Shamini Shanmugan</div>
+                    <div class="role">Sales Action</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Sapphire_Anderson.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Sapphire Anderson</div>
+                    <div class="role">Sales Action</div>
+                </div>   
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Zoe_Kleinsmith.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Zoe Kleinsmith</div>
+                    <div class="role">Sales Action</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Kearny_Hart.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Kearny Hart</div>
+                    <div class="role">Sales Action</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/placeholder.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Aimee McNabb</div>
+                    <div class="role">Sales Action</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Shani_Holly.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Shani Holly</div>
+                    <div class="role">Fast Response Team Leader</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Jheymie_Teofilo.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Jheymie Teofilo</div>
+                    <div class="role">Fast Response</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Princess_Garcia.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Princess Garcia</div>
+                    <div class="role">Fast Response</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Lyndsay_Pamintuan.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Lyndsay Pamintuan</div>
+                    <div class="role">Fast Response</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Rein_Diloy.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Rein Diloy</div>
+                    <div class="role">Sales Action</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Rhonda_VanZyl.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Rhonda Vanzyhl</div>
+                    <div class="role">Marketing Co-Ordinator</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Helen_Hao.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Helen Hao</div>
+                    <div class="role">Digital Marketer</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Abigail_Serrano.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Abigail Serrano</div>
+                    <div class="role">Digital Marketing Assistant</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Emily_Payne.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Emily Payne</div>
+                    <div class="role">Assembly Workflow Co-Ordinator</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Jodi_Hugo.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Jodi Hugo</div>
+                    <div class="role">Innovations & Product Development</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Rebecca_Benge.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Rebecca Benge</div>
+                    <div class="role">Innovations & Product Development</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Jonathan_White_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Jonathan White</div>
+                    <div class="role">Procurement & Supply Chain</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Jarvis_Hart_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Jarvis Hart</div>
+                    <div class="role">CAD Designer</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/placeholder.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Tegan Johnson</div>
+                    <div class="role">People and Culture Manager</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Katrina_White.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Katrina White</div>
+                    <div class="role">Senior Financial Controller</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/placeholder.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Carole Pryce</div>
+                    <div class="role">Accounts Receivable</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Paula_Jackson.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Paula Jackson</div>
+                    <div class="role">Accounts Payable</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Mitchell_Anderson.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Mitchell Anderson</div>
+                    <div class="role">IT Manager</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Alex_Johnson.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Alex Johnson</div>
+                    <div class="role">Software Developer & IT Support</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Connor_Gibson_Jacket.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Connor Gibson</div>
+                    <div class="role">Senior IT System Administrator</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/placeholder.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Ben MacFaigan</div>
+                    <div class="role">IT Project Coordinator</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Bronia_Wallis.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Bronia Wallis</div>
+                    <div class="role">Executive Assistant</div>
+                </div>
+                <div class="team-member">
+                    <div class="photo">
+                        <img
+                                class="content lazyload"
+                                src="{% static 'img/cms/loading.svg' %}"
+                                data-src="{% static 'img/about-us/team/Katie_Denman.jpg' %}"
+                        />
+                    </div>
+                    <div class="name">Katie Denman</div>
+                    <div class="role">Executive Assistant</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

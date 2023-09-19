@@ -1,0 +1,802 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Resources{% endblock %}
+{% block og-pagetitle %}Resources{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom/cms/catalogues.css' %}">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="videos-page">
+        <!-- BREADCRUMB AREA START -->
+        <div class="ltn__breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__breadcrumb-inner">
+                            <div class="ltn__breadcrumb-list">
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'index' %}">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'index' %}">
+                                            Resources
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMB AREA END -->
+        <div class="main">
+            <div class="catalog-main">
+                <div class="pm-top container">
+                    <h2>Catalogues</h2>
+                </div>
+                <div class="list-catalog list-room">
+                    <div class="lc-items">
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/serenity-range/" target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues01.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/newtech-catalogue-2023_edition23/"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/home/newtech-catalogue.jpg' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/laundry-collection-by-newtech/page/1"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalog_laundry.png' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/bath-brochure-by-newtech/page/1"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues04.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/milu-odourless-toilet-brochure/page/1"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues05.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/milazzo-planner-2022/"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues06.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/electrical-wholesalers-brochure_2022/"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues07.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-designroom list-room" id="design-room">
+                    <div class="pm-top container">
+                        <h2>Designroom</h2>
+                    </div>
+                    <div class="lc-items">
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/designroom_summer-edition_newtech-bathroomware-xgqod3g4mgpo/page/1"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues08.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                            <h4>Summer 2023</h4>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/designroom_spring-edition_newtech-bathroomware/"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues09.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                            <h4>Spring 2022</h4>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/designroom_autumn-edition_newtech-bathroomware/page/1"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues10.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                            <h4>Autumn 2022</h4>
+                        </div>
+                        <div class="lci-item">
+                            <a class="shogun-image-link"
+                                href="https://view.publitas.com/newtech-bathroomware/designroom_summer-edition_newtech-bathroomware/page/1"
+                                target="_blank">
+                                <div class="image">
+                                    <img src="{% static 'img/catalog/catalogues11.jpeg' %}" alt="">
+                                </div>
+                            </a>
+                            <h4>Summer 2021</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-bottom">
+                    <div id="accordion" class="accordion-list">
+                        <div class="card" id="additional-info">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        Additional Product Information
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="list-items">
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/goods-return-service-request-form/"
+                                                    target="_blank">
+                                                    Goods Return & Service Request Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1564398/pdfs/efa81cf7-79ad-4eb9-90d2-46882fe73730.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware_Goods%2520Return%2520%2526%2520Service%2520Request%2520Form.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/goods-return-service-request-form/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/nz-assembled-product-care-installation-guide/"
+                                                    target="_blank">
+                                                    NZ Assembled Installation & Product Care Manual
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1194031/pdfs/c71121de-52f0-40f3-bc4e-35ae03b96e53.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520NZ%2520Assembled%2520Product%2520Care%2520%2526%2520Installation%2520Guide.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/nz-assembled-product-care-installation-guide/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/2019-product-care-manual/page/1"
+                                                    target="_blank">
+                                                    Boulevard Range Product Care Manual
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1067044/pdfs/3c243283448f1dd666cbc4076179a14cdbe115e9.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/2019-product-care-manual/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/warranty-information/"
+                                                    target="_blank">
+                                                    Newtech Warranty Information
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/955672/pdfs/b366b8c2-fb18-4db2-ab13-17ade87d5a2f.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520Residential%2520Warranty%2520Information%2520.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/warranty-information/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-installation-instructions/page/1"
+                                                    target="_blank">
+                                                    Laundry Installation Instructions
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1242793/pdfs/edcf12af-614f-4c33-8881-449efb63e2e7.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520Laundry%2520Installation%2520Instructions.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-installation-instructions/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/newtech-drop-in-bath-installation-guide/"
+                                                    target="_blank">
+                                                    Drop-in Bath Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/newtech-drop-in-bath-installation-guide/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/newtech-drop-in-bath-installation-guide/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                   	href="https://view.publitas.com/newtech-bathroomware/bath-installation-guide-2019/page/1"
+                                                    target="_blank">
+                                                    Freestanding & BTW Bath Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1067045/pdfs/664f561d-9c3a-470c-aad8-2332b88ee75f.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/bath-installation-guide-2019/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/milu-odourless-toilet-information-guide/page/1"
+                                                    target="_blank">
+                                                    Milu Odourless Toilets Information Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1452491/pdfs/af36f095-7e97-433b-8afa-ece1ee0965af.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520Milu%2520Odourless%2520Toilet%2520Information%2520Guide.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/milu-odourless-toilet-information-guide/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/milazzo-installation-guide/page/1"
+                                                    target="_blank">
+                                                    Milazzo Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1067041/pdfs/ad900d3b7d9eceb0b56afa48e7b80da272fae221.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/milazzo-installation-guide/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/porscha-order-form_newtech-bathroomware/"
+                                                    target="_blank">
+                                                    Serenity Porscha Order Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1507390/pdfs/8be95d6f-46c2-4327-9082-9f3abd667139.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Porscha%2520Order%2520Form_Newtech%2520Bathroomware.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/porscha-order-form_newtech-bathroomware/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/francisco-order-form_newtech-bathroomware/"
+                                                    target="_blank">
+                                                    Serenity Francisco Order Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1507392/pdfs/33a308ce-5c40-4fd4-8317-2dce58636b7b.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Francisco%2520Order%2520Forms_Newtech%2520Bathroomware.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/francisco-order-form_newtech-bathroomware/"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-collectection-faq/page/1"
+                                                    target="_blank">
+                                                    Laundry FAQ
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1345235/pdfs/4be2c72e-3d57-4edd-b500-53a4ac214963.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520Laundry%2520Collectection%2520FAQ.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-collectection-faq/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-collection-custom-order-form/page/1"
+                                                    target="_blank">
+                                                    Laundry Custom Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1115305/pdfs/5260aac4-5045-40c2-9f12-e02b9a9e3b43.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Laundry%2520Collection%2520by%2520Newtech%2520Custom%2520Order%2520Form.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-collection-custom-order-form/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% comment %}
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/how-to-fill-out-the-laundry-custom-form/page/1"
+                                                    target="_blank">
+                                                    Tips on filling out the Laundry Custom Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1347886/pdfs/222a626e-7be2-42ff-9249-2d053440024e.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520How%2520to%2520Fill%2520out%2520the%2520Laundry%2520Custom%2520Form.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/how-to-fill-out-the-laundry-custom-form/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endcomment %}
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-collection-package-order-form/page/1"
+                                                    target="_blank">
+                                                    Laundry Package Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1115298/pdfs/f9fec8b7-5442-4b4b-95d4-d5ceb7f44b1a.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Laundry%2520Collection%2520by%2520Newtech%2520Package%2520Order%2520Form.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/laundry-collection-package-order-form/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% comment %}
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/how-to-fill-out-the-laundry-package-form/page/1"
+                                                    target="_blank">
+                                                    Tips on filling out the Laundry Package Form
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1347887/pdfs/db2fef1c-7714-403a-89f9-3f7b3a1883b1.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520How%2520to%2520Fill%2520out%2520the%2520Laundry%2520Package%2520form.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/how-to-fill-out-the-laundry-package-form/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endcomment %}
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/sr260-installation-guide/page/1"
+                                                    target="_blank">
+                                                    SR260 Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/900769/pdfs/32cda3bcd112cda32e7a4b6de040d03f11edca1b.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/sr260-installation-guide/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/sr220-244-rail-installation-guide/page/1"
+                                                    target="_blank">
+                                                    SR220-244 Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/900770/pdfs/3747c63198880763f79a1b9ee5de1b22bbc84237.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/sr220-244-rail-installation-guide/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/sl330-htr-installation-instructions/page/1"
+                                                    target="_blank">
+                                                    Sol SL330L/R Heated Towel Rail Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1406584/pdfs/24bc4726-a497-40ff-b11c-318cce25136b.pdf?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27Newtech%2520Bathroomware%2520-%2520SL330%2520HTR%2520Installation%2520Instructions.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/sl330-htr-installation-instructions/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/evoke-quadro-heated-towel-rail-installation-guide-guarantee/page/1"
+                                                    target="_blank">
+                                                    Evoke & Quadro Heated Towel Rail Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1067071/pdfs/7069909529169be8f663b4788149fad545e6e7db.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/evoke-quadro-heated-towel-rail-installation-guide-guarantee/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/freedom-htr-installation-instructions/page/1"
+                                                    target="_blank">
+                                                    Freedom Heated Towel Rail Installation Guide
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/1067062/pdfs/3a4a3b3cb7c339736bee63a7e95a244505f32a10.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/freedom-htr-installation-instructions/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://extra.newtech.co.nz/static/assets/westfield-round-mirror/Westfield%20Mirror%20Demister_Info%20Sheet.pdf"
+                                                    target="_blank">
+                                                    Westfield Mirror Demister
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://extra.newtech.co.nz/static/assets/westfield-round-mirror/Westfield%20Mirror%20Demister_Info%20Sheet.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://extra.newtech.co.nz/static/assets/westfield-round-mirror/Westfield%20Mirror%20Demister_Info%20Sheet.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" id="spares">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Spare Parts Re-order Guide
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="list-items">
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/part-sheets_citi-series/page/1"
+                                                    target="_blank">
+                                                    Citi Vanity Range
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/900771/pdfs/14027e8f4dbb800bfc0b9319be413b169031bce9.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/part-sheets_citi-series/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="li-item">
+                                            <p>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/part-sheets_qube-wh_fs-series/page/1"
+                                                    target="_blank">
+                                                    Qube Vanity Range
+                                                </a>
+                                            </p>
+                                            <div class="list-actions">
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/38712/900772/pdfs/1d6590d428b4645ed7eb5123bab2acc117e805f0.pdf"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues12.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues12.png' %}">
+                                                </a>
+                                                <a class="shogun-image-link"
+                                                    href="https://view.publitas.com/newtech-bathroomware/part-sheets_qube-wh_fs-series/page/1"
+                                                    target="_blank">
+                                                    <img data-src="{% static 'img/catalog/catalogues13.png' %}"
+                                                        class="shogun-image  shogun-lazyloaded"
+                                                        src="{% static 'img/catalog/catalogues13.png' %}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

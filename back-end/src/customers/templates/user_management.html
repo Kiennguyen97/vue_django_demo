@@ -1,0 +1,429 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}User Management{% endblock %}
+{% block og-pagetitle %}User Management{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/user-management.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/npm/lightpick.css' %}">
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <div class="user-management-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">User Management</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="list-user"
+                   x-data
+                   clickSort
+                   type_filter
+                   e
+                   let
+                   order_by
+                   document
+                   getElementById
+                   order_by
+                   let
+                   value
+                   e
+                   target
+                   getAttribute
+                   data-value
+                   let
+                   url
+                   {% url 'get_list_customer' %}
+                   type_filter=' + type_filter + '
+                   order_by=' + value + '
+                   page_size
+                   10
+                   fetch
+                   url
+                   then
+                   response
+                   if
+                   response
+                   ok
+                   return
+                   response
+                   json
+                   then
+                   data
+                   if
+                   type_filter
+                   total
+                   let
+                   customers_aproved_body
+                   document
+                   getElementById
+                   customers_aproved_body
+                   let
+                   customers_aproved_foot
+                   document
+                   getElementById
+                   customers_aproved_foot
+                   customers_aproved_body
+                   innerHTML
+                   data
+                   data_html
+                   if
+                   data
+                   total
+                   data
+                   count
+                   const
+                   att
+                   document
+                   createAttribute
+                   hidden
+                   customers_aproved_foot
+                   setAttributeNode
+                   att
+                   else
+                   if
+                   customers_aproved_foot
+                   hasAttribute
+                   hidden
+                   customers_aproved_foot
+                   removeAttribute
+                   hidden
+                   document
+                   getElementById
+                   count_customers_approved
+                   value
+                   data
+                   count
+                   order_by
+                   value
+                   value
+                   else
+                   if
+                   type_filter
+                   pending_invitations
+                   let
+                   customers_pending_invitations_body
+                   document
+                   getElementById
+                   customers_pending_invitations_body
+                   let
+                   customers_pending_invitations_foot
+                   document
+                   getElementById
+                   customers_pending_invitations_foot
+                   customers_pending_invitations_body
+                   innerHTML
+                   data
+                   data_html
+                   if
+                   data
+                   total
+                   data
+                   count
+                   const
+                   att
+                   document
+                   createAttribute
+                   hidden
+                   customers_pending_invitations_foot
+                   setAttributeNode
+                   att
+                   else
+                   if
+                   customers_pending_invitations_foot
+                   hasAttribute
+                   hidden
+                   customers_pending_invitations_foot
+                   removeAttribute
+                   hidden
+                   document
+                   getElementById
+                   count_customers_pending_invitations
+                   value
+                   data
+                   count
+                   clickSeeMore
+                   type_filter
+                   let
+                   count
+                   0
+                   let
+                   order_by
+                   date_joined
+                   if
+                   type_filter
+                   None='total'
+                   order_by
+                   document
+                   getElementById
+                   order_by
+                   value
+                   count_customers_approved_selector
+                   document
+                   getElementById
+                   count_customers_approved
+                   count_customers_pending_invitations_selector
+                   document
+                   getElementById
+                   count_customers_pending_invitations
+                   if
+                   type_filter
+                   total
+                   count
+                   count_customers_approved_selector
+                   value
+                   else
+                   if
+                   type_filter
+                   pending_invitations
+                   count
+                   count_customers_pending_invitations_selector
+                   value
+                   let
+                   page_size
+                   Number
+                   count
+                   10
+                   let
+                   url
+                   {% url 'get_list_customer' %}
+                   type_filter=' + type_filter + '
+                   order_by=' + order_by + '
+                   page_size=' + page_size fetch(url).then((response)=>{ if (response.ok){ return response.json(); } }).then((data) => { if(type_filter == '
+                   total
+                   let
+                   customers_aproved_body
+                   document
+                   getElementById
+                   customers_aproved_body
+                   let
+                   customers_aproved_foot
+                   document
+                   getElementById
+                   customers_aproved_foot
+                   customers_aproved_body
+                   innerHTML
+                   data
+                   data_html
+                   if
+                   data
+                   total
+                   data
+                   count
+                   const
+                   att
+                   document
+                   createAttribute
+                   hidden
+                   customers_aproved_foot
+                   setAttributeNode
+                   att
+                   document
+                   getElementById
+                   count_customers_approved
+                   value
+                   data
+                   count
+                   else
+                   if
+                   type_filter
+                   pending_invitations
+                   let
+                   customers_pending_invitations_body
+                   document
+                   getElementById
+                   customers_pending_invitations_body
+                   let
+                   customers_pending_invitations_foot
+                   document
+                   getElementById
+                   customers_pending_invitations_foot
+                   customers_pending_invitations_body
+                   innerHTML
+                   data
+                   data_html
+                   if
+                   data
+                   total
+                   data
+                   count
+                   const
+                   att
+                   document
+                   createAttribute
+                   hidden
+                   customers_pending_invitations_foot
+                   setAttributeNode
+                   att
+                   document
+                   getElementById
+                   count_customers_pending_invitations
+                   value
+                   data
+                   count>
+                <div class="lu-content lu-top table-responsive">
+                  <div class="flex-line total-user">
+                    <h3>Total Users</h3>
+                    <input id="count_customers_approved"
+                           hidden
+                           value="{{ customers_approved|length }}"/>
+                    <div class="nice-select" tabindex="0">
+                      <span class="current">Sort By</span>
+                      <ul class="list">
+                        <input id="order_by" hidden value="date_joined" />
+                        <li data-value="date_joined"
+                            @click="clickSort('total', $event)"
+                            class="option selected focus">Sort By</li>
+                        <li data-value="name" @click="clickSort('total', $event)" class="option">Name - A to Z</li>
+                        <li data-value="-name" @click="clickSort('total', $event)" class="option">Name - Z to A</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="lu-table">
+                    <table class="table-total-user">
+                      <thead>
+                        <tr>
+                          <th>Username</th>
+                          <th>Email</th>
+                          <th>Role</th>
+                          <th>Date Created</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="customers_aproved_body">
+                        {% if customers_approved %}
+                          {% for customer in customers_approved %}
+                            <tr>
+                              <td data-th="Username">{{ customer.name }}</td>
+                              <td data-th="Email">{{ customer.email }}</td>
+                              <td data-th="Role">
+                                {% if customer.role == 'admin' %}
+                                  Admin
+                                {% else %}
+                                  Staff
+                                {% endif %}
+                              </td>
+                              <td data-th="Date Created">{{ customer.date_joined | date:'d M Y' }}</td>
+                              <td data-th="Status">
+                                {% if customer.is_active %}
+                                  Active
+                                {% else %}
+                                  Inactive
+                                {% endif %}
+                              </td>
+                              <td data-th="Action" id-customer="{{ customer.id }}">
+                                {% if customer.is_active and user.id != customer.id %}
+                                  {% include 'customer-part/modal-delete.html' with customer_id=customer.id %}
+                                {% endif %}
+                              </td>
+                            </tr>
+                          {% endfor %}
+                        {% endif %}
+                      </tbody>
+                      {% if total_customers_approved and total_customers_approved > customers_approved|length %}
+                        <tfoot id="customers_aproved_foot">
+                          <tr>
+                            <td colspan="6">
+                              <div class="show-more">
+                                <button @click="clickSeeMore('total')">See More</button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tfoot>
+                      {% endif %}
+                    </table>
+                  </div>
+                </div>
+                <div class="lu-content lu-bottom">
+                  <div class="flex-line pending-invitation">
+                    <h3>Pending Invitations</h3>
+                    <input id="count_customers_pending_invitations"
+                           hidden
+                           value="{{ customers_pending_invitations|length }}"/>
+                    {% include 'customer-part/modal-create.html' %}
+                  </div>
+                  <div class="lu-table">
+                    <div class="lu-table">
+                      <table class="table-pending-invitation">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Date Of Invitation</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody id="customers_pending_invitations_body">
+                          {% if customers_pending_invitations %}
+                            {% for customer in customers_pending_invitations %}
+                              <tr>
+                                <td data-th="Name">{{ customer.first_name }} {{ customer.last_name }}</td>
+                                <td data-th="Email">{{ customer.email }}</td>
+                                <td data-th="Role">
+                                  {% if customer.role == 'admin' %}
+                                    Admin
+                                  {% else %}
+                                    Staff
+                                  {% endif %}
+                                </td>
+                                <td data-th="Date Of Invitation">
+                                  {% if customer.date_of_invitation %}
+                                    {{ customer.date_of_invitation | date:'d M Y' }}
+                                  {% else %}
+                                    {{ '' }}
+                                  {% endif %}
+                                </td>
+                                <td data-th="Status">Pending</td>
+                              </tr>
+                            {% endfor %}
+                          {% endif %}
+                        </tbody>
+                        {% if total_customers_pending_invitations and total_customers_pending_invitations > customers_pending_invitations|length %}
+                          <tfoot id="customers_pending_invitations_foot">
+                            <tr>
+                              <td colspan="5">
+                                <div class="show-more">
+                                  <button @click="clickSeeMore('pending_invitations')">
+                                    See More
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </tfoot>
+                        {% endif %}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/cdn/alpine.min.js' %}"></script>
+  <!-- <script>
+        handleSeeMore() {
+            axios.get(URL_RESET_PASSWORD + '/get-customer/?type_filter=total&order_by=fullname&page_size=10')
+            .then((response) => {
+                let data = response.data
+                console.log(data)
+            });
+        };
+                </script> -->
+{% endblock %}

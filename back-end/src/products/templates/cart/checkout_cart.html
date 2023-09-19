@@ -1,0 +1,365 @@
+{% block css_bottom %}
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/custom/checkout_cart.css' %}">
+{% endblock css_bottom %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+	<div id="checkout-cart">
+		<div id="quote-modal"
+			 data-backdrop="static"
+			 tabindex="-1"
+			 role="dialog"
+			 aria-hidden="true"
+			 class="modal fade modal-listcate">
+			<div class="modal-dialog option-picker size open" role="document">
+				<div class="modal-content">
+					<div class="quote-modal-header">
+						<h2 class="quote-modal-header-title">Checkout</h2>
+						<div class="bread">
+							<template v-for="step in steps">
+								<span v-bind:class="step.active == true ? 'current' : ''" v-text="step.name"></span>
+								<span v-text="step.next_comma"></span>
+							</template>
+						</div>
+					</div>
+					<div class="quote-modal-body">
+						<div class="your-details" v-if="steps[0].active == true">
+							<div class="quote-header">
+								<div class="quote-customer">
+									<form id="your_details_form" method="post" action="#">
+										{% csrf_token %}
+										<table class="quote-address-form">
+											<tbody>
+											<tr>
+												<td colspan="2" class="error ajax-error"></td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<h4>Your Details</h4>
+												</td>
+											</tr>
+											<tr>
+												<td class="label">Name:</td>
+												<td>
+													<input type="text" name="name" required v-model="your_details.name">
+												</td>
+											</tr>
+											<tr>
+												<td class="label">Phone:</td>
+												<td>
+													<input type="text" name="phone" required
+														   v-model="your_details.phone">
+												</td>
+											</tr>
+											<tr>
+												<td class="label">Email:</td>
+												<td>
+													<input name="email" type="email" required
+														   v-model="your_details.email">
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<h4 class="pad-above">Billing Address</h4>
+												</td>
+											</tr>
+											<tr>
+												<td class="label">Name:</td>
+												<td>
+													<input name="billing-name" type="text" required
+														   v-model="billing_address.billing_name">
+												</td>
+											</tr>
+											<tr>
+												<td class="label">Address:</td>
+												<td>
+													<input name="billing-addr1" type="text" required
+														   v-model="billing_address.billing_addr1">
+												</td>
+											</tr>
+											<tr>
+												<td class="label"></td>
+												<td>
+													<input name="billing-addr2" type="text"
+														   v-model="billing_address.billing_addr2">
+												</td>
+											</tr>
+											<tr>
+												<td class="label">Town/City:</td>
+												<td>
+													<input name="billing-town" type="text" required
+														   v-model="billing_address.billing_town">
+												</td>
+											</tr>
+											<tr>
+												<td>Postcode:</td>
+												<td>
+													<input type="text" name="billing-postcode" required
+														   v-model="billing_address.billing_postcode">
+												</td>
+											</tr>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+							<div class="quote-modal-buttons">
+								<button class="checkout-cancel button" data-dismiss="modal">Cancel</button>
+								<button class="checkout-show-delivery-details button  button--primary"
+										@click="userRecaptcha">
+									<span>Next</span>
+								</button>
+							</div>
+						</div>
+						<div class="delivery-details" v-if="steps[1].active == true">
+							<div class="quote-header">
+								<div class="quote-merchant" data-cart-merchant="">
+									<div class="error ajax-error"></div>
+									<div class="cart-merchant-logo">
+										<img v-bind:src="selected_merchant.data.logo">
+									</div>
+									<h4>Pickup Location</h4>
+									<div class="error merchant-error" v-if="show_error"><p>Delivery Partner cannot be blank.</p></div>
+									<input type="hidden" name="merchant">
+									<div class="cart-merchants">
+										<div id="merchant">
+											<div v-show="selected_merchant.selected">
+												<h4><span v-text="selected_merchant.data.name"></span></h4>
+												<div v-text="selected_merchant.data.street"></div>
+												<div v-text="selected_merchant.data.district"></div>
+												<div class="phone">
+													P&nbsp;
+													<a v-bind:href="'tel: '+ selected_merchant.data.phone_number"
+													   v-text="selected_merchant.data.phone_number"></a>
+												</div>
+												<div class="map-link">
+													<a v-bind:href="selected_merchant.data.map_view" target="_blank">View on Google maps</a>
+												</div>
+											</div>
+
+											<button class="button button--choose"
+													data-toggle="modal"
+													data-target="#merchant-picker"
+													v-text="!selected_merchant.selected ? 'Choose stockist' : 'Change stockist'">
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="quote-modal-buttons">
+								<button class="checkout-cancel button" data-dismiss="modal">Cancel</button>
+								<button class="checkout-show button" @click="nextStep(e, 'prev')">
+									<span>Previous</span>
+								</button>
+								<button class="checkout-show-payment button button--primary" @click="nextStep">
+									<span>Next</span>
+								</button>
+							</div>
+						</div>
+						<div class="payment-details" v-show="steps[2].active == true">
+							<div class="quote-header">
+								<div class="quote-payment">
+									<div class="error ajax-error"></div>
+									<div class="cart-merchant-logo">
+										<img v-bind:src="selected_merchant.data.logo">
+									</div>
+									<h4>Payment</h4>
+									<p class="payment-details-total">
+										Total:
+										<span class="payment-amount">${{ total_total | floatformat:2 | intcomma}}</span>
+									</p>
+									<div class="payment">
+										<div v-if="payment_methods.includes('d_d')">
+											<input id="d_d" type="radio"
+												   name="payment"
+												   value="d_d"
+												   v-model="selectedPayment">
+											<label for="d_d">Pay with internet banking</label>
+										</div>
+										<div class="last-radio" v-if="payment_methods.includes('c_d_card')">
+											<input id="c_d_card" type="radio"
+												   name="payment"
+												   value="c_d_card"
+												   v-model="selectedPayment">
+											<label for="c_d_card">Pay with Credit Card</label>
+											<div id="dropin-container" v-show="selectedPayment == 'c_d_card'"></div>
+										</div>
+									</div>
+								</div>
+								<div class="error ajax-error"  v-if="error_message">
+									<p v-text="error_message"></p>
+								</div>
+								<div class="quote-modal-buttons">
+									<button class="checkout-cancel button" data-dismiss="modal">Cancel</button>
+									<button class="checkout-show button" @click="nextStep(e, 'prev')">
+										<span>Previous</span>
+									</button>
+									<button class="checkout-show-payment button button--primary" v-bind:disabled="placed_order"
+											v-bind:class="placed_order ? 'placed_order' : ''" id="place-order">
+										<span>Place Order</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="confirmation" v-if="steps[3].active == true">
+							<div class="quote-header">
+								<div class="quote-confirmation">
+									<div class="cart-merchant-logo">
+										<img v-bind:src="selected_merchant.data.logo">
+									</div>
+									<h4>Confirmation</h4>
+									<div class="payment-confirm-directcredit" v-if="selectedPayment == 'd_d'" >
+										<p>Thanks for your order. We have sent you an email containing all the
+											details.</p>
+										<p>You have chosen to pay by internet banking (direct credit). Please make
+											payment of
+											<b class="payment-total">${{ total_total | floatformat:2 | intcomma }}</b> to bank account
+											<b>{{ BANK_ACCOUNT }}</b>
+											with reference
+											<b class="payment-ref" v-text="order_code"></b>.
+										</p>
+										<p>We will dispatch your order and email you your invoice as soon as payment has
+											been received.</p>
+									</div>
+									<div class="payment-confirm-creditcard" v-if="selectedPayment == 'c_d_card'" >
+										<p>Thanks for your order
+											<b class="payment-ref" v-text="order_code"></b>, paid by
+											<b class="payment-card" v-text="credit_card_number"></b>.
+										</p>
+										<p>We have sent you an email containing all the details.</p>
+										<p>When your order is dispatched, we will send another email containing your
+											invoice.</p>
+									</div>
+								</div>
+							</div>
+							<div class="quote-modal-buttons">
+								<button class="checkout-show-thanks button button--primary" @click="nextStep">
+									<span>Next</span>
+								</button>
+							</div>
+						</div>
+						<div class="thanks" v-if="steps[4].active == true">
+							<div class="quote-header">
+								<div class="quote-thanks">
+									Thank you for shopping with Newtech. Do you need anything else for your bathroom? Please visit
+									<a class="thanks-link" v-bind:href="selected_merchant.data.thank_link" v-text="selected_merchant.data.thank_link"></a>
+									<div class="cart-merchant-logo">
+										<img v-bind:src="selected_merchant.data.logo">
+									</div>
+								</div>
+							</div>
+							<div class="quote-modal-buttons">
+								<button class="checkout-show-confirmation button" @click="nextStep(e, 'prev')">
+									<span>Back</span>
+								</button>
+								<button class="checkout-ok button button--primary" @click="nextStep">
+									<span>Ok</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- merchant picker -->
+		<div id="merchant-picker"
+			 data-backdrop="static"
+			 class="modal fade"
+			 tabindex="-1"
+			 role="dialog"
+			 aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div id="merchant-picker-title">Choose a stockist</div>
+					<div id="merchant-picker-list">
+						<div class="merchant-list">
+							<div>
+								<div class="region-filter">
+									Show region:
+									<select id="region-select" v-model="region_lists.default">
+										<option v-for="item in region_lists.lists"
+												v-bind:value="item.code"
+												v-text="item.label">
+										</option>
+									</select>
+								</div>
+							</div>
+							<template v-for="(merchant, index) in merchant_lists"
+									  v-if="region_lists.default == 'all'">
+								<div class="region" v-bind:id="'region-'+index">
+									<h2 v-text="merchant.region"></h2>
+									<div class="stockists" v-for="item in merchant.store_lists">
+										<div class="merchant">
+											<div>
+												<h5><span v-text="item.name"></span></h5>
+												<div v-text="item.street"></div>
+												<div v-text="item.district"></div>
+												<div class="phone">
+													P&nbsp;
+													<a v-bind:href="'tel: '+ item.phone_number" v-text="item.phone_number"></a>
+												</div>
+												<div class="map-link">
+													<a v-bind:href="item.map_view" target="_blank">View on Google maps</a>
+												</div>
+												<div class="merchant-picker-buttons">
+													<button class="button"
+															@click="chooseMerchant(item)"
+															data-dismiss="modal">
+														Choose
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</template>
+							<template v-if="region_lists.default != 'all'">
+								<div class="region" v-bind:id="'region-'+region_lists.default">
+									<h2 v-text="merchant_lists[region_lists.default].region"></h2>
+									<div class="stockists"
+										 v-for="item in merchant_lists[region_lists.default].store_lists">
+										<div class="merchant">
+											<div>
+												<h5><span v-text="item.name"></span></h5>
+												<div v-text="item.street"></div>
+												<div v-text="item.district"></div>
+												<div class="phone">
+													P&nbsp;
+													<a v-bind:href="'tel: '+ item.phone_number" v-text="item.phone_number"> </a>
+												</div>
+												<div class="map-link">
+													<a v-bind:href="item.map_view" target="_blank">View on Google maps</a>
+												</div>
+												<div class="merchant-picker-buttons">
+													<button class="button"
+															@click="chooseMerchant(item)"
+															data-dismiss="modal">
+														Choose
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</template>
+						</div>
+					</div>
+					<div id="merchant-picker-buttons">
+						<button id="merchant-picker-close" class="button" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+{% endblock content %}
+{% block scripts %}
+	{% if DJANGO_ENVIRON == "prod" %}
+		<script src="{% static 'js/npm/vue.min.js' %}"></script>
+	{% else %}
+		<script src="{% static 'js/npm/vue.js' %}"></script>
+	{% endif %}
+	<script src="{% static 'js/custom/checkout/checkout_cart.js' %}"></script>
+{% endblock scripts %}

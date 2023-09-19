@@ -1,0 +1,66 @@
+{% extends 'base-newtech.html' %}
+{% block css_bottom %}
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom/cms/launary-detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="page-main">
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ltn__breadcrumb-inner">
+                        <div class="ltn__breadcrumb-list">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'index' %}">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>Projects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB AREA END -->
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <div class="ltn__shop-details-large-img">
+                        <!-- {% for img in object.get_image_hi_res_urls %} -->
+                          <div class="single-large-img">
+                            <a href="{{ img }}" data-rel="lightcase:myCollection">
+                                <img 
+                                    src="https://cdn11.bigcommerce.com/s-j70d65jl8z/images/stencil/500x500/products/4144/38152/750_28a0b__69178.1675320710.jpg?c=2"
+                                    {% if forloop.counter == 1 %}
+                                        src="{{ img }}"
+                                    {% else %}
+                                        data-lazy="{{ img }}"
+                                    {% endif %}
+                                />
+                             </a>
+                          </div>
+                        <!-- {% endfor %} -->
+                      </div>
+                      <div class="ltn__shop-details-small-img slick-arrow-2">
+                        <!-- {% for img in object.get_image_hi_res_urls %} -->
+                          <div class="single-small-img">
+                            <img data-lazy="{{ img }}" width="100" height="100" alt="" />
+                          </div>
+                        <!-- {% endfor %} -->
+                      </div>
+                </div>
+                <div class="col-7"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/custom/product-details.js' %}"></script>
+{% endblock %}

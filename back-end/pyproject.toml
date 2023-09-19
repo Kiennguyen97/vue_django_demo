@@ -1,0 +1,19 @@
+[tool.black]
+line-length=88
+include='\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+default_section = "THIRDPARTY"
+
+known_third_party = ["boto3", "botocore", "braintree", "ckeditor", "crum", "cryptography", "dateutil", "ddtrace", "decouple", "django_rq", "erppeek", "html2text", "meilisearch", "mysql", "psycopg2", "pytz", "requests", "rest_framework", "rq_scheduler", "sentry_sdk"]
+
+known_first_party = ["django", "blog","cms","customers","favourites","odoo","products","website", "safety"]
+
+
+[tool.djlint]
+indent=2
+profile="django"
+max_line_length=120

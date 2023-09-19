@@ -1,0 +1,193 @@
+.catalog-main .pm-top h2 {
+    font-size: 33px;
+    font-weight: 400;
+    text-align: center;
+    color: #444;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    letter-spacing: .25px;
+    margin-bottom: 42px;
+}
+.list-room {
+    margin: 40px 100px;
+    text-align: center;
+    display: inline-block;
+    width: calc(100% - 200px);
+}
+.list-room .lc-items {
+    display: grid;
+    width: 100%;
+    grid-gap: 30px;
+}
+.list-catalog .lc-items {
+    grid-template-columns: auto auto;
+}
+.list-designroom .lc-items {
+    grid-template-columns: auto auto auto auto;
+    margin-top: 40px;
+}
+.list-room .lc-items .lci-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.list-room .shogun-image-link {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.list-room .image {
+    display: inline-block;
+    width: 100%;
+    height: 100%; 
+}
+.list-room .image img {
+    height: 100%;
+    width: 100%;
+}
+.list-designroom .pm-top {
+    margin-top: 40px;
+}
+.list-designroom h4 {
+    margin: 15px 0 0;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    color: #333;
+    text-align: center;
+}
+.accordion-list {
+    margin: 80px 200px;
+}
+.accordion-list .card-header {
+    padding: 0;
+    border-radius: 0;
+    border-bottom: none;
+    background: #f5f5f5;
+}
+.accordion-list .card-header h5 {
+    margin: 0;
+}
+.accordion-list .card-header h5 button {
+    margin: 0;
+    width: 100%;
+    color: #1ebecd;
+    text-align: left;
+    font-size: 16px;
+    text-decoration: none;
+}
+.accordion-list .card {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.accordion-list .card-header h5 button {
+    position: relative;
+    padding: 10px;
+}
+.accordion-list .card-header h5 button::after {
+    content: '\f067';
+    font-family: 'Font Awesome 5 Pro';
+    position: absolute;
+    right: 15px;
+    font-size: 19px;
+    transition: 0.5s all;
+}
+.accordion-list .card-header h5 button:not(.collapsed)::after{
+    transform: rotate(45deg);
+}
+.accordion-list .card-body {
+    padding: 0;
+    border-top: 1px solid #ddd;
+}
+.accordion-list .list-items .li-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+.accordion-list .list-items .li-item p {
+    margin-bottom: 0;
+    color: #000;
+    font-size: 16px;
+    text-align: left;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+}
+.accordion-list .list-items .li-item p a,
+.list-actions a {
+    text-decoration: none;
+}
+.list-actions a img {
+    width: 40px;
+    height: 40px;
+}
+.list-actions a.shogun-image-link:first-child {
+    margin-right: 50px;
+}
+.accordion-list .list-items .li-item:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+.accordion-list .card:first-child .card-header {
+    border-radius: 0;
+    border-bottom: 0;
+}
+.accordion-list .card:first-child {
+    margin-bottom: 5px;
+}
+.accordion-list .card:last-child .list-items .li-item:nth-child(odd) {
+    background-color: #fff;
+}
+.accordion-list .card:last-child .list-items .li-item:nth-child(even) {
+    background-color: #f7f7f7;
+}
+.catalog-main .pm-top h2 {
+    color: #18becd;
+    margin-bottom: 0;
+}
+@media screen and (max-width: 1199.98px) {
+    .list-designroom .lc-items {
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width: 991.98px) {
+    .list-room {
+        margin: 40px;
+        width: calc(100% - 80px);
+    }
+    .accordion-list {
+        margin: 40px;
+    }
+}
+@media screen and (max-width: 767.98px) {
+    .list-catalog .lc-items .lci-item {
+        width: 100%;
+    }
+    .list-designroom .lc-items .lci-item {
+        width: 100%;
+    }
+    .accordion-bottom .li-item .list-actions {
+        display: none;
+    }
+    .accordion-list,
+    .list-room {
+        margin: 40px 0;
+    }
+    .list-room {
+        margin: 15px;
+        width: calc(100% - 30px);
+    }
+    .list-catalog .lc-items,
+    .list-designroom .lc-items {
+        grid-template-columns: 100%;
+    }
+}
+@media screen and (max-width: 575.98px) {
+    .ltn__breadcrumb-area {
+        display: none;
+    }
+    .catalog-main .pm-top h2 {
+        margin: 30px 0 21px;
+    }
+    .accordion-list, 
+    .list-room {
+        margin-top: 0;
+    }
+}

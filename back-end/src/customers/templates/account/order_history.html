@@ -1,0 +1,212 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Order History{% endblock %}
+{% block og-pagetitle %}Order History{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/custom/account-order.css' %}">
+{% endblock %}
+{% load static %}
+{% block content %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      <!-- ORDER HISTORY START -->
+      <div class="order-history dashboard-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">Your Orders</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="order-notification">
+                <p>
+                  View your order details & shipment status
+                  <br>
+                  If you would like to update or change an order, please contact our Customer Service Team.
+                </p>
+              </div>
+              <script type="text/javascript">var picker;</script>
+              <div class="account-order-history"
+                   x-data="{ time_range: '', search_temp: '{{ search_temp }}', from: '{{ from }}', to: '{{ to }}', filters: {}, orders: [], pagination: {}, is_empty_order: false, is_search: false, loading: false, init(){ if (this.from !== ''){ this.time_range = this.from + ' - ' + this.to; } this.reload(); }, reload(){ let self = this; this.loading = true; fetch( '/customers/api/reload', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}', 'Class-Name': 'customer_orders' }, body: JSON.stringify(self.filters) } ).then((response) => response.json()) .then((json) => { self.loading = false; self.orders = json['orders']; self.pagination = json['pagination']; if(!self.is_search && self.orders.length == 0){ self.is_empty_order = true; } }); }, previous(){ this.filters['page'] = this.pagination.previous_page_number; this.reload(); }, next(){ this.filters['page'] = this.pagination.next_page_number; this.reload(); }, selectedPage(i){ this.filters['page'] = i; this.reload(); }, search(){ if (this.from !== ''){ this.filters['from'] = this.from; this.filters['to'] = this.to; } if (this.search_temp != ''){ this.filters['query'] = this.search_temp; } this.is_search = true; this.reload(); }, reset(){ this.from = null; this.to = null; this.time_range = ''; this.filters = {}; this.search_temp = ''; picker.clearSelection(); this.is_search = false; this.filters['page'] = 1; this.reload(); }, resetTimeRange(){ this.from = null; this.to = null; this.time_range = ''; this.filters = {}; if (this.search_temp != ''){ this.filters['query'] = this.search_temp; this.is_search = true; } this.filters['page'] = 1; picker.clearSelection(); this.reload(); } }"
+                   x-init="$nextTick(() => { picker = new Litepicker({ element: document.getElementById('custom-range-tab'), autoApply: false, singleMode: false, position: 'left' }); picker.on('button:apply', (d1, d2) => { let from_date = d1.getFullYear() + '-' + ('0' + (d1.getMonth() + 1)).slice(-2) + '-' + ('0' + d1.getDate()).slice(-2), to_date = d2.getFullYear() + '-' + ('0' + (d2.getMonth() + 1)).slice(-2) + '-' + ('0' + d2.getDate()).slice(-2),  params_string = '', url = ''; $data.from = from_date; $data.to = to_date; $data.time_range = ('0' + d1.getDate()).slice(-2) + '/' + ('0' + (d1.getMonth() + 1)).slice(-2) + '/' + d1.getFullYear() + ' - ' + ('0' + d2.getDate()).slice(-2) + '/' + ('0' + (d2.getMonth() + 1)).slice(-2) + '/' + d2.getFullYear(); $data.search(); }); })"
+                   :class="loading ? 'loading-mask' : ''">
+                <template x-if="loading">
+                  <div class="loading">
+                    <div class="loading-icon"></div>
+                  </div>
+                </template>
+                <div class="account-order-history-filter">
+                  <div class="si-bottom">
+                    <div class="sib-box">
+                      <div class="sib-right">
+                        <div class="list-tab">
+                          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item nav-item-range" role="presentation">
+                              <button class="nav-link btn-time-range"
+                                      x-bind:id="'custom-range-tab'"
+                                      data-bs-toggle="pill"
+                                      data-bs-target="#pills-custom-range"
+                                      type="button"
+                                      role="tab"
+                                      aria-controls="pills-home"
+                                      x-text="'Time Range'">
+                              </button>
+                            </li>
+                            <li class="nav-item nav-item-search" role="presentation">
+                              <input type="search"
+                                     name="order-query-string"
+                                     id="order-query-string"
+                                     class="form-control rounded"
+                                     x-model="search_temp"
+                                     :placeholder="'Search order'"/>
+                              <button class="btn btn-link" type="button" @click="search">Search</button>
+                            </li>
+                            <li class="nav-item nav-item-btn-search" role="presentation">
+                              <button type="button" class="nav-link btn-search" @click='search'>Search</button>
+                            </li>
+                            <li class="nav-item nav-item-btn-reset" role="presentation">
+                              <button type="button" class="nav-link btn-reset" @click='reset'>Reset</button>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="time-range" x-show="time_range != ''">
+                    <label x-text="'Current selected: ' + time_range"></label>
+                    <button class="reset-selected-date" type="button" @click="resetTimeRange">X</button>
+                  </div>
+                </div>
+                <template x-if="is_empty_order">
+                  <p id="order-history-no-order" class="no-order">
+                    <span x-text="`You haven't made any order yet.`"></span>
+                    <a href="{% url 'products' %}" x-text="`Go shopping now!`"></a>
+                  </p>
+                </template>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Order Number</th>
+                        <th>Order</th>
+                        <th>Date Created</th>
+                        <th>Order Status</th>
+                        <th>Order Total</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template x-if="orders.length">
+                        <template x-for="order in orders" :key="order.id">
+                          <tr>
+                            <td class="order-numner" data-th="Order" x-text="order.name"></td>
+                            <td class="order-id" data-th="Order" x-text="order.pleasant_id"></td>
+                            <td class="order-date-created"
+                                data-th="Date Created"
+                                x-text="order.create_date"></td>
+                            <td class="order-status" data-th="Order Status" x-text="order.status"></td>
+                            <td class="order-total"
+                                data-th="Order Total"
+                                x-text="'$' + parseFloat(order.order_total).toFixed(2)">
+                              <td class="order-actions">
+                                <a x-bind:href="order.order_view_url">
+                                  <span></span>
+                                </a>
+                              </td>
+                            </td>
+                          </template>
+                        </template>
+                        <template x-if="!orders.length">
+                          <tr>
+                            <td class="order-no-result" colspan="5">No result found</td>
+                          </tr>
+                        </template>
+                      </tbody>
+                    </table>
+                    <template x-if="orders.length">
+                      <!--Pagination-->
+                      <div class="ltn__pagination-area text-center col-lg-12 order-lg-2">
+                        <div class="ltn__pagination">
+                          <ul>
+                            <!-- previous button -->
+                            <template x-if="pagination.has_previous">
+                              <li class="page-item">
+                                <a class="page-link page-link-previous" @click="previous">
+                                  <span class="btn-icon btn-left"></span>
+                                </a>
+                              </li>
+                            </template>
+                            <template x-if="!pagination.has_previous">
+                              <li class="page-item page-link-previous disabled">
+                                <a class="page-link" tabindex="-1" aria-disabled="True">
+                                  <span class="btn-icon btn-left"></span>
+                                </a>
+                              </li>
+                            </template>
+                            <!-- End block-->
+                            <!-- previous hellip button -->
+                            <template x-if="pagination.previous_hellip > 1">
+                              <li class="page-item">
+                                <a class="page-link"
+                                   @click="selectedPage(pagination.number_previous_hellip)">&hellip;</a>
+                              </li>
+                            </template>
+                            <!-- End block-->
+                            <template x-for="i in pagination.page_ranges">
+                              <template x-if="i > pagination.number_previous_hellip && i < pagination.number_next_hellip">
+                                <li class="page-item" :class="i==pagination.number ? 'active' : ''">
+                                  <template x-if="i==pagination.number">
+                                    <span class="page-link" x-text="i">
+                                      <span class="sr-only">(current)</span>
+                                    </span>
+                                  </template>
+                                  <template x-if="i!=pagination.number">
+                                    <a class="page-link" x-text="i" @click="selectedPage(i)"></a>
+                                  </template>
+                                </li>
+                              </template>
+                            </template>
+                            <!-- previous next button -->
+                            <template x-if="pagination.num_pages > pagination.next_hellip">
+                              <li class="page-item">
+                                <a class="page-link"
+                                   @click="selectedPage(pagination.number_next_hellip)">&hellip;</a>
+                              </li>
+                            </template>
+                            <!-- End block-->
+                            <!-- next button -->
+                            <template x-if="pagination.has_next">
+                              <li class="page-item">
+                                <a class="page-link page-link-next" @click="next">
+                                  <span class="btn-icon btn-right"></span>
+                                </a>
+                              </li>
+                            </template>
+                            <template x-if="!pagination.has_next">
+                              <li class="page-item disabled">
+                                <a class="page-link page-link-next" tabindex="-1" aria-disabled="True">
+                                  <span class="btn-icon btn-right"></span>
+                                </a>
+                              </li>
+                            </template>
+                            <!-- End block-->
+                          </ul>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ORDER HISTORY END -->
+        </div>
+      </main>
+    {% endblock content %}
+    {% block scripts %}
+      <script src="{% static 'js/npm/litepicker.js' %}" defer></script>
+      <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+      <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+    {% endblock %}

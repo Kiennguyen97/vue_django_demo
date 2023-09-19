@@ -1,0 +1,140 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Universal Plumbing Promo{% endblock %}
+{% block og-pagetitle %}Universal Plumbing Promo{% endblock %}
+{% block css_bottom %}
+	{% load static %}
+	<link rel="stylesheet"
+		  type="text/css"
+		  href="{% static 'css/custom/cms/universal.css' %}">
+{% endblock %}
+{% block content %}
+	{% load static %}
+<div class="body universal">
+	<main class="page-main" id="maincontent">
+
+		<!-- CONTACT ADDRESS AREA START -->
+		<div class="ltn__contact-address-area mb-90">
+			<div class="container">
+				<div class="row w-13">
+					<div class="col-12">
+						<div class="page-banner">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- CONTACT ADDRESS AREA END -->
+		<!-- CONTACT MESSAGE AREA START -->
+		<div class="universal-main ltn__contact-message-area mb-120 mb--100" id="universal">
+			<div class="container">
+				<div class="banner-top">
+					<img src="{% static 'img/cms/banner-promo.png' %}">
+				</div>
+				<div class="ltn__form-box contact-form-box box-shadow white-bg">
+					<h2 class="form-title">Please fill out this form</h2>
+					{% include 'message.html' %}
+					<form id="universal-form" enctype="multipart/form-data"
+						  class="universal-form"
+						  action="{% url 'universalplumbing' %}"
+						  data-site-key="{{ RECAPTCHA_SITE_KEY }}"
+						  method="post"
+						  autocomplete="off">
+						{% csrf_token %}
+						<div class="row">
+							<div class="col-md-6">
+								<div class="input-item input-item-towel">
+									<label for="towel_rail">Towel Rail selection</label>
+									<div class="custom-select-option">
+										{{ form.towel_rail }}
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="input-item input-item-name">
+									<label for="id_name">Name</label>
+									{{ form.name }}
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="input-item input-item-company">
+									<label for="company_name">Which store did you purchase your bathroom products from?</label>
+									{{ form.company_name }}
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="input-item input-item-address">
+									<label for="shipping_address">Shipping address</label>
+									{{ form.shipping_address }}
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="input-item input-item-email">
+									<label for="id_email_address">Email Address</label>
+									{{ form.email_address }}
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="input-item input-item-phone">
+									<label for="id_phone_number">Best contact phone number</label>
+									{{ form.phone_number }}
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="input-item input-item-invoice">
+									<label for="id_proof_purchase">Proof of purchase - please upload your invoice</label>
+									{{ form.proof_purchase }}
+									<div class="upload-file-box">
+										<label for="id_proof_purchase" class="upload-label">
+											<img class="upload-icon" src="{% static 'img/cms/upload-icon.svg' %}" />
+											<span>Upload file</span>
+										</label>
+										<div class="upload-file-name"></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="button-wrapper mt-0">
+							{% if cls_name in FORM_RECAPTCHA %}
+							<div title="Submit"
+								 class="button button--primary theme-btn-1"
+								 @click='onSubmitUniversal'>Send information
+							</div>
+							<textarea id="g-recaptcha-response" name="g-recaptcha-response"
+									  class="g-recaptcha-response" v-model="g_recaptcha_response"
+									  style="display: none;"></textarea>
+							{% else %}
+							<button class="button button--primary theme-btn-1" type="submit">Send information </button>
+							{% endif %}
+						</div>
+						{% if cls_name in FORM_RECAPTCHA %}
+						<div class="note">
+							By send information, you agree to the
+							<a href="{% url 'terms-of-trade' %}">Terms and Conditions</a>
+							detailed above
+						</div>
+						{% endif %}
+						<p class="form-messege mb-0 mt-20">
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- CONTACT MESSAGE AREA END -->
+	</main>
+</div>
+{% endblock content %}
+{% block scripts %}
+	{% if DJANGO_ENVIRON == "prod" %}
+		<script src="{% static 'js/npm/vue.min.js' %}"></script>
+	{% else %}
+		<script src="{% static 'js/npm/vue.js' %}"></script>
+	{% endif %}
+	<script src="{% static 'js/custom/universal.js' %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your order has shipped at Amtech</title>
+  </head>
+  <body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee"
+        bgcolor="#eeeeee">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td align="center" style="background-color: #eeeeee" bgcolor="#eeeeee">
+          <table align="center"
+                 border="0"
+                 cellpadding="0"
+                 cellspacing="0"
+                 width="100%"
+                 style="max-width: 600px">
+            <tr>
+              <td align="center"
+                  valign="top"
+                  style="font-size: 0; padding: 35px"
+                  bgcolor="#ffffff">
+                <div style="display: inline-block; max-width: 100%; min-width: 100px; vertical-align: top; width: 100%">
+                  <table align="left"
+                         border="0"
+                         cellpadding="0"
+                         cellspacing="0"
+                         width="100%"
+                         style="max-width: 100%">
+                    <tr>
+                      <td align="center" valign="top" class="mobile-center">
+                        <a href="{{ BASE_URL }}/" style="display: inline-block">
+                          <img src="{{ BASE_URL }}/static/img/home-new/Amtech_Charcoal_clearcut.png"
+                               alt="Amtech"
+                               width="169"
+                               height="74"/>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td align="center"
+                  style="padding: 35px 35px 20px 35px; background-color: #ffffff"
+                  bgcolor="#ffffff">
+                <table align="center"
+                       border="0"
+                       cellpadding="0"
+                       cellspacing="0"
+                       width="100%"
+                       style="max-width: 600px">
+                  <tr>
+                    <td align="center"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px">
+                      <h2 style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0">
+                        Many Thanks for your order!
+                      </h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px">
+                      <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                        Items from your Rapid-Antigen order are ready to be picked up by
+                        the courier and will be with you shortly!
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" style="padding-top: 20px">
+                      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                          <td colspan="2"
+                              width="100%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 800; line-height: 24px; padding: 10px">
+                            Delivery information:
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="1"
+                              width="50%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 10px">
+                            Order Number:
+                          </td>
+                          <td colspan="1"
+                              width="50%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 10px">
+                          <a href="{{ BASE_URL }}{{ order_obj.get_absolute_url }}">{{ order_obj.get_pleasant_id }}</a
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"
+                            width="100%"
+                            align="left"
+                            style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 800; line-height: 24px; padding: 10px">
+                          Track your order:
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"
+                            width="100%"
+                            align="left"
+                            style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 10px">
+                          <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                            Please
+                            <a href="{{ tracking_url }}">click here</a> to see your
+                          tracking & delivery information. If information is not
+                          available, please try again in 5-6 hours.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"
+                          width="100%"
+                          align="left"
+                          style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 10px">
+                        <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                          Courier: {{ courier }}
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"
+                          width="100%"
+                          align="left"
+                          style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 10px">
+                        <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                          For further tracking, information, or escalations please
+                          call {{ courier }} on
+                          <a href="tel:{{ courier_phone }}">{{ courier_phone }}</a>
+                        or visit <a href="{{ courier_url }}">here</a>.
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"
+                        width="100%"
+                        align="left"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px">
+                      Delivery address:
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"
+                        width="100%"
+                        align="left"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 10px">
+                      <p>
+                        {% if user_obj.customer_name %}
+                          <br />
+                          {{ user_obj.customer_name }}
+                        {% endif %}
+                        {{ order_obj.address_shipping.street_address_1 }}
+                        {% if order_obj.address_shipping.street_address_2 %}
+                          <br />
+                          {{ order_obj.address_shipping.street_address_2 }}
+                        {% endif %}
+                        <br />
+                        {{ order_obj.address_shipping.city }}
+                        {% if order_obj.address_shipping.address_state %}
+                          <br />
+                          {{ order_obj.address_shipping.address_state }}
+                        {% endif %}
+                        <br />
+                        {{ order_obj.address_shipping.address_postal }}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="left" style="padding-top: 20px">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th align="left"
+                          style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 5px 10px">
+                        Name
+                      </th>
+                      <th align="left"
+                          style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 5px 10px">
+                        Sku
+                      </th>
+                      <th align="center"
+                          style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 5px 10px">
+                        Qty Shipped
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in cart_items %}
+                      <tr>
+                        <td align="left"
+                            style="border-top: 1px solid #eeeeee; font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                          {{ item.name }}
+                        </td>
+                        <td align="left"
+                            style="border-top: 1px solid #eeeeee; font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                          {{ item.sku }}
+                        </td>
+                        <td align="center"
+                            style="border-top: 1px solid #eeeeee; font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                          {{ item.qty_shipped }}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td align="center"
+            height="100%"
+            valign="top"
+            width="100%"
+            style="padding: 0 35px 35px 35px; background-color: #ffffff"
+            bgcolor="#ffffff">
+          <table align="center"
+                 border="0"
+                 cellpadding="0"
+                 cellspacing="0"
+                 width="100%">
+            <tr>
+              <td width="100%" align="left" style="padding: 15px 10px 5px 10px">
+                <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                  If you are waiting for any other items, you will receive another
+                  email as they are sent.
+                </p>
+                <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                  If you have any queries regarding your order, feel free to
+                  contact us.
+                </p>
+                <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #777777">
+                  Kind regards
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td align="center"
+            style="padding: 35px; background-color: #ffffff"
+            bgcolor="#ffffff">
+          <table align="center"
+                 border="0"
+                 cellpadding="0"
+                 cellspacing="0"
+                 width="100%">
+            <tr>
+              <td align="center"
+                  style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0">
+                <i class="icon-placeholder"></i>
+                <p style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333">
+                  281 Heads Road, Wanganui
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center"
+                  style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0">
+              <i class="icon-mail"></i
+            ><a href="mailto:sales@amtech.co.nz"
+   style="font-size: 14px; font-weight: 400; line-height: 18px; color: #333333">sales@amtech.co.nz</a
+            >
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

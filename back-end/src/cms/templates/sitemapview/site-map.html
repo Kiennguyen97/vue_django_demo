@@ -1,0 +1,67 @@
+{% load static %}
+<div class="container">
+  <h1>Sitemap</h1>
+  <ul>
+    <li>
+      <h3>Pages</h3>
+      <ul>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'bathroom-planner' %}">Design@home</a>
+        </li>
+        <li>
+          <a href="{% url 'serenity' %}">Serenity</a>
+        </li>
+        <li>
+          <a href="{% url 'page-laundry' %}">Laundry</a>
+        </li>
+        <li>
+          <a href="{% url 'projects' %}">Projects</a>
+        </li>
+{#        <li>#}
+{#          <a href="{% url 'resources' %}">Resources</a>#}
+{#        </li>#}
+        <li>
+          <a href="{% url 'store_locations' %}"
+            >Nationwide Stockists</a
+          >
+          <ul>
+            <li>
+              <a href="{% url 'concept-showroom' %}"
+                >Concept Showroom</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'about-us' %}">About Us</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}">Contact Us</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <h3>Categories</h3>
+      {% for c in cat.0 %}
+      <ul>
+        <li>
+          <a href="{{c.slug}}">{{c.name}}</a>
+          {% if c.has_children %}
+          <ul>
+              {% for children in c.children %}
+                <li>
+                  <a href="{{children.slug}}">{{children.name}}</a>
+                </li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+      </ul>
+      {% endfor %}
+      <a href="{% url 'site-map-categories' %}">Show All</a>
+    </li>
+  </ul>
+</div>

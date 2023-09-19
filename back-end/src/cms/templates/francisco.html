@@ -1,0 +1,94 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Francisco Vanity_Serenity Range{% endblock %}
+{% block og-pagetitle %}Francisco Vanity_Serenity Range{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/cms-custom.css' %}">
+{% endblock %}
+{% block content %}
+<div class="body">
+    <main class="page-main">
+        <div class="page-content">
+            <div class="shg-box">
+                <div class="shg-box-content">
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/francisco/francisco.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/francisco/product-francisco.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/color.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/basin.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/drawer-front.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/handle.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/francisco/francisco-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/francisco/product-francisco-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/color.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/slab-top.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/vessel-basin.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/drawer-front-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/handle-luxe.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="shg-btn-wrapper">
+                    <a class="shg-btn shg-cse shg-btn-special" href="https://view.publitas.com/newtech-bathroomware/francisco-order-form_newtech-bathroomware/" target="_blank">
+                        DOWNLOAD THE ORDER FORMS
+                    </a>
+                </div>
+                <div class="buttons-bottom">
+                    <div class="shg-btn-wrapper">
+                        <a class="shg-btn shg-cse"
+                           href="https://view.publitas.com/newtech-bathroomware/serenity-range/" target="_blank">
+                            VIEW THE BROCHURE
+                        </a>
+                    </div>
+                    <div class="shg-btn-wrapper">
+                        <a class="shg-btn shg-cse contact"
+                           href="{% url 'contact' %}" target="_blank">
+                            CONTACT US FOR FURTHER DETAILS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Address Book{% endblock %}
+{% block og-pagetitle %}Address Book{% endblock %}
+{% load static %}
+{% block content %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <div class="address-book mb-40">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">Address Book</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="address-book-items">
+                <p>
+                  The following addresses will be used on the checkout page by default.
+                </p>
+                <div class="row">
+                  {% if user.get_addresses %}
+                    {% for address in user.get_addresses %}
+                      <div class="col-md-6 col-12 learts-mb-30" data-cy="account-address-info">
+                        <address>
+                          <h4>{{ address.name }}</h4>
+                        </address>
+                        {% if address.type_address == 'BILL' %}
+                          <p class="address-type">
+                            <strong>Billing Address</strong>
+                            <small>
+                              <a href="{{ address.get_absolute_url }}"
+                                 data-cy="btn-edit-account-address">
+                                edit <i class="fas fa-pencil-alt"></i>
+                              </a>
+                            </small>
+                          </p>
+                        {% else %}
+                          <p class="address-type">
+                            <strong>Shipping Address</strong>
+                            <small>
+                              <a href="{{ address.get_absolute_url }}"
+                                 data-cy="btn-edit-account-address">
+                                edit <i class="fas fa-pencil-alt"></i>
+                              </a>
+                            </small>
+                          </p>
+                        {% endif %}
+                        <p>
+                        <span class="street-address-1">{{ address.street_address_1 }}</span
+                        >,
+                        <br />
+                        {% if address.street_address_2 %}
+                          <span class="street-address-2">{{ address.street_address_2 }}
+                            <br />
+                          </span>
+                        {% endif %}
+                        <span class="city">{{ address.city }}</span>,
+                      <br />
+                      <a href="tel:{{ address.phone }}">{{ address.phone }}</a>,
+                    <br />
+                    <span class="address-postal">{{ address.address_postal }}</span>
+                  </p>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <a href="{% url 'add_address' %}"
+           class="btn btn-2 theme-btn-1"
+           data-cy="account-add-address-btn">Add New Address</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+{% endblock content %}

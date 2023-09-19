@@ -1,0 +1,522 @@
+.laundry-banner {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background: url('../../../img/laundry-planner/new-laundry-image.png') no-repeat center/cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    min-height: 800px;
+}
+
+.banner-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.banner-content > * {
+    position: relative;
+}
+
+.banner-content .title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 43px;
+    color: #fff;
+    text-transform: uppercase;
+    top: -44px;
+}
+
+.banner-content .action label {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    color: #fff;
+    margin-right: 15px;
+    margin-bottom: 0;
+}
+
+.banner-content .logo {
+    top: -15px;
+}
+
+.banner-content .action {
+    top: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.overview-design-home {
+    max-width: 1110px;
+    margin: 80px auto 0;
+    padding: 0 15px;
+}
+
+.overview-step {
+    display: flex;
+    justify-content: center;
+}
+
+.overview-step .steps {
+    list-style: none;
+    display: flex;
+    gap: 0 64px;
+    margin: 0;
+}
+
+.overview-step .step,
+.number-step {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overview-step .step-text,
+.number-step .number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.overview-step .step-text {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.overview-description {
+    text-align: center;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.overview-description h2 {
+    font-size: 40px;
+    line-height: 56px;
+    color: #292D2D;
+    font-weight: 600;
+}
+
+.overview-description p {
+    font-size: 20px;
+    line-height: 36px;
+    color: #000000;
+    max-width: 80%;
+    margin: 25px auto;
+}
+
+.get-started {
+    background-color: #eef0ef;
+    min-height: 698px;
+    display: flex;
+    align-items: center;
+}
+
+.get-started .container {
+    max-width: 1330px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+
+.get-started-content {
+    display: flex;
+    align-items: center;
+    gap: 0 50px;
+}
+
+.get-started-image {
+    width: 100%;
+    max-width: 500px;
+}
+
+.get-started-desc p {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 30px;
+}
+
+.get-started-desc p a {
+    font-weight: 800;
+}
+
+.get-started-desc p span a {
+    font-weight: 800;
+}
+
+.design-new-laundry .heading {
+    background: url('../../../img/laundry-planner/heading-new-bg.png') center/100% 81px;
+    height: 81px;
+    display: flex;
+    justify-content: center;
+}
+
+.design-new-laundry .content {
+    max-width: 1330px;
+    padding: 0 15px;
+    margin: 80px auto 0;
+}
+
+.design-new-laundry .sub-title {
+    position: relative;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.design-new-laundry .sub-title h4 {
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #fff;
+    color: #292D2D;
+    margin: 0;
+    display: inline-block;
+    padding: 0 24px;
+}
+
+.design-new-laundry .sub-title:before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.design-new-laundry .sub-title span {
+    color: #18BECD;
+}
+
+.design-new-laundry .title {
+    font-size: 64px;
+    line-height: 90px;
+    font-weight: 600;
+    color: #292D2D;
+    text-align: center;
+    margin: 25px 0 0;
+}
+
+.list-steps {
+    margin-top: 79px;
+}
+
+.list-steps .step {
+    display: flex;
+    align-items: center;
+    gap: 0 64px;
+    margin-bottom: 64px;
+}
+
+.img-right .img-step {
+    order: 2;
+}
+
+.img-step {
+    flex-basis: 640px;
+}
+
+.step-description {
+    flex-basis: calc(100% - 704px);
+}
+
+.number-step {
+    max-width: 62.5px;
+    margin-bottom: 15px;
+}
+
+.number-step img {
+    width: 100%;
+}
+
+.number-step .number {
+    color: #fff;
+}
+
+.step-description {
+    padding-right: 70px;
+}
+
+.img-right .step-description {
+    padding-left: 70px;
+    padding-right: 0;
+}
+
+.step-description .title {
+    font-size: 40px;
+    line-height: 56px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.step-description p {
+    font-size: 18px;
+    line-height: 32px;
+}
+
+.step-description p span {
+    color: #1ebecd;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.button-link {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: inherit;
+    max-height: inherit;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.button-link {
+    display: flex;
+    justify-content: center;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.button-link a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #1EBECD;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.button-link a:hover {
+    opacity: 0.5;
+    background-color: #333 !important;
+}
+
+.footer {
+    margin-top: 80px;
+}
+
+@media screen and (max-width: 1199px) {
+    .img-step,
+    .step-description {
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .laundry-banner {
+        min-height: 762px;
+        align-items: start;
+    }
+
+    .banner-image img {
+        width: 100%;
+    }
+
+    .banner-content {
+        position: relative;
+        top: 120px;
+    }
+
+    .banner-content .title {
+        font-size: 20px;
+        line-height: 36px;
+        padding: 0 10px;
+        top: 0;
+    }
+
+    .banner-content .logo {
+        max-width: 300px;
+        top: 25px;
+    }
+
+    .banner-content .action {
+        top: 89px;
+    }
+
+    .overview-design-home {
+        margin-top: 46px;
+    }
+
+    .overview-step .step-text {
+        font-size: 15px;
+        line-height: 18px;
+    }
+
+    .overview-step .steps {
+        gap: 0;
+        justify-content: center;
+    }
+
+    .overview-step .step {
+        flex-basis: 94px;
+    }
+
+    .overview-step .step:not(:first-child) {
+        margin-left: -11px;
+    }
+
+    .overview-description {
+        margin-top: 0;
+    }
+
+    .overview-description h2 {
+        font-size: 20px;
+        line-height: 28px;
+        margin-top: 23px;
+    }
+
+    .overview-description p {
+        font-size: 14px;
+        margin-top: 5px;
+        line-height: 25px;
+        max-width: 100%;
+        display: inline-block;
+    }
+
+    .get-started {
+        margin-top: 22px;
+        min-height: 566px;
+        text-align: center;
+    }
+
+    .get-started .container {
+        padding-top: 46px;
+        padding-bottom: 34px;
+    }
+
+    .get-started-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .get-started-image {
+        max-width: 230px;
+    }
+
+    .get-started-desc {
+        margin-top: 50px;
+    }
+
+    .get-started-desc p {
+        font-size: 14px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    .get-started-desc p:last-child {
+        margin-top: 0;
+    }
+
+    .design-new-laundry .heading {
+        background-size: 100% 32px;
+        height: 32px;
+    }
+
+    .design-new-laundry .heading img {
+        height: 32px;
+    }
+
+    .design-new-laundry .sub-title h4 {
+        font-size: 14px;
+        line-height: 25px;
+        padding: 0 8px;
+    }
+
+    .design-new-laundry .title {
+        font-size: 20px;
+        line-height: 28px;
+        margin-top: 15px;
+    }
+
+    .design-new-laundry .content {
+        margin-top: 29px;
+    }
+
+    .list-steps {
+        margin-top: 45px;
+    }
+
+    .list-steps .step {
+        flex-direction: column;
+        margin-bottom: 45px;
+    }
+
+    .number-step {
+        margin-bottom: 0;
+    }
+
+    .img-step {
+        flex-basis: auto;
+        order: 2;
+    }
+
+    .step-description,
+    .img-right .step-description {
+        padding: 0;
+    }
+
+    .step-description .title {
+        font-size: 32px;
+        line-height: 45px;
+        margin: 8px 0;
+    }
+
+    .step-description p {
+        font-size: 14px;
+        line-height: 25px;
+    }
+
+    .button-link a {
+        font-size: 14px;
+        line-height: 17px;
+        max-width: 343px;
+        padding: 12px 20px;
+        margin-top: 0;
+    }
+
+    .footer {
+        margin-top: 64px;
+    }
+}

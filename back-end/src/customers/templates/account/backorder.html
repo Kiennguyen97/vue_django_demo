@@ -1,0 +1,139 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Backorder{% endblock %}
+{% block og-pagetitle %}Backorder{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/backorder.css' %}">
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <!-- ORDER DETAIL START -->
+      <div class="dashboard-content backorder">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">Backorders</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <script type="text/javascript">var picker;</script>
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="backorder-notification">
+                <p>
+                  Currently open Backorders under your Amtech account.
+                  <br>
+                  If you would like an update, or change to a backorder, please contact our Customer Service Team
+                </p>
+              </div>
+              <div class="table-responsive"
+                   x-data="{ items: [], pagination: {}, filters: {}, loading: false, search_temp: '', time_range: '', init(){ this.reload(); }, reload(){ let self = this; this.loading = true; fetch( '/customers/api/reload', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}', 'Class-Name': 'customer_backorder' }, body: JSON.stringify(self.filters) } ).then((response) => response.json()) .then((json) => { self.loading = false; self.items = json['items']; self.pagination = json['pagination']; }); }, previous(){ this.filters['page'] = this.pagination.previous_page_number; this.reload(); }, next(){ this.filters['page'] = this.pagination.next_page_number; this.reload(); }, selectedPage(i){ this.filters['page'] = i; this.reload(); }, search(){ if (this.search_temp != ''){ this.filters['search_temp'] = this.search_temp; this.is_search = true; this.reload(); } }, reset(){ this.filters = {}; this.time_range = ''; this.search_temp = ''; this.filters['page'] = 1; picker.clearSelection(); this.reload(); }, resetTimeRange(){ this.time_range = ''; this.filters = {}; if (this.search_temp != ''){ this.filters['search_temp'] = this.search_temp; } this.filters['page'] = 1; picker.clearSelection(); this.reload(); }, }"
+                   x-init="$nextTick(() => { picker = new Litepicker({ element: document.getElementById('custom-range-tab'), autoApply: false, singleMode: false, position: 'left' }); picker.on('button:apply', (d1, d2) => { let from_date = d1.getFullYear() + '-' + ('0' + (d1.getMonth() + 1)).slice(-2) + '-' + ('0' + d1.getDate()).slice(-2), to_date = d2.getFullYear() + '-' + ('0' + (d2.getMonth() + 1)).slice(-2) + '-' + ('0' + d2.getDate()).slice(-2),  params_string = '', url = ''; $data.filters['from'] = from_date; $data.filters['to'] = to_date; $data.is_search = true; $data.time_range = ('0' + d1.getDate()).slice(-2) + '/' + ('0' + (d1.getMonth() + 1)).slice(-2) + '/' + d1.getFullYear() + ' - ' + ('0' + d2.getDate()).slice(-2) + '/' + ('0' + (d2.getMonth() + 1)).slice(-2) + '/' + d2.getFullYear(); $data.reload(); }); })"
+                   :class="loading ? 'loading-mask' : ''">
+                <template x-if="loading">
+                  <div class="loading">
+                    <div class="loading-icon"></div>
+                  </div>
+                </template>
+                <div class="form-search">
+                  <form class="bd-search d-flex">
+                    <div class="filter-date">
+                      <button class="nav-link btn-time-range theme-btn-6"
+                              x-bind:id="'custom-range-tab'"
+                              type="button"
+                              x-text="'Time Range'">
+                      </button>
+                    </div>
+                    <div class="input-search">
+                      <span class="algolia-autocomplete">
+                        <input type="search"
+                               class="form-control ds-input"
+                               x-model="search_temp"
+                               id="search-input"
+                               placeholder="Search items..."
+                               aria-label="Search for..."
+                               autocomplete="off">
+                        <button class="btn btn-link" type="button">Search</button>
+                      </div>
+                      <div class="list-actions">
+                        <button class="btn btn-search theme-btn-1" type="button" @click="search">Search</button>
+                        <button class="btn btn-reset theme-btn-5" type="button" @click="reset">Reset</button>
+                      </div>
+                      <div id="current-selected"
+                           class="current-selected"
+                           x-show="time_range != ''">
+                        <p>
+                          Current Selected:
+                          <span x-text="time_range"></span>
+                        </p>
+                        <button class="reset-selected-date" type="button" @click="resetTimeRange">X</button>
+                      </div>
+                    </form>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Code</th>
+                        <th>Product Name</th>
+                        <th>Sales Order No.</th>
+                        <th>Date Ordered</th>
+                        <th>Unit Remaining</th>
+                        <th>Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template x-if="!items.length">
+                        <tr class="items-no-result">
+                          <td colspan="6">No result found</td>
+                        </tr>
+                      </template>
+                      <template x-if="items.length">
+                        <template x-for="item in items">
+                          <tr>
+                            <td data-th="Code" class="backorder-code" x-text="item.sku"></td>
+                            <td data-th="Product Name" class="backorder-product-name">
+                              <p x-text="item.product_name">
+                              </p>
+                            </td>
+                            <td data-th="Sales Order No." class="backorder-order-number">
+                              <p x-text="item.so_numbner">
+                              </p>
+                            </td>
+                            <td data-th="Date Ordered"
+                                class="backorder-date-ordered"
+                                x-text="item.create_date"></td>
+                            <td data-th="Unit Remaining" class="backorder-unit-remaining">
+                              <p x-text="item.product_qty">
+                              </p>
+                            </td>
+                            <td data-th="Address" class="backorder-address">
+                              <div class="backorder-shipping-address">
+                                <span class="icon-address"></span>
+                                <p class="shipping-address" x-text="item.delivery_address">
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        </template>
+                      </template>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ORDER DETAIL END -->
+      </div>
+    </main>
+  {% endblock content %}
+  {% block scripts %}
+    <script src="{% static 'js/npm/litepicker.js' %}"></script>
+    <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+    <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+  {% endblock %}

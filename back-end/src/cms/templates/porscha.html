@@ -1,0 +1,95 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Porscha Vanity{% endblock %}
+{% block og-pagetitle %}Porscha Vanity{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/cms-custom.css' %}">
+{% endblock %}
+{% block content %}
+<div class="body">
+    <main class="page-main">
+        <div class="page-content">
+            <div class="shg-box">
+                <div class="shg-box-overlay"></div>
+                <div class="shg-box-content">
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/porscha.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/product-porscha.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/color.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/basin.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/drawer-front.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/extrusion.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/porscha-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/product-porscha-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/color.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/slab-top.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/basin.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/drawer-front-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/porscha/extrusion-luxe.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="shg-btn-wrapper">
+                    <a class="shg-btn shg-cse shg-btn-special" href="https://view.publitas.com/newtech-bathroomware/porscha-order-form_newtech-bathroomware" target="_blank">
+                        DOWNLOAD THE ORDER FORMS
+                    </a>
+                </div>
+                <div class="buttons-bottom">
+                    <div class="shg-btn-wrapper">
+                        <a class="shg-btn shg-cse"
+                           href="https://view.publitas.com/newtech-bathroomware/serenity-range/" target="_blank">
+                            VIEW THE BROCHURE
+                        </a>
+                    </div>
+                    <div class="shg-btn-wrapper">
+                        <a class="shg-btn shg-cse contact"
+                           href="{% url 'contact' %}" target="_blank">
+                            CONTACT US FOR FURTHER DETAILS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

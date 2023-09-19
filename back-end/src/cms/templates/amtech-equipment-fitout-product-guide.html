@@ -1,0 +1,36 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Amtech Equipment Fitout Product Guide{% endblock %}
+{% block og-pagetitle %}Amtech Equipment Fitout Product Guide{% endblock %}
+{% block page-content %}
+  Amtech Equipment Fitout Product Guide - A Product Guide for Clinic Fitouts and Renovations
+{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/cms.css' %}">
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <main id="maincontent" class="page-main">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <div class="publication-book">
+        <div class="container">
+          <h2 class="publication-book-title">Amtech Equipment Fitout Product Guide</h2>
+          <div id="publitas-embed-8pticqbp4jr"></div>
+          <script data-cfasync="false"
+                  data-height="undefined"
+                  data-publication="https://view.publitas.com/amtech/standard-fitout-book-reordered-final-file/"
+                  data-publication-aspect-ratio="1.4092339979013642"
+                  data-responsive="true"
+                  data-width="undefined"
+                  data-wrapperId="publitas-embed-8pticqbp4jr"
+                  publitas-embed
+                  src="https://view.publitas.com/embed.js"
+                  type="text/javascript"></script>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}

@@ -1,0 +1,62 @@
+.page-content {
+    line-height: 1.5;
+}
+
+.return-policy .page-main {
+    padding: 0 30px;
+}
+
+.ltn__breadcrumb-area .col-lg-12 {
+    padding: 0 30px;
+}
+
+p,
+span,
+li {
+    font-size: 16px;
+}
+
+.fa-circle {
+    font-size: 3.5px;
+    width: 8px;
+    position: relative;
+    top: -3px;
+}
+
+.shg-box-text {
+    margin-top: 25px;
+}
+
+.page-content a:hover {
+    text-decoration: underline;
+}
+
+.ltn__breadcrumb-area,
+.page-heading {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .page-content {
+        padding: 0 100px;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    p {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1261px) {
+    .return-policy .page-main {
+        padding: 0;
+    }
+
+    .ltn__breadcrumb-area .col-lg-12 {
+        padding: 0 15px;
+    }
+}

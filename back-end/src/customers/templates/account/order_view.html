@@ -1,0 +1,265 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}My Orders{% endblock %}
+{% block og-pagetitle %}My Orders{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/order_view.css' %}">
+{% endblock %}
+{% load static %}
+{% block content %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      <!-- ORDER DETAIL START -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-xl-12">
+            <h1 class="page-title">Order Details</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+          <div class="col-lg-9 col-md-12 col-12">
+            <section class="page-wrapper-message">
+              {% include 'message.html' %}
+            </section>
+            <div class="order-content-top">
+              <div class="so-info">
+                <div class="po-number">
+                  <span>Sales order:</span><span>{{ order.order_number }}</span>
+                </div>
+                {% for f in fulfillments %}
+                  <div class="po-button">
+                    <a class="btn-track-with-so"
+                       target="_blank"
+                       href="{{ f.tracking_link }}">
+                      <span class="icon">
+                        <img src="{% static 'img/home-new/car.png' %}" alt="" />
+                      </span>
+                      <span>{{ f.name }}</span>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="order-detail-header mb-40">
+                <div class="table-left table-content">
+                  <table>
+                    <tr>
+                      <th class="order-place-by">Customer</th>
+                      <td class="order-place-by">{{ order.customer_name }}</td>
+                    </tr>
+                    <tr>
+                      <th class="order-place-by">Confirmation Date</th>
+                      <td class="order-place-by">{{ order.confirmation_date }}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="table-right table-content">
+                  <table>
+                    <tr>
+                      <th class="order-po-number">PO Number</th>
+                      <td>{{ order.po_number }}</td>
+                    </tr>
+                    <tr>
+                      <th class="order-delivery-address">Delivery Address</th>
+                      <td>{{ order.delivery_address }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="order-content-bottom">
+              <div class="reorder-top">
+                <button class="btn-reorder"
+                        id="btn-reorder"
+                        hx-post="{% url 'api_reorder' %}"
+                        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                        hx-vals='{"order_id":"{{ order_uuid }}"}'
+                        hx-target=".page-wrapper-message"
+                        hx-swap="innerHTML">
+                  <span class="icon">
+                    <img src="{% static 'img/home-new/re-order.png' %}" alt="" />
+                  </span>
+                  <span>Reorder</span>
+                  <span id="cart-added"></span>
+                </button>
+              </div>
+              <div class="order-detail-wrapper">
+                <table class="table order-detail-table">
+                  <thead>
+                    <tr>
+                      <th>SKU</th>
+                      <th>Product Name</th>
+                      <th class="ordered-qty">Ordered Qty</th>
+                      <th class="delivered-qty">Delivered Qty</th>
+                      <th>Unit Price</th>
+                      <th class="product-subtotal">Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if order_items %}
+                      {% for order_item in order_items %}
+                        <tr>
+                          <td class="product-sku" data-th="SKU">{{ order_item.get_product_sku }}</td>
+                          <td class="product-name" data-th="Product Name" scope="row">{{ order_item.get_product_name }}</td>
+                          <td class="ordered-qty" data-th="Ordered Qty">{{ order_item.product_quantity }}</td>
+                          <td class="delivered-qty" data-th="Delivered Qty">{{ order_item.qty_delivered }}</td>
+                          <td data-th="Price">${{ order_item.product_price | floatformat:2 }}</td>
+                          <td class="product-subtotal" data-th="Subtotal">
+                            ${{ order_item.get_subtotal | floatformat:2 }}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    {% endif %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th colspan="5">
+                        Subtotal
+                      </th>
+                      <td data-th="Subtotal">
+                        ${{ order.subtotal|floatformat:2 }}
+                      </td>
+                    </tr>
+                    {% if order.coupon %}
+                      <tr>
+                        <th colspan="5">
+                          Coupon
+                        </th>
+                        <td data-th="Coupon">
+                          - ${{ order.coupon_value|floatformat:2 }}
+                        </td>
+                      </tr>
+                    {% endif %}
+                    <tr>
+                      <th colspan="5">
+                        Shipping & Handling
+                      </th>
+                      <td data-th="Shipping & Handling">
+                        ${{ order.shipping_cost|floatformat:2 }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th colspan="5">
+                        Admin Fee
+                      </th>
+                      <td data-th="Admin Fee">
+                        ${{ order.admin_fee|floatformat:2 }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th colspan="5">
+                        GST
+                      </th>
+                      <td data-th="GST">
+                        ${{ order.order_tax|floatformat:2 }}
+                      </td>
+                    </tr>
+                    {% if order.payment_type == "c_d_card" %}
+                      <tr>
+                        <th colspan="5">
+                          Credit Card Surcharge
+                        </th>
+                        <td data-th="Credit Card Surcharge">
+                          ${{ order.order_surcharge|floatformat:2 }}
+                        </td>
+                      </tr>
+                    {% endif %}
+                    <tr>
+                      <th colspan="5">
+                        Order Total
+                      </th>
+                      <td data-th="Order Total">
+                        ${{ order.order_total|floatformat:2 }}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+            {% comment %}
+          {% if fulfillments %}
+          <div class="fulfillments-information">
+            <h2 class="delivery-title">Deliveries</h2>
+            <div class="fulfillments-items">
+              {% for item in fulfillments %}
+              <div class="fulfillments-item">
+                <p><strong>Shipment Name:</strong> {{ item.0.shipping_name }}</p>
+                <p>
+                  <strong>Tracking URL:</strong>
+                  <a target="_blank" href="{{ item.0.carrier_tracking_url }}">{{ item.0.carrier_tracking_url }}</a
+                  >
+                </p>
+                <p><strong>Courier Name:</strong> {{ item.0.carrier_name }}</p>
+                <table class="fulfillments-item-wrapper">
+                  <thead>
+                    <tr>
+                      <th>Item Sku</th>
+                      <th>Item Name</th>
+                      <th>Qty Shipped</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for fulfil_item in item.1 %}
+                    <tr>
+                      <td class="item-sku" data-th="Item Sku:">
+                        {{ fulfil_item.sku }}
+                      </td>
+                      <td class="item-name" data-th="Item Name:">
+                        {{ fulfil_item.name }}
+                      </td>
+                      <td class="item-qty" data-th="Qty Shipped:">
+                        {{ fulfil_item.qty_shipped }}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+            {% endcomment %}
+          </div>
+        </div>
+      </div>
+      <!-- ORDER DETAIL END -->
+    </div>
+  </main>
+{% endblock content %}
+{% block postscript %}
+  <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+  <script>
+    window.addEventListener('load', function () {
+      htmx.on("htmx:afterSwap", function(evt) {
+        if (evt.detail.requestConfig.elt.id == "btn-reorder"){
+          htmx.find("#cart-added").innerHTML = '<i class="fas fa-check"></i>';
+          fetch('/api/cart/',{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+              
+            },
+          })
+          .then((response) => response.json())
+          .then((data)=>{
+            let minicart_count_selector = htmx.find(".ltn__utilize-toggle .cart-count"),
+              minicart_subtotal_selector = htmx.find("#ltn__utilize-cart-menu .mini-cart-sub-total h5 span"),
+              minicart_notifications = htmx.find(".minicart-notifications"),
+              cart_count = "<sup>"+data.count+"</sup>",
+              cart_subtotal = "$"+ data.subtotal;
+            if(data.count > 999){
+              cart_count = "<sup>999+</sup>";
+            }
+            minicart_count_selector.className = "cart-count";
+            minicart_count_selector.innerHTML = cart_count;
+            minicart_subtotal_selector.innerHTML = cart_subtotal;
+            minicart_notifications.innerHTML = "";
+          })
+        }
+      })
+    })
+  </script>
+{% endblock %}

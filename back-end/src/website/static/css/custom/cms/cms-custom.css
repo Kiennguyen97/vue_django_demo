@@ -1,0 +1,314 @@
+.body a:active,
+.body a:hover {
+    text-decoration: underline;
+}
+
+.body a.shg-btn:active,
+.body a.shg-btn:hover {
+    text-decoration: none;
+}
+
+.ltn__breadcrumb-area {
+    display: none;
+    margin: 0 0 21px;
+    text-align: left;
+}
+
+.body {
+    margin-top: 21px;
+    margin-bottom: 104px;
+}
+
+.shg-box-vertical-align-wrapper,
+.shg-box-vertical-center-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.shg-box-vertical-align-top {
+    justify-content: flex-start;
+}
+
+.shg-box-vertical-align-center,
+.shg-box-vertical-center {
+    justify-content: center;
+}
+
+.shg-box-vertical-align-bottom {
+    justify-content: flex-end;
+}
+
+.shg-box-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.shogun-image-container {
+    position: relative;
+    text-align: center;
+}
+
+.shogun-image-container.shg-align-left {
+    text-align: left;
+}
+
+.shogun-image-container.shg-align-right {
+    text-align: right;
+}
+
+.shogun-image-linked {
+    cursor: pointer;
+}
+
+.shogun-image-link {
+    display: block;
+    min-height: inherit;
+    max-height: inherit;
+}
+
+.page-content,
+.page-content--full {
+    width: 100%;
+}
+
+.shogun-accordion {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    overflow: hidden;
+}
+
+.shogun-accordion-heading {
+    color: #333;
+    border-bottom: 0;
+    cursor: pointer;
+}
+
+.shogun-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.shogun-accordion-title {
+    color: #18becd;
+    text-align: left;
+    font-size: 20px;
+    margin: 0;
+    padding: 0 30px 0 0;
+    cursor: pointer;
+    text-decoration: none;
+    flex: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.shogun-accordion-icon {
+    color: #18becd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shogun-accordion-icon span {
+    transition: 0.3s transform;
+    position: absolute;
+    right: 0;
+    font-size: 1.7em;
+}
+
+.shogun-accordion-icon.shogun-icon-plus span:after {
+    font-family: "Noto Sans JP";
+    content: "＋";
+}
+
+.shogun-accordion-active .shogun-accordion-icon span {
+    transform: rotate(-225deg);
+}
+
+.shogun-accordion-active .shogun-accordion-body {
+    border-top: 1px solid #ddd;
+}
+
+.shogun-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s linear;
+}
+
+.shogun-accordion-wrapper .shogun-accordion {
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+
+.shogun-accordion-wrapper .shogun-accordion + .shogun-accordion {
+    margin-top: 5px;
+}
+
+.shogun-accordion-wrapper > .shogun-accordion {
+    border: 1px solid #ddd;
+}
+
+.shogun-accordion-wrapper .shogun-accordion {
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+
+.shogun-accordion > .shogun-accordion-heading {
+    background: #f7f7f7;
+    padding: 10px;
+}
+
+.shogun-accordion-body .shg-text {
+    margin: 20px 30px 0;
+}
+
+.shogun-accordion-body .shogun-image-container {
+    margin: 20px 0 0;
+}
+
+.buttons {
+    padding: 0 15px;
+    margin: auto;
+}
+
+.shg-btn-wrapper {
+    text-align: center;
+}
+
+.shg-btn {
+    color: #ffffff;
+    font-size: 14px;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 2px;
+    background-color: #252525;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.shg-btn:hover {
+    background-color: #424242;
+    text-decoration: none;
+}
+
+.shg-btn:active {
+    background-color: #000000;
+    text-decoration: none;
+}
+
+.shg-btn.shg-cse,
+.shg-btn.shg-cse:hover,
+.shg-btn.shg-cse:focus {
+    color: #fff;
+}
+
+.shg-btn.shg-btn-special {
+    font-size: 22px;
+    display: inline-block;
+    margin: 18px 0 20px;
+    padding: 10px 20px;
+    border-radius: 2px;
+    background-color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    background-image: none;
+}
+
+.shg-btn.shg-cse.shg-btn-special {
+    color: #000;
+}
+
+.shg-btn.shg-cse.shg-btn-special:hover {
+    color: #fff;
+    background-color: #424242;
+}
+
+.shg-btn {
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.terms-of-trade .page-main {
+    padding: 0 21px;
+}
+
+.ltn__breadcrumb-area .col-lg-12 {
+    padding: 0 21px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    p {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .buttons-bottom {
+        margin-top: 26px;
+    }
+
+    .shg-btn.contact {
+        margin-bottom: 0;
+    }
+
+    .ltn__breadcrumb-area {
+        margin-top: 0;
+    }
+
+    .shogun-accordion-body .shg-c.shogun-image-container {
+        margin: 10px 0 20px;
+    }
+
+    .page-heading {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 551px) {
+    .ltn__breadcrumb-area {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 801px) {
+    .page-content-container {
+        padding: 0 10.5px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 758px;
+    }
+
+    .body-special {
+        margin-top: 35px;
+    }
+
+    .ltn__breadcrumb-area .col-lg-12 {
+        padding: 0 15px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .buttons {
+        max-width: 750px;
+    }
+
+    .buttons-bottom {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+

@@ -1,0 +1,118 @@
+.page-store-locations {
+    margin: 35px 0 84px;
+}
+.page-store-locations .page-content--centered {
+    max-width: 66.67%;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 11px;
+}
+.region-filter {
+    font-size: 22px;
+    color: #333;
+}
+.region-filter select {
+    width: auto;
+}
+.region h2 {
+    font-size: 25px;
+    margin-top: 32px;
+    color: #444;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    letter-spacing: .25px;
+}
+.region h3 {
+    margin-top: 10px;
+    font-size: 22px;
+    color: #444;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    letter-spacing: .25px;
+    margin-bottom: 0.78571rem;
+}
+.stockists,
+.resellers-wrap {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.merchant {
+    flex-basis: calc((100% - 42px)/3);
+    margin-right: 21px;
+    margin-bottom: 28px;
+    float: left;
+}
+.merchant:nth-child(3n) {
+    margin-right: 0;
+}
+.merchant h4 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 11px;
+    color: #444;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    letter-spacing: .25px;
+    margin-bottom: 11px;
+}
+.merchant > div {
+    font-size: 14px;
+    color: #444;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    letter-spacing: .25px;
+    margin-bottom: 0; 
+}
+.resellers-toggle .arrow {
+    position: relative;
+}
+.resellers-toggle .arrow::before {
+    content: '\f054';
+    font-family: 'Font Awesome 5 Pro';
+    font-size: 18px;
+    position: absolute;
+    left: 15px;
+    top: 0;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+.resellers-toggle .arrow.open::before {
+    transform: rotate(90deg);
+}
+@media screen and (max-width: 991.98px) {
+    .page-store-locations .page-content--centered {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 767.98px) {
+    .merchant {
+        flex-basis: calc((100% - 21px)/2);
+    }
+    .merchant:nth-child(3n) {
+        margin-right: 21px;
+    }
+    .merchant:nth-child(2n) {
+        margin-right: 0;
+    }
+    .region h3 {
+        line-height: 25px;
+    }
+}
+@media screen and (max-width: 575.98px) {
+    .region-filter select {
+        width: 100%;
+        margin-top: 15px;
+    }
+    .merchant {
+        flex-basis: 100%;
+        margin-right: 0;
+    }
+    .merchant:nth-child(3n) {
+        margin-right: 0;
+    }
+    .merchant:nth-child(2n) {
+        margin-right: 0;
+    }
+}

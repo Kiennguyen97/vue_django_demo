@@ -1,0 +1,135 @@
+[
+    {
+        "model": "products.nzregion",
+        "pk": "0e403bd3-38da-4314-a374-98af2d636b6d",
+        "fields": {
+            "name": "Tauranga - Mt Maunganui"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "375cec6a-7732-4543-be73-1124f3003843",
+        "fields": {
+            "name": "Auckland - North Shore"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "3cf4ee94-211d-4608-8a1b-c4202bf7e387",
+        "fields": {
+            "name": "Auckland - South"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "3d0505d7-93b5-46a1-8489-02ebba38ece1",
+        "fields": {
+            "name": "Auckland - Central"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "415b8d28-a13c-42f0-9392-ec2fac455635",
+        "fields": {
+            "name": "Manawatu \u2013 Wairarapa"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "45656c48-ed9d-470e-a6ec-20d6f72aa2b5",
+        "fields": {
+            "name": "Waikato - Coromandel"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "48b195b7-54d2-484f-9480-da48ba90b909",
+        "fields": {
+            "name": "Wellington"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "6935d08a-aee9-429b-9e5a-f3d97d3d6bd1",
+        "fields": {
+            "name": "Hawkes Bay - East Coast"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "719b16bf-abb5-43dc-9fe3-d3f32c7a0870",
+        "fields": {
+            "name": "Southland"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "73ed1784-48c3-4cee-a17c-b19f2370c111",
+        "fields": {
+            "name": "Nelson - Marlborough"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "aa6d15d2-a009-466b-9959-3d6e8a6a5f48",
+        "fields": {
+            "name": "Otago"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "ac1026d9-8445-4a6b-a5e1-b4b051fa0b45",
+        "fields": {
+            "name": "Bay of Plenty - Taupo"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "c516d92e-705d-49bf-a56b-3d5e5e24aea0",
+        "fields": {
+            "name": "West Coast"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "c6e000c6-099b-452e-8ed0-cb66a462a3f8",
+        "fields": {
+            "name": "Auckland - West"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "d5cc667d-fc7a-4096-8df0-017a032e4ba0",
+        "fields": {
+            "name": "Canterbury"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "da32e579-e439-49f3-8468-10f5463c0e78",
+        "fields": {
+            "name": "Auckland - East"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "df8462a3-99a8-46a0-b264-5fe560ece679",
+        "fields": {
+            "name": "Taranaki"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "f139a34e-8d75-41d1-8a92-7cd202a999fc",
+        "fields": {
+            "name": "Auckland - North (Rodney)"
+        }
+    },
+    {
+        "model": "products.nzregion",
+        "pk": "f972a014-8477-47bd-9622-28fd76c187bd",
+        "fields": {
+            "name": "Northland"
+        }
+    }
+]

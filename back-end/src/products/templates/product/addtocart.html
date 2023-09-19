@@ -1,0 +1,35 @@
+{% load static %}
+<div class="price">
+    <span v-text="config.number_total > 0 && config.price === 0 ? 'Select Option' : ('$' + config.price.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'))"></span>
+    <span class="currency">NZD</span>
+</div>
+<div class="buy">
+    <div class="qty">
+        <label>QTY</label>
+        <div class="form-increment">
+            <button class="button button--icon" data-action="dec" @click="config.qty--;if(config.qty<1){config.qty=1;}">
+                <span class="is-srOnly">Decrease Quantity:</span>
+                <i class="icon" aria-hidden="true">
+                    <img src="{% static 'img/product/angle-down.png' %}" alt="">
+                </i>
+            </button>
+            <input class="form-input form-input--incrementTotal" 
+                type="tel" 
+                v-model="config.qty" 
+                data-quantity-min="0" 
+                data-quantity-max="0" 
+                min="1" 
+                pattern="[0-9]*" 
+                aria-live="polite">
+            <button class="button button--icon" data-action="inc" @click="config.qty++">
+                <span class="is-srOnly">Increase Quantity:</span>
+                <i class="icon" aria-hidden="true">
+                    <img src="{% static 'img/product/up-angle.png' %}" alt="">
+                </i>
+            </button>
+        </div>
+    </div>
+    <button id="form-action-addToCart" data-wait-message="Adding to cart…" class="button button--primary" type="button" @click="addToCart()">
+        Add to Cart
+    </button>
+</div>

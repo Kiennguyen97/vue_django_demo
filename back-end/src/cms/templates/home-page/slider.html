@@ -1,0 +1,19 @@
+{% load static %}
+    {% comment %} <link type="text/css" href="{% static 'css/custom/home/slider.css' %}" rel="stylesheet"> {% endcomment %}
+{% block content %}
+<div class="slider slick-load">
+    <section class="heroCarousel">
+        <div class="slide-img"><a href="https://view.publitas.com/newtech-bathroomware/laundry-collection-by-newtech/page/1/" target="_blank"><img src="{% static 'img/home/banner-update.png' %}" alt="" /></a></div>
+        <div class="slide-img"><a href="https://view.publitas.com/newtech-bathroomware/newtech-catalogue-2023_edition23/" target="_blank"><img src="{% static 'img/home/newtech-catalogue.jpg' %}" alt="" /></a></div>
+        <div class="slide-img"><a href="{% url 'vista-range' %}" target="_blank"><img src="{% static 'img/home/New_Banner_1600x900.jpg' %}" alt="" /></a></div>
+        <div class="slide-img"><a href="https://view.publitas.com/newtech-bathroomware/serenity-range/page/1" target="_blank"><img src="{% static 'img/home/img2.jpg' %}" alt="" /></a></div>
+        <div class="slide-img"><a href="https://view.publitas.com/newtech-bathroomware/10-day-lead-time-on-newtech-vanities-laundry-packages/" target="_blank"><img src="{% static 'img/home/img4.jpg' %}" alt="" /></a></div>  
+    </section>
+    <button class="slick-prevs"><img src="{% static 'img/home/pre.png' %}" alt=""></button>
+    <button class="slick-nexts"><img src="{% static 'img/home/next.png' %}" alt=""></button>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+</script>
+{% endblock scripts %}

@@ -1,0 +1,15 @@
+{% load static %}
+<div class="clearFix"></div>
+<h3 class="resources-heading" v-if="config.resources.length > 0">Resources</h3>
+<div class="resources" v-if="config.resources.length > 0">
+    <ul>
+        <li v-for="resource in config.resources">
+            <span v-text="resource.name + ':'"></span>
+            <ul>
+                <li v-for="item in resource.items">
+                    <a v-bind:href="item.resource_url" target="_blank" v-text="item.name"></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

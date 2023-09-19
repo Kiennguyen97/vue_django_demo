@@ -1,0 +1,43 @@
+{% load static %}
+<div x-data="{'isModalOpen': false}"
+     @keydown.escape="isModalOpen = false"
+     class="display-inline-block"
+     x-cloak>
+  <button type="button" class="button" @click="isModalOpen = true">
+    <img src="{% static 'img/home-new/delete-icon.png' %}" alt="">
+  </button>
+  <div class="overflow-auto position-fixed z-100"
+       style="background-color: rgba(0,0,0,0.5)"
+       x-show="isModalOpen"
+       :class="{'inset-0 display-flex align-items-center justify-content-center': isModalOpen}">
+    <!-- modal -->
+    <div class="bg-white"
+         x-show="isModalOpen"
+         @click.away="isModalOpen = false">
+      <div class="panel reset pure">
+        <div class="header">
+          <div class="h6">You are about to remove this user</div>
+        </div>
+        <div class="content">
+          <p>
+            All their information will be permanently removed.
+          </p>
+          <p>
+            Confirm?
+          </p>
+        </div>
+        <div class="bottom">
+          <div class="actions">
+            <div class="buttons small">
+              <a href="javascript:"
+                 class="btn-cancel button"
+                 @click="isModalOpen = false">Cancel</a>
+              <a href="{% url 'delete_customer' %}?customer_id={{ customer_id }}"
+                 class="btn-delete button primary">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

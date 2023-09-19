@@ -1,0 +1,13 @@
+{% load static %}
+<div class="related-products" v-if="items.length">
+    <h4>Related Products</h4>
+    <section class="productCarousel">
+        <div class="productCarousel-slide" v-for="item in items">
+            {% include 'products/list/item/default.html' %}
+        </div>
+    </section>
+    <button class="slick-prev-related"><img src="{% static 'img/home/pre.png' %}" alt=""></button>
+    <button class="slick-next-related"><img src="{% static 'img/home/next.png' %}" alt=""></button>
+</div>
+{% block scripts %}
+{% endblock scripts %}

@@ -1,0 +1,199 @@
+{% load static %}
+<div id="product-purchase-favourites"
+     class="ltn__product-details-menu-2"
+     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'/>
+{% comment %}
+        - AlpineJS & HTMX Used Below
+        - alpinejs uses cartQty variable to inc/dec based on the buttons
+        - the disabled class added / removed based on cartQty
+{% endcomment %}
+<div class="qty-status">
+  <div x-data="{cartQty: 1}" class="qty-act">
+    <div class="cart-plus-minus">
+      <div @click="cartQty--;if(cartQty<1){cartQty=1;}" class="dec qtybutton">-</div>
+      <input type="text"
+             id="qtybutton"
+             x-model.number="cartQty"
+             name="qtybutton"
+             class="cart-plus-minus-box">
+      <div @click="cartQty++" class="inc qtybutton">+</div>
+    </div>
+  </div>
+  <div class="product-stock status-product">
+    <span class="{{ object.get_product_stock.cls_name }}">
+      <span class="in-status"
+            data-toggle="tooltip"
+            title="{{ object.get_product_stock.tooltip }}">{{ object.get_product_stock.label }}</span>
+    </span>
+  </div>
+</div>
+<div class="add-cart-actions">
+  <div data-active="{{ object.is_active }}"
+       class="product-details-add-to-cart btn {% if object.get_template == 'safety' %} theme-btn-3 {% else %} theme-btn-1 {% endif %}"
+       title="Add to Cart"
+       id="add-to-cart"
+       hx-post="{{ CANONICAL_URL }}"
+       hx-vals='{"sku":"{{ object.get_product_sku }}"}'
+       hx-include="[name=qtybutton]"
+       hx-target="#cart-added-{{ object.sku }}"
+       hx-swap="innerHTML"
+       x-bind:class="{'disabled':cartQty<1}">
+    <span>Add to cart</span>
+    <span class="spinner-border spinner-border-sm loader htmx-indicator"
+          role="status"
+          aria-hidden="true"></span>
+    <span id="cart-added-{{ object.sku }}"></span>
+  </div>
+  <div class="current-list-form product-detail">
+    <div class="modal fade modal-listcate"
+         id="createFavourites"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"
+               hx-trigger="load"
+               hx-post="{{ CANONICAL_URL }}"
+               hx-vals='{"groups":true}'
+               hx-swap="innerHTML"
+               hx-target="#group-favouries-select">
+            {% comment %} when the modal is loaded, htmx will get the groups and load into the below select
+                      this prevents it from being queried every page load, people rarely add to favourites
+            {% endcomment %}
+            <span id="loadGroupSpinner"
+                  class="spinner-border spinner-border-sm loader htmx-indicator"
+                  role="status"
+                  aria-hidden="true"></span>
+            <h2 class="modal-title" id="exampleModalLabel">Select Favourites List to add to:</h2>
+            <select name="group-favouries" id="group-favouries-select">
+              <option>
+              </option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button"
+                    class="btn-cancel btn-secondary theme-btn-7 btn"
+                    data-dismiss="modal">Cancel</button>
+            <button type="button"
+                    class="btn-save btn btn-primary {% if object.get_template == 'safety' %} theme-btn-3 {% else %} theme-btn-1 {% endif %}"
+                    hx-post="{{ CANONICAL_URL }}"
+                    hx-include="[name=group-favouries]"
+                    hx-swap="beforeend"
+                    hx-vals='{"sku":"{{ object.sku }}"}'>
+              Save
+              <span class="spinner-border spinner-border-sm loader htmx-indicator"
+                    role="status"
+                    aria-hidden="true">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- endmodal -->
+      {% if user.is_authenticated %}
+        <button class="add-favourites-button btn btn-icon {% if object.get_template == 'safety' %} btn-icon-safety {% else %} btn-icon-default {% endif %}"
+                title="Add To Favourites"
+                data-target="#createFavourites"
+                data-toggle="modal">
+          {% if object.get_template == 'safety' %}
+            <img class="icon-heart safety-product"
+                 src="{% static 'img/home-new/heart-s.png' %}"
+                 alt="">
+          {% else %}
+            <img class="icon-heart normal-product"
+                 src="{% static 'img/home-new/heart.png' %}"
+                 alt="">
+          {% endif %}
+        </button>
+      {% else %}
+        <button class="add-favourites-button btn btn-icon {% if object.get_template == 'safety' %} btn-icon-safety {% else %} btn-icon-default {% endif %}"
+                data-placement="bottom"
+                title="Please login to add favourite list"
+                data-toggle="tooltip">
+          {% if object.get_template == 'safety' %}
+            <img class="icon-heart safety-product"
+                 src="{% static 'img/home-new/heart-s.png' %}"
+                 alt="">
+          {% else %}
+            <img class="icon-heart normal-product"
+                 src="{% static 'img/home-new/heart.png' %}"
+                 alt="">
+          {% endif %}
+        </button>
+      {% endif %}
+    </div>
+  </div>
+  {% if object.get_product_stock.label == 'In stock' %}
+    <div class="time-delivery">
+      <p>
+        <img src="{% static 'img/icons/material-symbols_local-shipping-outline.png' %}"
+             alt="">
+        Order before 3:30 PM for overnight delivery.
+      </p>
+    </div>
+  {% endif %}
+</div>
+<script>
+  window.addEventListener('load', (event) => {
+    htmx.on("htmx:beforeSend", function(evt) {
+      if(evt.detail.requestConfig.elt.id=='add-to-cart') {
+        let qty = evt.detail.requestConfig.parameters.qtybutton;
+        window.dataLayer = window.dataLayer || [];
+        details = {
+          'event': 'addToCart',
+          'ecommerce': {
+            'currencyCode': 'NZD',
+            'add': {                // 'add' actionFieldObject measures.
+              'products': [
+                {            // adding a product to a shopping cart.
+                  'name': '{{ object.name }}',
+                  'id': '{{ object.sku }}',
+                  'price': '{{ object.get_price }}',
+                  'brand': '{{ object.get_brand }}',
+                  'category': '{{ object.get_categories }}',
+                  'variant': '',
+                  'quantity': qty
+                }
+              ]
+            }
+          }
+        }
+        // console.log(details);
+        dataLayer.push(details);
+      }
+    })
+    htmx.on("htmx:afterSwap", function(evt) {
+      if(evt.detail.requestConfig.elt.id.includes("add-to-cart")){
+        fetch('/api/cart/',{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+              
+            },
+        })
+        .then((response) => response.json())
+        .then((data)=>{
+            let minicart_count_selector = htmx.find(".ltn__utilize-toggle .cart-count"),
+              minicart_subtotal_selector = htmx.find("#ltn__utilize-cart-menu .mini-cart-sub-total h5 span"),
+              minicart_notifications = htmx.find(".minicart-notifications"),
+              cart_count = "<sup>"+data.count+"</sup>",
+              cart_subtotal = "$"+ data.subtotal;
+            if(data.count > 999){
+              cart_count = "<sup>999+</sup>";
+            }
+            minicart_count_selector.className = "cart-count";
+            minicart_count_selector.innerHTML = cart_count;
+            minicart_subtotal_selector.innerHTML = cart_subtotal;
+            minicart_notifications.innerHTML = "";
+        })
+      }
+    })
+  });
+</script>

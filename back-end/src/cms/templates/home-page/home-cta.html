@@ -1,0 +1,32 @@
+{% load static %}
+    <link type="text/css" href="{% static 'css/custom/home/home-cta.css' %}" rel="stylesheet">
+    
+<div class="home-cta">
+      <div class="container">
+          <div class="home-cta-item">
+              <div class="home-cta-item-inner">
+                  <img src="{% static 'img/home/locations.svg' %}">
+                  <h2>Store locations</h2>
+                  <p>Our bathroomware products are available at hundreds of resellers nationwide.</p>
+                  <a class="button button--cta" href="{% url 'store_locations' %}">Find a reseller</a>
+              </div>
+          </div>
+          <div class="home-cta-item">
+              <div class="home-cta-item-inner">
+                  <img class="design-at-home" src="{% static 'img/home/designAtHome.svg' %}">
+                  <h2>Design@Home</h2>
+                  <p>Design your dream bathroom with our online 3D bathroom planner <b style="color: #18becd">design@home</b></p>
+                  <a class="button button--primary" href="https://planner.newtech.co.nz/">Get Started</a>
+              </div>
+          </div>
+          <div class="home-cta-item">
+              <div class="home-cta-item-inner">
+                  <img src="{% static 'img/home/showroom.svg' %}">
+                  <h2>Our concept showroom</h2>
+                  <p>Get inspired at our concept showroom in Auckland. Book your viewing today or pop in and see the team.</p>
+                  <a class="button button--cta" href="{% url 'concept-showroom' %}">Find out more</a>
+              </div>
+          </div>
+
+      </div>
+</div>

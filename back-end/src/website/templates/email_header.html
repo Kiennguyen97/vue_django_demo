@@ -1,0 +1,29 @@
+<!-- HEADER AREA START -->
+<table style="
+	   width: 100%;
+	   max-width:1000px;
+	   margin: 0 auto;
+	   border: 0;"
+>
+	<tbody>
+		<tr>
+			<td style="padding-right: 10px; vertical-align: top; width: 50%;">
+				<img src="{{ BASE_URL }}/static/img/newtech_logo.png"
+					 alt="Newtech"
+					 height="65"/>
+			</td>
+			{% if image_right %}
+			<td style="padding-left: 10px; text-align: right; vertical-align: top; width: 50%;">
+				<img src="{{ BASE_URL }}/{{ image_right.url }}"
+					 alt="{{ image_right.name }}"
+					 height="65"/>
+			</td>
+			{% endif %}
+		</tr>
+		<tr>
+			<td colspan="2" style="height: 1px; background: #ccc">
+			</td>
+		</tr>
+	</tbody>
+</table>
+<!-- HEADER AREA END -->

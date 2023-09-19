@@ -1,0 +1,166 @@
+.vista-container{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1700px;
+    padding: 0 1.5rem;
+    position: relative;
+    width: 100%;
+}
+.vista-range .img-container .img-div img{
+    width: 100%;
+}
+.vista-range .img-container .img-div{
+    text-align: center;
+}
+.vista-range .learn-more-container {
+    width: 100%;
+    max-width: 1300px;
+    overflow: hidden;
+    margin: 50px auto 50px;
+}
+/* learn-more-container */
+.heading-word .first-p{
+   font-size: 60px;
+}
+.heading-word .p1{
+  margin-bottom: 1.5em;
+  font-size: 18px;
+}
+.heading-word .learn-more-button{
+   display: inline;
+}
+.learn-more-button-inside a img {
+    width: 280px;
+    height: 65.8px;
+}
+.learn-more-button-inside a img:hover{
+    opacity:0.8;
+    transition: opacity 300ms;
+}
+/*  middle image */
+
+.middle-main .solid-container{
+    width: 100%;
+    max-width: 1300px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0px auto 50px;
+}
+/*  last image */
+.last-images .last-image-main .big-slogan img{
+    width: 100%;
+}
+.last-images .last-image-main .woodgrain{
+    width: 100%;
+    max-width: 1300px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0px auto 50px;
+}
+.last-images .last-image-main .woodgrain img{
+    width: auto;
+}
+.last-images .last-image-main .link-content{
+    width: 100%;
+    max-width: 1300px;
+    overflow: hidden;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.main-link-content a img:hover{
+    opacity: 0.7;
+    transition: opacity 300ms;
+}
+.last-images .last-image-main .eight-slogan{
+    width: 100%;
+    max-width: 1300px;
+    overflow: hidden;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.main-slogan img{
+    width: 100%;
+}
+.learn-more-container h1 {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+.learn-more-container h3 {
+    margin: 0px 0 26px;
+    font-size: 30px;
+}
+.learn-more-container p a {
+    text-decoration: none;
+    color: #18becd;
+    font-weight: 600;
+}
+@media screen and (max-width:1600px){
+    .vista-container {
+        padding: 0px;
+    }
+    .link-content .main-link-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 50px;
+    }
+    .heading-word .first-p{
+        font-size: 35px;
+     }
+     .learn-more-button-inside a img {
+        width: 200px;
+        height: 47.6px;
+    }
+    .vista-range .learn-more-container{
+        margin: 50px auto 40px;
+        padding: 0 1.5em;
+    }
+    .middle-main .solid-container {
+        margin: 0px auto 50px;
+        padding: 0 1.5em;
+    }
+    .last-images .last-image-main .woodgrain {
+        margin: 0px auto 50px;
+        padding: 0 1.5em;
+    }
+    .link-content .main-link-content {
+        margin: 0px 11%;
+        padding: 0px 0px;
+    }
+    .last-images .last-image-main .link-content {
+        margin: 50px auto;
+        padding: 0px 1.5em;
+    }
+    .last-images .last-image-main .eight-slogan {
+        margin: 50px auto;
+        padding: 0 1.5em;
+    }
+    .vista-container {
+        padding: 0px;
+    }
+    .last-images .last-image-main .eight-slogan {
+       padding: 0 1.5em;
+    }
+    .learn-more-container h1 {
+        line-height: 45px;
+        font-size: 40px;
+    }
+}
+@media (max-width:500px) {
+    .heading-word .first-p {
+        font-size: 36px;
+    }
+    .heading-word .p1{
+        font-size: 16px;
+    }
+    .learn-more-container h1 {
+        line-height: 40px;
+        font-size: 30px;
+    }
+    .learn-more-container h3 {
+        margin: 0px 0 20px;
+        font-size: 20px;
+    }
+}

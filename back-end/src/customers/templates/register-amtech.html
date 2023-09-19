@@ -1,0 +1,153 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Register{% endblock %}
+{% block og-pagetitle %}Register{% endblock %}
+{% block content %}
+  {% block css_bottom %}
+    {% load static %}
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/custom/login-register.css' %}">
+  {% endblock %}
+  {% load static %}
+  <main id="maincontent" class="page-main account">
+    {% include 'message.html' %}
+    <div class="page-title-wrapper">
+      {% if is_invitation %}
+        <h1 class="page-title">Register for Account</h1>
+      {% else %}
+        <h1 class="page-title">Create New Guest Account</h1>
+      {% endif %}
+    </div>
+    <div class="form-register">
+      <div class="container">
+        <form class="form create account form-create-account"
+              {% if is_invitation %} action="{% url 'register' %}?is_invitation={{ is_invitation }}&customer_id={{ customer_id }}" {% else %} action="{% url 'register' %}" {% endif %}
+              id="form-validate"
+              method="post"
+              autocomplete="off"
+              class="ltn__form-box contact-form-box">
+          {% csrf_token %}
+          <div class="field note no-label">
+            {% if is_invitation %}
+              <p>
+                You have been invited to join {{ company_name }} account. Please set your password below.
+              </p>
+              <p>
+                <em>Please Note, some fields are pre-filled. Contact your administrator to change</em>
+              </p>
+            {% else %}
+              <p>
+                Please note, guest accounts must pay for goods before dispatch, and aren't
+                eligible for wholesale pricing rates.
+              </p>
+              <p>
+                Contact Us to set up a Trade Account for credit terms and wholesale pricing
+              </p>
+            {% endif %}
+          </div>
+          <fieldset class="fieldset create info">
+            <legend class="legend">
+              <span>Personal Information</span>
+            </legend>
+            <input type="hidden" name="success_url" value="" />
+            <input type="hidden" name="error_url" value="" />
+            <div class="field fullname customer-name-suffix">
+              <div class="control">
+                <fieldset class="fieldset fieldset-fullname">
+                  <div class="fields">
+                    <div class="field field-name-firstname required">
+                      <label class="label">
+                        <span>First Name</span>
+                      </label>
+                      <div class="control">{{ form.first_name }}</div>
+                    </div>
+                    <div class="field field-name-lastname required">
+                      <label class="label">
+                        <span>Last Name</span>
+                      </label>
+                      <div class="control">{{ form.last_name }}</div>
+                    </div>
+                    <div class="field field-company-name">
+                      <label class="label">
+                        <span>Company name</span>
+                      </label>
+                      <div class="control">{{ form.company_name }}</div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="fieldset create account" data-hasrequired="* Required Fields">
+            <legend class="legend">
+              <span>Sign-in Information</span>
+            </legend>
+            <br />
+            <div class="field required">
+              <label class="label">
+                <span>Email</span>
+              </label>
+              <div class="control">{{ form.email }}</div>
+            </div>
+            <div class="field password required">
+              <label class="label">
+                <span>Password</span>
+              </label>
+              <div class="control">{{ form.password1 }}</div>
+            </div>
+            <div class="field confirmation required">
+              <label class="label">
+                <span>Password confirmation</span>
+              </label>
+              <div class="control">{{ form.password2 }}</div>
+            </div>
+            {% if cls_name in FORM_RECAPTCHA %}
+              <span>
+                This site is protected by reCAPTCHA and the Google
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+              <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+          </span>
+        {% endif %}
+      </fieldset>
+      <div class="actions-toolbar btn-wrapper">
+        <div class="primary">
+          {% if cls_name in FORM_RECAPTCHA %}
+            <button title="Submit"
+                    class="action submit primary reverse-color btn-block g-recaptcha"
+                    data-sitekey="{{ RECAPTCHA_SITE_KEY }}"
+                    data-callback='onSubmitCreateAnAccount'
+                    data-action='submit'>
+              <span>Create an Account</span>
+            </button>
+          {% else %}
+            <button class="action submit primary reverse-color btn-block"
+                    title="Create an Account"
+                    type='submit'>
+              <span>Create an Account</span>
+            </button>
+          {% endif %}
+        </div>
+      </div>
+      <input type="text" name="token" style="display: none" />
+    </form>
+  </div>
+</div>
+</main>
+{% endblock content %}
+{% block scripts %}
+  {% if cls_name in FORM_RECAPTCHA %}
+    <script type="text/javascript">
+  function onSubmitCreateAnAccount(e){
+    var form = document.forms['form-validate'];
+    
+  // Trigger HTML5 validity.
+    var reportValidity = form.reportValidity();
+
+  // Then submit if form is OK.
+    if(reportValidity){
+        form.submit();
+    }
+  }
+    </script>
+  {% endif %}
+{% endblock scripts %}

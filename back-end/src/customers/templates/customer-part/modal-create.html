@@ -1,0 +1,96 @@
+{% load static %}
+<div x-data="{'isModalOpen': false}"
+     @keydown.escape="isModalOpen = false"
+     class="display-inline-block"
+     x-cloak>
+  <button type="button"
+          class="button btn theme-btn-2"
+          @click="isModalOpen = true">Add New User</button>
+  <div class="overflow-auto position-fixed z-100"
+       style="background-color: rgba(0,0,0,0.5)"
+       x-show="isModalOpen"
+       :class="{'inset-0 display-flex align-items-center justify-content-center': isModalOpen}">
+    <!-- modal -->
+    <div class="bg-white"
+         x-show="isModalOpen"
+         @click.away="isModalOpen = false">
+      <div class="panel reset pure">
+        <div class="header">
+          <div class="h6">Add New User</div>
+          <button type="button" class="close" @click="isModalOpen = false"></button>
+        </div>
+        <div class="content">
+          <form action="{% url 'add_new_user' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+              <label for="inputFirstName" class="col-sm-3 col-form-label">First name</label>
+              <div class="col-sm-9">
+                <input type="text"
+                       name="first_name"
+                       required
+                       class="form-control"
+                       id="inputFirstName"
+                       placeholder="Enter your First name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputLastName" class="col-sm-3 col-form-label">Last name</label>
+              <div class="col-sm-9">
+                <input type="text"
+                       required
+                       name="last_name"
+                       class="form-control"
+                       id="inputLastName"
+                       placeholder="Enter your Last name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Contact Email</label>
+              <div class="col-sm-9">
+                <input type="email"
+                       required
+                       name="email"
+                       class="form-control"
+                       id="inputEmail3"
+                       placeholder="Enter your Email">
+              </div>
+            </div>
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-3 pt-0">
+                  Role
+                </legend>
+                <div class="col-sm-9 list-check">
+                  <div class="form-check">
+                    <input class="form-check-input"
+                           name="role"
+                           type="radio"
+                           name="gridRadios"
+                           id="gridRadios1"
+                           value="admin"
+                           checked>
+                    <label class="form-check-label" for="gridRadios1">Admin</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input"
+                           name="role"
+                           type="radio"
+                           name="gridRadios"
+                           id="gridRadios2"
+                           value="staff">
+                    <label class="form-check-label" for="gridRadios2">Staff</label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <div class="col-sm-12 text-right">
+                <button type="submit" class="btn theme-btn-2">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raise Invoice Query</title>
+  </head>
+  <body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee"
+        bgcolor="#eeeeee">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td align="center" style="background-color: #eeeeee" bgcolor="#eeeeee">
+          <table align="center"
+                 border="0"
+                 cellpadding="0"
+                 cellspacing="0"
+                 width="100%"
+                 style="max-width: 600px">
+            <tr>
+              <td align="center"
+                  valign="top"
+                  style="font-size: 0; padding: 35px"
+                  bgcolor="#ffffff">
+                <div style="display: inline-block; max-width: 100%; min-width: 100px; vertical-align: top; width: 100%">
+                  <table align="left"
+                         border="0"
+                         cellpadding="0"
+                         cellspacing="0"
+                         width="100%"
+                         style="max-width: 100%">
+                    <tr>
+                      <td align="center" valign="top" class="mobile-center">
+                        <a href="{{ BASE_URL }}" style="display: inline-block">
+                          <img src="{{ BASE_URL }}/static/img/home-new/Amtech_Charcoal_clearcut.png"
+                               alt="Amtech"
+                               width="169"
+                               height="74"/>
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td align="center"
+                  style="padding: 35px 35px 20px 35px; background-color: #ffffff"
+                  bgcolor="#ffffff">
+                <table align="center"
+                       border="0"
+                       cellpadding="0"
+                       cellspacing="0"
+                       width="100%">
+                  <tr>
+                    <td align="center"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px">
+                      <h2 style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0">Raise Invoice Query</h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        height="100%"
+                        valign="top"
+                        width="100%"
+                        style="padding-bottom: 20px; background-color: #ffffff"
+                        bgcolor="#ffffff">
+                      <table align="center"
+                             border="0"
+                             cellpadding="0"
+                             cellspacing="0"
+                             width="100%"
+                             style="max-width: 600px">
+                        <tr>
+                          <td width="50%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 10px 10px 5px 10px">
+                            Invoice Name
+                          </td>
+                          <td width="50%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 10px 10px 5px 10px">
+                            Invoice Source
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="50%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                            {{ invoice_obj.name }}
+                          </td>
+                          <td width="50%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                            {{ invoice_obj.invoice_source }}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        height="100%"
+                        valign="top"
+                        width="100%"
+                        style="padding-bottom: 20px; background-color: #ffffff"
+                        bgcolor="#ffffff">
+                      <table align="center"
+                             border="0"
+                             cellpadding="0"
+                             cellspacing="0"
+                             width="100%"
+                             style="max-width: 600px">
+                        <tr>
+                          <td width="100%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 10px 10px 5px 10px">
+                            Type
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="100%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                            {{ obj.query_type }}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        height="100%"
+                        valign="top"
+                        width="100%"
+                        style="padding-bottom: 20px; background-color: #ffffff"
+                        bgcolor="#ffffff">
+                      <table align="center"
+                             border="0"
+                             cellpadding="0"
+                             cellspacing="0"
+                             width="100%"
+                             style="max-width: 600px">
+                        <tr>
+                          <td width="100%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 24px; padding: 10px 10px 5px 10px">
+                            Message
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="100%"
+                              align="left"
+                              style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px">
+                            {{ obj.query_message }}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center"
+                  style="padding: 35px; background-color: #ffffff"
+                  bgcolor="#ffffff">
+                <table align="center"
+                       border="0"
+                       cellpadding="0"
+                       cellspacing="0"
+                       width="100%">
+                  <tr>
+                    <td align="center"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0">
+                      <i class="icon-placeholder"></i>
+                      <p style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333">
+                        281 Heads Road, Wanganui
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0">
+                    <i class="icon-mail"></i
+                  ><a href="mailto:sales@amtech.co.nz"
+   style="font-size: 14px; font-weight: 400; line-height: 18px; color: #333333">sales@amtech.co.nz</a
+                  >
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+<article class="card related-product">
+    <figure class="card-figure">
+        <a v-bind:href="item.slug">
+            <div class="card-img-container">
+                <img :class="item.image_urls[0] ? 'card-image lazyload':''"
+                 src="{% static 'img/cms/loading.svg' %}"
+                 v-bind:data-src="item.image_urls[0]">
+            </div>
+        </a>
+    </figure>
+    <div class="card-body">
+        <h4 class="card-title">
+            <a v-bind:href="item.slug" v-text="item.name"></a>
+			<div><b v-text="item.sku"></b></div>
+        </h4>
+        <div class="card-text" data-test-info-type="price">
+            <div class="price-section">
+                <span class="price" v-text="get_item_price(item)"></span>
+            </div>
+        </div>
+    </div>
+</article>

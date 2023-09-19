@@ -1,0 +1,43 @@
+{% extends 'base-email.html' %}
+{% block pagetitle %}Thanks for Contact Us at Newtech{% endblock %}
+{% block content %}
+	{% load static %}
+	<table style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;width: 100%; max-width: 1000px; margin: 0 auto;">
+		<tr>
+			<td>
+				<div style="font-weight:bold;font-size:32px;line-height:40px">
+					Contact Us
+				</div>
+				<table style="text-align: left;">
+					<tr>
+						<td>
+							<div style="font-weight: bold; color: #18becd;">
+								Customer Infomation
+							</div>
+							<table style="border-collapse:collapse;">
+								<tr>
+									<td style="vertical-align: top;"><strong style="padding-right: 0.75em;">Email:</strong></td>
+									<td style="vertical-align: top;">{{ email }}</td>
+								</tr>
+								<tr>
+									<td style="vertical-align: top;"><strong style="padding-right: 0.75em;">Order Number:</strong></td>
+									<td style="vertical-align: top;">{{ order_number }}</td>
+								</tr>
+								<tr>
+									<td style="vertical-align: top;"><strong style="padding-right: 0.75em;">Comments/Questions:</strong></td>
+									<td style="vertical-align: top;">{{ message }}</td>
+								</tr>
+							</table>
+							<p dir="ltr">Thank you for your email! </p>
+							<p dir="ltr">We would like to acknowledge that your request has been received and will
+								be reviewed by our After Sales Team as soon as possible. </p>
+							<p dir="ltr">If your enquiry is urgent, please feel free to give our friendly team a
+								call on 0800 728 662 or (06) 349 0194.</p>
+							<p dir="ltr">Thank you,<br>Newtech Sales Support</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+{% endblock content %}

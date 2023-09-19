@@ -1,0 +1,146 @@
+[
+    {
+      "model": "blog.blogpost",
+      "pk": 1,
+      "fields": {
+        "title": "Charlotte Drive",
+        "type_laundry": "Tauranga",
+        "author": "Bathroom Project By Newtech",
+        "subtitle": "Oozing Class with Dark Oak Flavoured Bathrooms",
+        "slug": "charlotte-drive-tauranga",
+        "short_description": "The chocolately colours used in this bathroom project create a quality homely mood..",
+        "body": "<p>This beautiful Tauranga home uses dark chocolately colours throughout their bathrooms creating a quality, homely mood. We love the matching accents on the mirrors and lights which draws out the colour in the Dark Oak vanity.</p>\r\n\r\n<p>Using the Ravani vanity with an inset basin and matching mirror cabinets and teaming it with our beautiful Lexington these bathrooms are dressed to impress. The solid timber vanity units are both beautiful and durable, designed to last for years to come, without any sign of wear.</p>\r\n\r\n<p>The Lexington bath is a great-looking acrylic bath. Functional, beautiful, durable and easy on your wallet too!</p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T09:41:09.785Z",
+        "published": true,
+        "image": "images/project/charlotte-drive.jpeg",
+        "image_banner": "images/project/banner/charlotte-drive.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 2,
+      "fields": {
+        "title": "Hypatia Apartments",
+        "type_laundry": "Auckland",
+        "author": "Bathroom Project",
+        "subtitle": "Greek Inspired Design in Newmarket",
+        "slug": "hypatia-apartments",
+        "short_description": "Greek inspired design takes these apartments to a new level of opulence...",
+        "body": "<p>Located in centrally Newmarket near the Auckland Domain, the Hypatia Apartments are a retreat from the busy Auckland life.</p>\r\n\r\n<p>Featuring the Newtech Kolum Vanity in American Walnut, with a matching Mirror Cabinet, Castello toilet, and towel rail. The bathroom is beautifully tiled to accentuate the feeling of class throughout.</p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:23:24.310Z",
+        "published": true,
+        "image": "images/project/h.jpeg",
+        "image_banner": "images/project/banner/h.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 3,
+      "fields": {
+        "title": "Ben LomoDrivend",
+        "type_laundry": "Dunedin",
+        "author": "Bathroom Project",
+        "subtitle": "Beautiful Bathrooms in Dunedin",
+        "slug": "ben-lomond-drive",
+        "short_description": "Modern and stylish. This Dunedin home accentuates the beauty of Newtech bathroomware...",
+        "body": "<p>This modern Dunedin home is wonderfully complemented by Newtech&#39;s quality bathroomware.</p>\r\n\r\n<p>The main bathroom features the 42nd Ave freestanding bath, the Kolum wall hung vanity in Gloss White and the Largo Freedom Heated Towel Rail in Chrome.</p>\r\n\r\n<p>The ensuite looks amazing with Newtech&#39;s Ravani solid timber vanity in American Walnut topped with two Eos square vessel basins.</p>\r\n\r\n<div>&nbsp;</div>\r\n\r\n<div>\r\n<div>\r\n<div>&nbsp;</div>\r\n</div>\r\n\r\n<div>&nbsp;</div>\r\n\r\n<div>\r\n<div>&nbsp;</div>\r\n\r\n<div>&nbsp;</div>\r\n</div>\r\n</div>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:25:36.065Z",
+        "published": true,
+        "image": "images/project/bld.jpeg",
+        "image_banner": "images/project/banner/bld.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 4,
+      "fields": {
+        "title": "Twin Peaks",
+        "type_laundry": "Queenstown",
+        "author": "Bathroom Project",
+        "subtitle": "A Remarkable Residence",
+        "slug": "twin-peaks",
+        "short_description": "This remarkable home in Queenstown discovers the elegance of solid timber vanities...",
+        "body": "<p>With stunning views of the remarkables this Queenstown residence is truly incredible.</p>\r\n\r\n<p>With wooden Oak accents throughout the home, the solid timber Ravani vanity matched the style that owners Natalia and Myles hoped to create.</p>\r\n\r\n<p>Topped with a Stonecast Slab top and Eos rectangular vessel basin, this vanity fits right into this stunning house.</p>\r\n\r\n<p>Accompanying the Ravinty vanity is the Newark back-to-wall freestanding bath. Of Acrylic construction, this bath is both stylish and durable, without hurting the wallet!</p>\r\n\r\n<p>Photos credit of&nbsp;<a href=\"https://www.homestolove.co.nz/real-homes/home-tours/this-striking-queenstown-house-makes-the-most-of-its-remarkable-views\" rel=\"noopener\" target=\"_blank\" title=\"Beautiful Bathrooms in Queenstown\">Homestolove.co.nz</a></p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:28:29.400Z",
+        "published": true,
+        "image": "images/project/tp.jpeg",
+        "image_banner": "images/project/banner/tp.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 5,
+      "fields": {
+        "title": "Rueben Drive",
+        "type_laundry": "Rolleston",
+        "author": "Bathroom Project",
+        "subtitle": "Light Up Your Bathroom",
+        "slug": "reuben-drive",
+        "short_description": "| Designed with the family in mind this Rolleston home makes the most of LED mirror lighting...",
+        "body": "<h3>The first thing you notice when you walk into the bathrooms in this modern home in Rolleston is the stunning, large, LED Mirrors hanging above the vanity.</h3>\r\n\r\n<p>The Broadway LED mirror is a statement piece for a modern bathroom. Activated by a touchless sensor, simply wave your hand below the mirror to bathe the room in a cool white glow.</p>\r\n\r\n<p>Alongside the LED mirror in the main bathroom we have the Citi 1200 wall hung vanity in Hickory Oak, and the Newark Corner back-to-wall freestanding bath.</p>\r\n\r\n<p>In the 2nd bathroom is the Citi 1200 vanity, double basin, in Hickory Oak, the Broadway LED Mirror, the Castello toilet and the Quadro Heated Towel Rail in Chrome.</p>\r\n\r\n<p>Photos credit of&nbsp;<a href=\"https://btbuilders.co.nz/\" rel=\"noopener\" target=\"_blank\" title=\"Beautiful Bathrooms in Rolleston\">BT Builders</a></p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:30:37.376Z",
+        "published": true,
+        "image": "images/project/rdr.jpeg",
+        "image_banner": "images/project/banner/rdr.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 6,
+      "fields": {
+        "title": "Washed Oak Ravani",
+        "type_laundry": "Auckland",
+        "author": "Auckland",
+        "subtitle": "A Scandinavian Flavour",
+        "slug": "washed-oak-bathroom-project",
+        "short_description": "A scandinavian design with Washed Oak bathroom vanities matched with LED mirrors...",
+        "body": "<p>This bathroom project in Auckland showcases a range of Newtech solid timber bathroom vanities.</p>\r\n\r\n<p>With Washed Oak being the flavour of the day, this gives a nice contrast to the darker tones they have used in the wall tiles.</p>\r\n\r\n<p>Complemented with our Broadway LED mirror, Castello Toilet and Kolum tower unit. In the small washroom, they have used the Tivoli wall hung vanity, which is a great option for those smaller spaces.</p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:32:31.378Z",
+        "published": true,
+        "image": "images/project/wor.jpeg",
+        "image_banner": "images/project/banner/wor.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 7,
+      "fields": {
+        "title": "Waiuku",
+        "type_laundry": "",
+        "author": "Modern Bathroom Renovation In Waiuku",
+        "subtitle": "A luxurious modern day family bathroom in Waiuku.",
+        "slug": "waiuku",
+        "short_description": "A luxurious modern day family bathroom in Waiuku. The brief was to create an eco, energy...",
+        "body": "<p>The brief was to&nbsp;create an eco, energy efficient bathroom with plenty of functional&nbsp;smart storage &ndash; and they have done just that!</p>\r\n\r\n<p>Along with the bathroom accessories, appliances and styling, they have incorporated<br />\r\nthe Newtech Wall Hung Ravani vanity in American Walnut grain. Making use of the offset<br />\r\nbasin option provides plenty of bench space to the right of the vessel basin.</p>\r\n\r\n<p>The 1200mm Ravani Vanity has two large soft close drawers which provide great storage.</p>\r\n\r\n<p><strong>Planning your next project?</strong>&nbsp;Why not incorporate a natural wood grain piece into your<br />\r\nbathroom that you know you can rely on for strength and stability. Crafting premium<br />\r\nquality furniture that will stand the test of time.</p>\r\n\r\n<p>Contact us today on&nbsp;<strong>0800 728 662</strong>&nbsp;or email your plan to&nbsp;<strong>sales@newtech.co.nz.</strong></p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:35:50.023Z",
+        "published": true,
+        "image": "images/project/w.jpeg",
+        "image_banner": "images/project/banner/w.jpeg"
+      }
+    },
+    {
+      "model": "blog.blogpost",
+      "pk": 8,
+      "fields": {
+        "title": "Alba Takapuna",
+        "type_laundry": "",
+        "author": "",
+        "subtitle": "Tailored to those seeking a lifestyle in a vibrant urban hub.",
+        "slug": "alba-takapuna",
+        "short_description": "lba Takapuna is a recently completed boutique complex of just 19 high quality apartments...",
+        "body": "<h3>A mix&nbsp;of 1, 2, 3 bedroom apartments have been well designed&nbsp;and feature a Newtech custom-made 2 Drawer Wall Hung&nbsp;Vanity along with an Evoke 7-Bar Heated Towel Rail.</h3>\r\n\r\n<p>The Alba custom-made vanities feature a specially sourced laminate finish<br />\r\nand offer plenty of storage with two large soft drawers and finished with<br />\r\nJulius stainless steel handles. The Evoke 7-Bar heated towel rail in high<br />\r\nquality durable stainless steel adds a practical element.</p>\r\n\r\n<p><strong>Considering using custom-made products in your next project?&nbsp;</strong>We specialise in custom-made products of all sizes and can work to your&nbsp;design specification and budget. Contact us today on&nbsp;<strong>0800 728 662&nbsp;</strong>or email your plan to&nbsp;<strong>sales@newtech.co.nz</strong>.</p>",
+        "meta_description": "",
+        "publish_date": "2023-04-14T10:37:58.885Z",
+        "published": true,
+        "image": "images/project/at.jpeg",
+        "image_banner": "images/project/banner/at.jpeg"
+      }
+    }
+  ]

@@ -1,0 +1,250 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    {% include 'scripts/headtag/top.html' %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+      {% block pagetitle %}Newtech | Innovative Bathroomware Products &amp; Design in New Zealand{% endblock %}
+    </title>
+    <meta
+      name="title"
+      property="og:title"
+      content="{% block og-pagetitle %}Concept Showroom{% endblock %}"
+    />
+    <meta
+      name="description"
+      property="og:description"
+      content="{% block page-content %}Newtech is New Zealand's leader in innovative bathroom products. Enjoy great service and support and shop high-quality bathroomware online today!{% endblock %}"
+    />
+    <meta property="og:url" content="{{ CANONICAL_PATH }}" />
+    <meta property="og:image" content="{% static 'img/newtech_logo.png' %}" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {% block canonical %}
+    <meta rel="canonical" href="{{ CANONICAL_PATH }}" />
+    {% endblock %}
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/favicon.ico' %}"
+      type="image/x-icon"
+    />
+    {% block css_top %}
+    <!-- load css -->
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/cdn/plugins.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/cdn/bootstrap/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/cdn/owl-carousel/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/cdn/owl-carousel/owl.theme.default.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/cdn/slick/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/custom/responsive.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/custom/styleguide.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/custom/layouts/header/header.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/custom/layouts/footer/footer.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/custom/checkout.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/custom/awesome.css' %}" />
+    <!-- custom meta data -->
+    {% block custom-meta %}{% endblock %}
+    <style>
+      .contact-link {
+        text-decoration: underline;
+        font-weight: bold;
+      }
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+    {% block css_bottom %}
+    <!-- load css -->
+    {% endblock %}
+    <script type="text/javascript">
+        var controller, signal;
+    </script>
+    {% include 'scripts/headtag/bottom.html' %}
+  </head>
+  <body>
+    {% include 'scripts/bodytag/top.html' %}
+    <div
+      class="page-wrapper"
+      x-bind:class="cls"
+      x-data="{cls: ''}"
+      @update-page-wrapper.window="cls=$event.detail.cls"
+    >
+      <header
+              id="header-container"
+              class="header header-container page-header header-regular"
+      >
+        <div class="header-top">
+          <div class="container">
+            <div class="items">
+              <div class="item">
+                <a href="http://facebook.com/NewtechBathroomware" title="Facebook" target="_blank">
+                  <img src="{% static 'img/cms/face-icon.svg' %}" alt="Facebook"/>
+                </a>
+              </div>
+              <div class="item">
+                <a href="https://www.instagram.com/newtechbathroomware/" title="Linkedin" target="_blank">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+              <div class="item">
+                <a href="https://nz.linkedin.com/company/newtech-bathroomware" title="Instagram" target="_blank">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+              <div class="item">
+                <a href="https://archipro.co.nz/professionals/newtech" title="Archipro" target="_blank">
+                  <img src="{% static 'img/cms/ap-icon.svg' %}" alt="Archipro"/>
+                </a>
+              </div>
+              <div class="item mobile">
+                <a href="tel:0800 728 662" title="Phone">
+                  <img src="{% static 'img/cms/phone-white.svg' %}" alt="Phone"/>
+                </a>
+              </div>
+              <div class="item">
+               <a href="mailto:sales@newtech.co.nz" title="Email" target="_blank">
+                 <img src="{% static 'img/cms/mail-icon.svg' %}" alt="Email"/>
+                 <label class="label">sales@newtech.co.nz</label>
+               </a>
+             </div>
+           </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="inner-content">
+            <div class="header-logo">
+              <a href="{% url 'index' %}">
+                <img
+                        class="header-logo-image"
+                        src="{% static 'img/home-new/logo.png' %}"
+                        alt="Logo"
+                >
+              </a>
+            </div>
+            <div class="dropdown dropdown-quicksearch"
+                 id="quicksearch"
+                 aria-hidden="true"
+                 tabindex="-1"
+                 data-prevent-quick-search-close
+            >
+              {% include 'search/form.html' %}
+            </div>
+            <div class="header-right-content">
+              <a class="link-text" href="{% url 'store_locations' %}" target="_blank">Click And Collect Nationwide</a>
+              <div class="dropdown-quicksearch-icon"></div>
+              <div class="contact-phone">
+                <img class="phone-icon"
+                     src="{% static 'img/cms/phone-icon.png' %}"
+                     alt="Phone">
+                <div class="content">
+                  <label>Call Us</label>
+                  <a href="tel:0800 728 662" class="phone-number" title="Phone"><strong>0800 728 662</strong></a>
+                </div>
+              </div>
+              {% include 'mini-cart.html' %}
+              <div class="mobile-menu-toggle"
+                   id="mobile-menu-toggle">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-pages-container" id="menu" data-menu aria-hidden="true">
+          {% include 'menu.html' %}
+        </div>
+      </header>
+    </div>
+
+    {% comment %}
+    <div class="status_notification status_notification_info">
+      <p>
+        We've recently upgraded our website, please
+        <a href="{% url 'contact' %}"
+          ><span class="contact-link">contact us</span></a
+        >
+        if you experience any issues.
+      </p>
+    </div>
+    {% endcomment %} {% block content %}{% endblock %}
+    <!-- FOOTER AREA START -->
+    {% include 'footer.html' %}
+    <!-- MODAL AREA END -->
+    <script src="{% static 'js/cdn/plugins.js' %}"></script>
+    <script src="{% static 'js/cdn/popper.min.js' %}"></script>
+    <script src="{% static 'js/cdn/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/cdn/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/cdn/slick/slick.min.js' %}"></script>
+    <script src="{% static 'js/cdn/lazysizes.min.js' %}"></script>
+    <!-- CSRF -->
+    {% csrf_token %}
+    <script type="text/javascript">
+      var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    </script>
+    <!-- Main JS -->
+    <script src="{% static 'js/custom/main.js' %}"></script>
+    <script src="{% static 'js/custom/custom.js' %}"></script>
+    <script src="{% static 'js/custom/global/custom.js' %}"></script>
+    <script
+      async
+      src="https://www.google.com/recaptcha/api.js?render={{RECAPTCHA_SITE_KEY}}"
+    ></script>
+    <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+
+    <!-- Start of newtechbathroomware Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key={{ZENDESK_KEY}}"> </script>
+    <!-- End of newtechbathroomware Zendesk Widget script -->
+
+    {% block scripts %}{% endblock %}
+
+    {% if DJANGO_ENVIRON == "prod" %}
+    <!--<script type="text/javascript" async>
+      (function (o, l, a, r, k, y) {
+        if (o.olark) return;
+        r = "script";
+        y = l.createElement(r);
+        r = l.getElementsByTagName(r)[0];
+        y.async = 1;
+        y.src = "//" + a;
+        r.parentNode.insertBefore(y, r);
+        y = o.olark = function () {
+          k.s.push(arguments);
+          k.t.push(+new Date());
+        };
+        y.extend = function (i, j) {
+          y("extend", i, j);
+        };
+        y.identify = function (i) {
+          y("identify", (k.i = i));
+        };
+        y.configure = function (i, j) {
+          y("configure", i, j);
+          k.c[i] = j;
+        };
+        k = y._ = { s: [], t: [+new Date()], c: {}, l: a };
+      })(window, document, "static.olark.com/jsclient/loader.js");
+      olark.identify("1735-261-10-8444");
+    </script> -->
+    {% endif %}
+  </body>
+</html>
+{% block postscript %}<!-- Custom JS -->{% endblock %}

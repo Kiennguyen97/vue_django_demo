@@ -1,0 +1,51 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Your Cart{% endblock %}
+{% block og-pagetitle %}Your Cart{% endblock %}
+{% block content %}
+  {% load static %}
+  <main id="maincontent" class="page-main page-content">
+    <div class="main-container">
+      {% include 'breadcrumbs.html' %}
+      {% include 'message.html' %}
+      {% comment %} cart-content-partial is inherited in here {% endcomment %}
+      <div id="cart-main"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+        hx-target="#cart-main">
+        {% block cart-content %}{% endblock %}
+      </div>
+    <div>
+  </main>
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cartpage.css' %}">
+{% endblock content %}
+{% block postscript %}
+  <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+  <script>
+    window.addEventListener('load', function () {
+        htmx.on("htmx:afterSwap", function(evt) {
+            if (evt.detail.requestConfig.elt.id == "action-delete"){
+                fetch('/api/cart/',{
+                    method: 'GET',
+                    headers: {
+                      'Content-Type': 'application/json'
+                      
+                    },
+                })
+                .then((response) => response.json())
+                .then((data)=>{
+                    let event = new CustomEvent("update-mini-cart", {
+                        detail: {
+                            cart: {
+                                cart_count: data.count,
+                                subtotal: data.subtotal
+                            }
+                        }
+                    });
+                    window.dispatchEvent(event);
+                })
+            }
+        })
+    })
+  </script>
+{% endblock %}

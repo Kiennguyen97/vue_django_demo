@@ -1,0 +1,492 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Newtech Return Policy{% endblock %}
+{% block og-pagetitle %}Newtech Return Policy{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/cms-custom.css' %}">
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/return-policy.css' %}">
+{% endblock %}
+{% block content %}
+<div class="body body-special return-policy">
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ltn__breadcrumb-inner">
+                        <div class="ltn__breadcrumb-list">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'index' %}">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    Return Policy
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB AREA END -->
+    <main class="page-main">
+        <h1 class="page-heading">Return Policy</h1>
+        <div class="page-content">
+            <div class="shg-box-content">
+                <div class="shogun-image-container">
+                    <img src="{% static 'img/return-policy/return-policy.jpg' %}"
+                         class="shogun-image"/>
+                </div>
+                <div class="shg-box-text">
+                    <div class="shg-text">
+                        <p>Newtech are happy to assist with returns/exchanges. To
+                            request a return/exchange your order, please email us at
+                            <a href="mailto:sales@newtech.co.nz">sales@newtech.co.nz</a>
+                            or call on 0800 728 662. (Terms and conditions apply).
+                            Please have your original purchase order number or invoice
+                            number ready.
+                            To help us quickly process your return please note the
+                            following requirements:
+                        </p>
+                        <ul>
+                            <li>
+                                <span>Please provide the original purchase order number or invoice number.</span>
+                            </li>
+                            <li>
+                                <span>Product/s are required to be returned within <strong>90 days</strong> of the order being received instore.</span>
+                            </li>
+                            <li>
+                                <span>We will provide a Goods Return Label (RMA/Return Merchandise Authority). Please attach this to the product/s before they are collected.</span>
+                            </li>
+                            <li>
+                                <span>
+                                    A 25% restocking fee applies to any customer change of mind returns. This fee can be reduced to 17% if a replacement order of the same value or higher is placed with Newtech within 10 days.
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    Our freight companies require notification of any damage within 24 hours so that a claim can be raised. Please let us know of any damage right away so we can lodge the claim and arrange
+                                    replacements. Photos of the damage are required to be supplied to Newtech within 5 working days of the freight arriving.
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    Once the RMA is raised, our team will be in contact with you weekly to help assist with your return. Please advise us when your return is ready for collection. If Newtech has not been advised
+                                    of any RMA being ready for collection and no product has been returned to Newtech within <strong>20 days</strong>, the return (RMA) will be <strong>cancelled</strong>, and Newtech will require
+                                    payment for any outstanding invoices related to the return (RMA).
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="shg-text">
+                        <p>
+                            <span>To be eligible for a return, please ensure your item/s are unused, in the original packaging, and in the same condition that you received it.</span>
+                        </p>
+                    </div>
+                    <div class="shg-text">
+                        <p>
+                            <span>We ask that the items are returned in re-saleable condition. This means that:</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <span>All items are in their original condition and packaging, including instruction manuals and all other accessories/parts.</span>
+                            </li>
+                            <li>
+                                <span>The item/s are unworn, unused, unassembled and in original condition.</span>
+                            </li>
+                            <li>
+                                <span>The packaging has no marks, rips, tears and has not been drawn on.</span>
+                            </li>
+                            <li>
+                                <span>Please do not attach any labelling to the outside of the packaging. This includes any non-Newtech stickers or tape.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="shg-text">
+                        <p>
+                            <span>
+                                We will let you know if any of the above conditions are not met and will work with you to find a solution. It may mean that your exchange or refund will be declined.
+                            </span>
+                        </p>
+                    </div>
+                    <div class="shg-text">
+                        <p>
+                            <span>If you received faulty or the incorrect goods:</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <span>Please do not go ahead with any installation.</span>
+                            </li>
+                            <li>
+                                <span>
+                                    We ask that you notify us immediately by emailing us at
+                                    <a href="mailto:sales@newtech.co.nz">sales@newtech.co.nz</a> or calling us on 0800 728 662 so we can rectify the issue. Please ensure
+                                    that you provide us with your original order number or invoice number.
+                                </span>
+                            </li>
+                            <li>
+                                <span>Please email photos/videos of the issue to sales@newtech.co.nz to help assist us in providing a quick solution.</span>
+                            </li>
+                            <li>
+                                <span>If the faulty/damaged or incorrect product is installed, we will unfortunately be unable to cover re-installation costs.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="shogun-image-container">
+                    <img class="shogun-image"
+                         src="{% static 'img/return-policy/faq.jpg' %}"/>
+                </div>
+            </div>
+            <div class="faqs">
+                <div class="shogun-accordion-wrapper">
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    1. How do I return an item?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    To return an item you will first need to call Newtech on 0800 782 662 or email us at
+                                    <a href="mailto:sales@newtech.co.nz">sales@newtech.co.nz</a> to request areturn form
+                                    to be attached to the items being returned.
+                                </p>
+                                <p>
+                                    <span>You can then return an item by sending to the following address:</span><br/>
+                                    <span><strong>RETURNS</strong></span><br/>
+                                    <span>Newtech Bathroomware</span><br/>
+                                    <span>1 Prince Street</span><br/>
+                                    <span>Wanganui 4501</span>
+                                </p>
+                                <p>
+                                    It is your own responsibility to return your item/s to us in the safest and most
+                                    secure way to avoid any loss or damage.
+                                    Please ensure you have the Goods Return Label (RMA) we have provided attached to the
+                                    returned goods. If the return is
+                                    due to a customer change of mind, Newtech can provide you with a quote for freight
+                                    to be arranged at your cost.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    2. What items are non-returnable?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <ul>
+                                    <li>Used Items</li>
+                                    <li>Ex display Items</li>
+                                    <li>Custom Items and any items that are specifically ordered in or custom made</li>
+                                    <li>Clearance/End of Line Items</li>
+                                    <li>Laundries are custom made so not returnable</li>
+                                    <li>The Serenity range is custom painted per order
+                                        therefore they are non-returnable unless an error has occured on Newtech's part.
+                                    </li>
+                                </ul>
+                                <p>
+                                    However, if any of these products are faulty, not fit for purpose or do not match
+                                    the sample or description, they will be eligible for a return.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    3. What is classified as a Custom Item (non-returnable)?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>Newtech is unable to accept the return of items included in the following list.</p>
+                                <ul>
+                                    <li>Extrusion Upgrade</li>
+                                    <li>Cosmetic Drawer Upgrade/Drawer Modifications</li>
+                                    <li>Pre-drilled Slab Tops</li>
+                                    <li>Laundries</li>
+                                    <li>Baths with bath upstands installed</li>
+                                    <li>Serenity Range</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    4. What if I don’t have the appropriate packaging?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    <strong>We are unable to accept a return of any items with damaged or no
+                                        packaging.</strong>
+                                </p>
+                                <span>Damaged Packaging includes:</span>
+                                <ul>
+                                    <li>Packaging that has been written on</li>
+                                    <li>Excess tape that has been applied to the packaging (excluding clear packaging
+                                        tape)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    5. Who organises the freight for the item/s to be delivered
+                                    back to Newtech?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    If you are returning due to a change of mind the below applies:
+                                <ul>
+                                    <li>If you have ordered from our Newtech website, it is your responsibility to
+                                        arrange the freight to get the goods delivered back to Newtech in the safest and
+                                        most secure way to avoid any loss
+                                        or damage.
+                                    </li>
+                                    <li>If you have ordered through a local Bathroomware Merchant, you can contact them
+                                        and they will arrange the return with us for you. If Newtech arrange the freight
+                                        the cost will on-charged.
+                                        This cost will be confirmed upon request of the return.
+                                    </li>
+                                </ul>
+                                </p>
+                                <p>
+                                    <span>
+                                        If your goods are faulty/damaged or we have incorrectly sent the wrong product, please contact
+                                        <a href="mailto:sales@newtech.co.nz">sales@newtech.co.nz</a> and we will arrange the freight and
+                                        cover the costs for your items to be returned.
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    6. How long will it take to receive the Goods Return Label
+                                    (RMA)?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    You will receive your RMA Label within 2 working days from your original return
+                                    request being received by our team.
+                                    If this is not the case, please call us on 0800 728 662 and we will processurgently
+                                    for you.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    7. Why do I need to pay a restocking fee?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>A restocking fee is required to help cover Newtech’s costs involved in processing the
+                                    return.</p>
+                                <ul>
+                                    <li>
+                                        <span>
+                                            A 25% restocking fee applies to any customer change of mind returns.
+                                            This fee can be reduced to 17% if a replacement order of the same value or higher is placed with Newtech within 10days.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    8. What if my item is faulty?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    If your goods are faulty/damaged, please do not proceed with installation,
+                                    contact us at sales@newtech.co.nz or on 0800 728 662 with your original order
+                                    details and we will arrange an urgent solution.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    9. How long will my refund take?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    A credit will be processed within 7 working days of receipt of the goods in the
+                                    Newtech warehouse.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    10. How do I cancel my order?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <p>
+                                    To cancel your order please either email our team at sales@newtech.co.nz or call us
+                                    on 0800 728 662. Please have all your original order details ready. If your order
+                                    has already left us, we
+                                    will unfortunately be unable to cancel it
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    11. What will the lead time be for my re-supply?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <ul>
+                                    <li>Vista Range Cabinetry (includes Vanities, Mirror Cabinets, &amp; Tower Stations)
+                                        you will be advised of your lead time at the time of processing your order.
+                                    </li>
+
+                                    <li>Laundries have a 30 working day lead time from confirmation of your order.</li>
+                                    <li>Standard in stock items will have a lead time of 2-5 working days.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    12. What are Newtech’s expectations when receiving Newtech
+                                    Products?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shg-text">
+                                <ul>
+                                    <li>We ask that products are checked before being delivered to site.</li>
+                                    <li>Please report any freight damaged items within 24 hours of delivery to your
+                                        store so a claim can be raised.
+                                    </li>
+                                    <li>Please do not sign any delivery as a ‘clean delivery’ if the goods are not
+                                        checked upon arrival to your store
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shogun-accordion">
+                        <div class="shogun-accordion-heading">
+                            <div class="shogun-accordion-header">
+                                <h4 class="shogun-accordion-title">
+                                    13. What is Acceptable Packaging?
+                                </h4>
+                                <div class="shogun-accordion-icon shogun-icon-plus">
+                                    <span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shogun-accordion-body">
+                            <div class="shg-content shogun-image-container">
+                                <img class="shogun-image"
+                                     src="{% static 'img/return-policy/acceptable.jpg' %}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

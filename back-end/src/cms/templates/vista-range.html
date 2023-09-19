@@ -1,0 +1,92 @@
+{% extends 'base-newtech.html' %}
+{% block css_bottom %}
+{% load static %}
+{% endblock %}
+{% block content %}
+{% load static %}
+<section class="page-wrapper-message">
+  {% include 'message.html' %}
+</section>
+<div class="body">
+  {% include 'vista-range/vista-range.html' %}
+</div>
+{% endblock content %}
+{% block scripts %}
+{% if cls_name in FORM_RECAPTCHA %}
+<script type="text/javascript">
+  function onSubmitBlueBook(e) {
+    var form = document.forms['contact-form-blue'];
+    // Trigger HTML5 validity.
+    var reportValidity = form.reportValidity();
+
+    // Then submit if form is OK.
+    if (reportValidity) {
+      form.submit();
+    }
+  }
+
+  function onSubmitRappidApp(e) {
+    var form = document.forms['contact-form-rappid'];
+    // Trigger HTML5 validity.
+    var reportValidity = form.reportValidity();
+
+    // Then submit if form is OK.
+    if (reportValidity) {
+      form.submit();
+    }
+  }
+</script>
+{% endif %}
+{% if user.is_authenticated %}
+<script type="text/javascript">
+  var favourites_modal_el = document.getElementById("modal-favourites"),
+    fav_modal = new bootstrap.Modal(favourites_modal_el);
+</script>
+{% endif %}
+<script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+<script>
+  window.addEventListener('load', function () {
+    htmx.on("htmx:afterSwap", function (evt) {
+      if (evt.detail.requestConfig.elt.id == "btn-favourite-save") {
+        fav_modal.hide();
+      }
+      if (evt.detail.requestConfig.elt.id.includes("btn-addcart")) {
+        fetch('/api/cart/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            let event = new CustomEvent("update-mini-cart", {
+              detail: {
+                cart: {
+                  cart_count: data.count,
+                  subtotal: data.subtotal
+                }
+              }
+            });
+            window.dispatchEvent(event);
+          })
+      }
+    })
+  })
+  function closeModel() {
+    var modal = document.getElementById("model-signup");
+    var modalInside = document.getElementById("cover-model");
+    modal.style.display = "none";
+    modalInside.style.display = "none";
+  }
+  function closeIcon() {
+    var icon = document.getElementById("signup-responsive");
+    icon.style.display = "none";
+  }
+  function openModel() {
+    var modalInside = document.getElementById("cover-model");
+    modalInside.style.display = "block";
+  }
+</script>
+
+{% endblock scripts %}

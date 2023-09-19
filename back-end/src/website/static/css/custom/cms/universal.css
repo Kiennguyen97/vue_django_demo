@@ -1,0 +1,189 @@
+#error_email,
+#error_message {
+    position: relative;
+    margin-top: 5px;
+    display: none;
+    color: #cc4749;
+    font-size: 14px;
+}
+
+#error_email.show-error,
+#error_message.show-error {
+    display: block;
+}
+
+#error_email:before,
+#error_message::before {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' fill='rgba(204, 71, 73, 0.999)' /%3E%3C/svg%3E") no-repeat;
+    background-size: 100%;
+    content: "";
+    display: inline-block;
+    height: 14px;
+    left: 0;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+    width: 14px;
+}
+
+#tick-img {
+    width: 25px;
+    position: absolute;
+    right: 18px;
+    top: 38px;
+    display: none;
+}
+
+.contact-form-box .form-title {
+    margin-top: 0;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+    color: #1b1d1d;
+    text-align: center;
+}
+
+input::placeholder {
+    color: #667085;
+}
+
+.contact-form-box {
+    padding: 46px 16px;
+    background: #e8fbfc;
+}
+
+.contact-form-box .input-item {
+    margin-bottom: 15px;
+}
+
+.contact-form-box .input-item label {
+    font-weight: 700;
+    line-height: 25px;
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+    width: 100%;
+}
+
+.contact-form-box select {
+    background: #fff;
+}
+
+.contact-form-box input,
+.contact-form-box select {
+    height: 49px;
+}
+
+.contact-form-box input,
+.contact-form-box select,
+.contact-form-box textarea,
+.contact-form-box .select-selected {
+    color: #101828;
+    font-size: 16px;
+    line-height: 29px;
+}
+
+.contact-form-box input,
+.contact-form-box select,
+.contact-form-box textarea {
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.contact-form-box input[type="file"] {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    max-width: 128px;
+}
+
+.contact-form-box .button {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    padding: 12px 20px;
+}
+
+.contact-form-box .button-wrapper {
+    text-align: center;
+}
+
+.contact-form-box .input-item-name {
+    border-top: 1px solid #d4d8d8;
+    padding-top: 30px;
+    margin-top: 15px;
+}
+
+.contact-form-box .input-item-invoice {
+    position: relative;
+}
+
+.contact-form-box .upload-file-box {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-form-box .input-item .upload-label {
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.contact-form-box .upload-label {
+    cursor: pointer;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    font-size: 14px;
+    color: #414747;
+    padding: 8px 14px;
+    background-color: #fff;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    margin-bottom: 0;
+}
+
+.contact-form-box .upload-file-name {
+    font-size: 18px;
+    line-height: 32px;
+    color: #414747;
+    word-break: break-word;
+}
+
+.contact-form-box .note {
+    text-align: center;
+    color: #414747;
+}
+
+.contact-form-box .note a {
+    color: #15a9b7;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+    .contact-form-box {
+        max-width: 860px;
+        padding: 46px;
+        margin: 64px auto 120px;
+    }
+
+    .contact-form-box .form-title {
+        font-size: 40px;
+        line-height: 56px;
+    }
+
+    .contact-form-box .col-lg-12 {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .universal-main .container {
+        padding: 0;
+    }
+}

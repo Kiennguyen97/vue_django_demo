@@ -1,0 +1,101 @@
+{% load static %}
+<footer class="footer" id="footer-main" role="contentinfo">
+    <div class="container">
+        <section class="footer-info">
+            <article class="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
+                <h5 class="footer-info-heading">Navigate</h5>
+                <ul class="footer-info-list">
+                    <li>
+                        <a href="{% url 'bathroom-planner' %}">Design@home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'serenity' %}">Serenity</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'page-laundry' %}">Laundry</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'catalogues' %}">Resources</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'store_locations' %}">Nationwide Stockists</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about-us' %}">About Us</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'return-policy' %}">Return Policy</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'terms-of-trade' %}">Terms of Trade</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'site-map' %}">Sitemap</a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="footer-info-col footer-info-col--small footer-categories"
+                     data-section-type="footer-categories">
+                <h5 class="footer-info-heading">Categories</h5>
+                <ul class="footer-info-list">
+                    {% for cat_tree in CATEGORY_TREE %}
+                    <li>
+                        <a href="{{cat_tree.slug}}">{{cat_tree.name}} </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </article>
+
+
+            <article class="footer-info-col" data-section-type="newsletterSubscription">
+                <h5 class="footer-info-heading">Subscribe to our newsletter</h5>
+                <p class="footer-subscribe-intro">Get the latest updates on new products and upcoming sales</p>
+                {% include 'footer-sub.html'%}
+                <div class="contact"><a href="tel:0800 728 662"><i class="fa fa-phone"></i>0800 728 662</a></div>
+                <div class="contact"><a href="mailto:sales@newtech.co.nz"><i class="fa fa-envelope"></i>sales@newtech.co.nz</a></div>
+
+                <ul class="social-links">
+                    <li class="social-links-item social-links-item--facebook">
+                        <a class="icon icon--facebook" title="Facebook" href="http://facebook.com/NewtechBathroomware"
+                           target="_blank">
+                            <img src="{% static 'img/cms/facebook.svg' %}" alt="facebook">
+                        </a>
+                    </li>
+                    <li class="social-links-item social-links-item--instagramr">
+                        <a class="icon icon--instagram" title="Instagram"
+                           href="https://www.instagram.com/newtechbathroomware/" target="_blank">
+                            <img src="{% static 'img/cms/instagram.svg' %}" alt="instagram">
+                        </a>
+                    </li>
+                    <li class="social-links-item social-links-item--pinterest">
+                        <a class="icon icon--pinterest" title="LinkedIn"
+                           href="https://nz.linkedin.com/company/newtech-bathroomware" target="_blank">
+                            <img src="{% static 'img/cms/linkedin.svg' %}" alt="linkedin">
+                        </a>
+                    </li>
+                    <li class="social-links-item social-links-item--archipro">
+                        <a class="icon icon--archipro" title="Archipro"
+                           href="https://archipro.co.nz/professionals/newtech" target="_blank">
+                            <img src="{% static 'img/cms/archipro.png' %}"
+                                 alt="Archipro">
+                        </a>
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </div>
+    <div class="container footer-bottom">
+        <div class="footer-copyright">
+            <p class="powered-by">© 2023 Newtech. All Rights Reserved. Prices are in NZD.</p>
+        </div>
+    </div>
+    <!-- end: footer-bottom -->
+</footer>
+{% block scripts %}
+<script>
+</script>
+{% endblock scripts %}

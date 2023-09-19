@@ -1,0 +1,279 @@
+{% load static %}
+<table class="table data grouped" id="super-product-table">
+  <thead>
+    <tr>
+      <th scope="col" class="item" scope="col">Image</th>
+      <th scope="col" class="item" scope="col">Description</th>
+      <th scope="col" class="item" scope="col">Availability</th>
+      <th scope="col" class="carton" scope="col">Carton Qty</th>
+      <th scope="col" class="qty" scope="col">Quantity</th>
+      <th scope="col" class="price" scope="col">Prices</th>
+      <th scope="col" class="actions" scope="col">Actions</th>
+      <th scope="col" class="fave" scope="col">Favourites</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in object.get_child_products %}
+      <tr>
+        <td scope="row" data-th="Image" class="group-product-img">
+          <div class="group-img">
+            <img src="{{ obj.product.get_img_urls.0 }}">
+          </div>
+        </td>
+        <td scope="row" data-th="Product Name" class="col item product-name">
+          <p>
+            {{ obj.product.sku }} - {{ obj.product.name }}
+          </p>
+        </td>
+        <td scope="row" data-th="Availability" class="group-product-availability">
+          <div class="product-stock status-product">
+            <span class="{{ obj.product.get_product_stock.cls_name }}">
+              <span class="in-status"
+                    data-toggle="tooltip"
+                    title="{{ obj.get_product_stock.tooltip }}">{{ obj.product.get_product_stock.label }}</span>
+            </span>
+          </div>
+        </td>
+        <td scope="row" data-th="Carton Qty" class="group-product-carton-qty">
+          {% if obj.product.carton_qty and obj.product.carton_qty > 1 %}
+            <p class="delivery-timeframe">
+              <span class="text-content">{{ obj.product.carton_qty }}
+                <img src="{% static 'img/home-new/package-icon.png' %}" alt="">
+              </span>
+            </p>
+          {% endif %}
+        </td>
+        {% if not obj.product.is_access_purchase %}
+          <td scope="row"
+              class="col item pro-avai"
+              data-th="Actions"
+              class="group-btn-addcart"
+              colspan="4">
+            <em style="font-size: 16px">This product is available through our authorised resellers</em>
+          </td>
+        {% else %}
+          <td scope="row" class="col item qty-mplus" data-th="Quantity">
+            <div x-data="{cartQty: 1}">
+              <div class="cart-plus-minus">
+                <div @click="cartQty--;if(cartQty<1){cartQty=1;}" class="dec qtybutton">-</div>
+                <input type="text"
+                       x-model.number="cartQty"
+                       id="qtybutton-{{ obj.product.sku }}"
+                       name="qtybutton-{{ obj.product.sku }}"
+                       class="cart-plus-minus-box">
+                <div @click="cartQty++" class="inc qtybutton">+</div>
+              </div>
+            </div>
+          </td>
+          <td scope="row" data-th="Price" class="group-product-price">
+            <div class="price-box price-final_price"
+                 data-role="priceBox"
+                 data-product-id="{{ obj.product.sku }}"
+                 data-price-box="product-id-{{ obj.product.sku }}">
+              <span class="price-container price-final_price tax weee">
+                {% if not obj.product.is_access_purchase %}
+                  <span id="product-price-{{ obj.product.sku }}">POA</span>
+                {% else %}
+                  <span id="product-price-{{ obj.product.sku }}"
+                        data-price-amount="{{ obj.get_price }}"
+                        data-price-type="finalPrice"
+                        class="price-wrapper ">
+                    {% if obj.product.is_on_sale %}
+                      <span class="special-price">
+                        <span class="price">${{ obj.product.get_discount_price }}</span>
+                      </span>
+                      <span class="old-price">
+                        <span class="price">Usually ${{ obj.get_price }}</span>
+                      </span>
+                    {% else %}
+                      <span class="price">${{ obj.get_price }}</span>
+                    {% endif %}
+                  </span>
+                {% endif %}
+              </span>
+            </div>
+          </td>
+          <td scope="row" class="col item action-addcart" data-th="Actions">
+            <div id="product-purchase-favourites-{{ obj.product.sku }}"
+                 class="ltn__product-details-menu-2"
+                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+              <div data-active="{{ obj.product.active }}"
+                   class="product-details-add-to-cart btn {% if object.get_template == 'safety' %} theme-btn-3 {% else %} theme-btn-1 {% endif %}"
+                   title="Add to Cart"
+                   data-name="{{ obj.product.name }}"
+                   data-price="{{ obj.get_price }}"
+                   hx-post="{{ CANONICAL_URL }}"
+                   id="add-to-cart__{{ obj.product.sku }}"
+                   hx-vals='{"sku":"{{ obj.product.sku }}", "type": "cart"}'
+                   hx-include="[name=qtybutton-{{ obj.product.sku }}]"
+                   hx-target="#cart-added-{{ obj.product.sku }}"
+                   hx-swap="innerHTML">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Add</span>
+                <span class="spinner-border spinner-border-sm loader htmx-indicator"
+                      role="status"
+                      aria-hidden="true"></span>
+                <span id="cart-added-{{ obj.product.sku }}"></span>
+              </div>
+            </div>
+          </td>
+          <td scope="row" class="col item action-addfav" data-th="Favourites">
+            <div class="current-list-form product-detail">
+              <div class="modal fade modal-listcate"
+                   id="createFavourites-{{ obj.product.sku }}"
+                   tabindex="-1"
+                   role="dialog"
+                   aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body"
+                         hx-trigger="click from:#add-favourites-{{ obj.product.sku }}"
+                         hx-post="{{ CANONICAL_URL }}"
+                         hx-vals='{"groups":true}'
+                         hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                         hx-swap="innerHTML"
+                         hx-target="#group-favouries-select-{{ obj.product.sku }}">
+                      {% comment %} when the modal is loaded, htmx will get the groups and load into the below select
+                              this prevents it from being queried every page load, people rarely add to favourites
+                      {% endcomment %}
+                      <h2 class="modal-title" id="exampleModalLabel">Select Favourites List to add to:</h2>
+                      <span id="loadGroupSpinner"
+                            class="spinner-border spinner-border-sm loader htmx-indicator"
+                            role="status"
+                            aria-hidden="true"></span>
+                      <select name="group-favouries-{{ obj.product.sku }}"
+                              id="group-favouries-select-{{ obj.product.sku }}">
+                        <option>
+                        </option>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button"
+                              class="btn-cancel btn-secondary theme-btn-7 btn"
+                              data-dismiss="modal">Cancel</button>
+                      <button type="button"
+                              class="btn-save btn btn-primary {% if object.get_template == 'safety' %} theme-btn-3 {% else %} theme-btn-1 {% endif %}"
+                              hx-post="{{ CANONICAL_URL }}"
+                              hx-include="[name=group-favouries-{{ obj.product.sku }}]"
+                              hx-swap="beforeend"
+                              hx-vals='{"sku":"{{ obj.product.sku }}", "type":"add-group"}'
+                              hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+                        Save
+                        <span class="spinner-border spinner-border-sm loader htmx-indicator"
+                              role="status"
+                              aria-hidden="true">
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- endmodal -->
+                {%comment%}
+                {% endcomment %}
+                {% if user.is_authenticated %}
+                  <button id="add-favourites-{{ obj.product.sku }}"
+                          class="add-favourites-button btn btn-icon {% if object.get_template == 'safety' %} btn-icon-safety {% else %} btn-icon-default {% endif %}"
+                          title="Add To Favourites"
+                          data-target="#createFavourites-{{ obj.product.sku }}"
+                          data-toggle="modal">
+                    {% if object.get_template == 'safety' %}
+                      <img class="icon-heart safety-product"
+                           src="{% static 'img/home-new/heart-s.png' %}"
+                           alt="">
+                    {% else %}
+                      <img class="icon-heart normal-product"
+                           src="{% static 'img/home-new/heart.png' %}"
+                           alt="">
+                    {% endif %}
+                  </button>
+                {% else %}
+                  <button class="add-favourites-button btn btn-icon {% if object.get_template == 'safety' %} btn-icon-safety {% else %} btn-icon-default {% endif %}"
+                          data-placement="bottom"
+                          title="Please login to add favourite list"
+                          data-toggle="tooltip">
+                    {% if object.get_template == 'safety' %}
+                      <img class="icon-heart safety-product"
+                           src="{% static 'img/home-new/heart-s.png' %}"
+                           alt="">
+                    {% else %}
+                      <img class="icon-heart normal-product"
+                           src="{% static 'img/home-new/heart.png' %}"
+                           alt="">
+                    {% endif %}
+                  </button>
+                {% endif %}
+              </div>
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+  window.addEventListener('load', (event) => {
+    htmx.on("htmx:beforeSend", function(evt) {
+      let id = evt.detail.requestConfig.elt.id;
+      const idArr = id.split("__");
+      if(idArr[0]=='add-to-cart') {
+        let sku = evt.detail.requestConfig.parameters.sku,
+          qty = evt.detail.requestConfig.parameters['qtybutton-'+sku],
+          price = evt.detail.requestConfig.elt.dataset.price,
+          name = evt.detail.requestConfig.elt.dataset.name;
+        window.dataLayer = window.dataLayer || [];
+          details = {
+          'event': 'addToCart',
+          'ecommerce': {
+            'currencyCode': 'NZD',
+            'add': {                // 'add' actionFieldObject measures.
+              'products': [
+                {            // adding a product to a shopping cart.
+                  'name': name,
+                  'id': sku,
+                  'price': price,
+                  'brand': '{{ object.get_brand }}',
+                  'category': '{{ object.get_categories }}',
+                  'variant': '',
+                  'quantity': qty
+                }
+              ]
+            }
+          }
+        }
+        dataLayer.push(details);
+      }
+    })
+    htmx.on("htmx:afterSwap", function(evt) {
+      let id = evt.detail.requestConfig.elt.id;
+      const idArr = id.split("__");
+      if(idArr[0]=='add-to-cart') {
+        fetch('/api/cart/',{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+              
+            },
+        })
+        .then((response) => response.json())
+        .then((data)=>{
+            let minicart_count_selector = htmx.find(".ltn__utilize-toggle .cart-count"),
+              minicart_subtotal_selector = htmx.find("#ltn__utilize-cart-menu .mini-cart-sub-total h5 span"),
+              minicart_notifications = htmx.find(".minicart-notifications"),
+              cart_count = "<sup>"+data.count+"</sup>",
+              cart_subtotal = "$"+ data.subtotal;
+            if(data.count > 999){
+              cart_count = "<sup>999+</sup>";
+            }
+            minicart_count_selector.className = "cart-count";
+            minicart_count_selector.innerHTML = cart_count;
+            minicart_subtotal_selector.innerHTML = cart_subtotal;
+            minicart_notifications.innerHTML = "";
+        })
+      }
+    })
+  });
+  </script>

@@ -1,0 +1,112 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Concept Showroom{% endblock %}
+{% block og-pagetitle %}Concept Showroom{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom/cms/concept-showroom.css' %}">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="videos-page">
+        <!-- BREADCRUMB AREA START -->
+        <div class="ltn__breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ltn__breadcrumb-inner">
+                            <div class="ltn__breadcrumb-list">
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'index' %}">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'index' %}">
+                                            Nationwide Stockists
+                                        </a>
+                                    </li>
+                                    <li>Concept Showroom</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BREADCRUMB AREA END -->
+        <div class="main">
+            <div class="page-title">
+                <h1>Concept Showroom</h1>
+            </div>
+            <div class="banner-top">
+                <div class="banner-fixed">
+                    <img src="{% static 'img/concept-showroom/concept-showroom-banner1.jpeg'%}" alt="">
+                </div>
+            </div>
+            <div class="banner-content">
+                <div class="bc-content">
+                    <h3>Visit our Concept Showroom & Factory Outlet Store Today!</h3>
+                    <span class="line-short"></span>
+                    <div class="sub-content">
+                        <h4>From out of town? No problem!</h4>
+                        <p>Book your <strong>FREE 30min or 60min</strong></p>
+                        <a href="https://calendly.com/newtechshowroom">Online Virtual Consultation</a>
+                    </div>
+                    <a href="https://calendly.com/newtechshowroom" class="btn">Book Now</a>
+                </div>
+            </div>
+            <div class="more-infor container">
+                <div class="mg-100 row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-left">
+                        <div class="cl-content">
+                            <h4>Book your viewing today or pop in and see the team.</h4>
+                            <p>Located at 525 Great South Road, Penrose, Auckland. Just a 1 minute drive from Exit 435
+                                <a
+                                    href="https://www.google.com/maps/place/Newtech+Bathroomware/@-36.9072768,174.8115638,19.75z/data=!4m5!3m4!1s0x0:0x119aa9e4c9aa9454!8m2!3d-36.907038!4d174.81136">
+                                    Ellerslie-Panmure Highway off-ramp from State Highway 1</a>.
+                            </p>
+                            <p>Our experienced team will be on hand to guide you through an extensive display of
+                                individual
+                                bathroom solutions and displays. Also feel free to browse our range of end-of-lines and
+                                discounted bathroom products available in our <a
+                                    href="https://www.trademe.co.nz/stores/Newtech-Bathroomware">Factory Outlet
+                                    Store</a>.
+                            </p>
+                            <p>The Concept Showroom and Factory Outlet Store is open <strong>Monday-Friday
+                                    9am-5pm</strong>
+                                with late closing on <strong>Thursday at 6.30pm</strong>.
+                            </p>
+                            <h5>Contact Us !</h5>
+                            <ul>
+                                <li>
+                                    <p><strong>T:</strong> <a href="tel:099306200">09 930 6200</a></p>
+                                    <p><strong>E:</strong> <a
+                                            href="mailto:aucklandshowroom@newtech.co.nz">aucklandshowroom@newtech.co.nz</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-right">
+                        <div class="short-video">
+                            <iframe class="shogun-video-embed "
+                                src="https://www.youtube.com/embed/Hs9qqqdmhSc?start=0&amp;end=0&amp;autoplay=0&amp;loop=0&amp;rel=1&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fnewtech.co.nz"
+                                allowfullscreen="" title="Embedded Youtube Video"
+                                width="100%" height="450"
+                            >
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gg-map">
+                <div class="gg-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.3022237920222!2d174.80877951239233!3d-36.90703777210101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d48de44809c4d%3A0x119aa9e4c9aa9454!2sNewtech%20Bathroomware!5e0!3m2!1sen!2s!4v1681358677621!5m2!1sen!2s" 
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

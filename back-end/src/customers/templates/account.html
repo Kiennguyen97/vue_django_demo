@@ -1,0 +1,123 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}My Account{% endblock %}
+{% block og-pagetitle %}My Account{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/custom/account-detail.css' %}">
+{% endblock %}
+{% load static %}
+{% block content %}
+  <main id="maincontent" class="page-main account account-details">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <!-- WISHLIST AREA START -->
+      <div class="dashboard-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- PRODUCT TAB AREA START -->
+              <div class="ltn__product-tab-area">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      <h1 class="page-title">Account Details</h1>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+                    <div class="col-lg-9 col-md-12 col-12">
+                      {% if object.id == user.id %}
+                        <div class="account-detail-content">
+                          <div class="account-detail-content-left">
+                            <div class="ltn__form-box">
+                              <form action="#" method="post" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="row">
+                                  <div class="col-12 account-detail-field">
+                                    <label>First name</label>
+                                    {{ form.first_name }}
+                                    <!-- <input type="text" name="first_name" value="{{user.first_name}}"> -->
+                                  </div>
+                                  <div class="col-12 account-detail-field">
+                                    <label>Last name</label>
+                                    {{ form.last_name }}
+                                    <!-- <input type="text" name="last_name" value="{{user.last_name}}"> -->
+                                  </div>
+                                  <div class="col-12 account-detail-field">
+                                    <label>Display Name</label>
+                                    <input type="text"
+                                           name="ltn__lastname"
+                                           placeholder="Ethan"
+                                           value="{{ user.first_name }} {{ user.last_name }}"
+                                           disabled/>
+                                  </div>
+                                  <div class="col-12 account-detail-field">
+                                    <label>Username</label>
+                                    <input type="text" disabled value="{{ user.email }}" />
+                                  </div>
+                                  {% if user.email_override %}
+                                    <div class="col-12 account-detail-field">
+                                      <label>Contact Email</label>
+                                      {{ form.email_override }}
+                                    </div>
+                                  {% endif %}
+                                  {% comment %} {% if user.company_id %}
+                              <div class="col-12 account-detail-field">
+                                <label for="">You are a member of company</label>
+                                <input type="text" name="company_id" value="{{user.company_id.name}}" disabled />
+                              </div>
+                                  {% endif %} {% endcomment %}
+                                  {% if company %}
+                                    <div class="col-12 account-detail-field">
+                                      <label for="">Account Name</label>
+                                      <input type="text" disabled value="{{ company.name }}""/>
+                                    </div>
+                                    <div class="col-12 account-detail-field">
+                                      <label for="">Customer Number</label>
+                                      <input type="text" disabled value="{{ company.company_code }}""/>
+                                    </div>
+                                  {% elif user.company_name %}
+                                    <div class="col-12 account-detail-field">
+                                      <label for="">Company Name</label>
+                                      <input type="text" name="company_name" value="{{ user.company_name }}" />
+                                    </div>
+                                  {% endif %}
+                                  {% if form.non_field_errors %}
+                                    {% for error in form.non_field_errors %}
+                                      <div class="alert alert-danger">
+                                        <p>
+                                          {{ error }}
+                                        </p>
+                                      </div>
+                                    {% endfor %}
+                                  {% endif %}
+                                </div>
+                                <div class="btn-wrapper">
+                                  <button type="submit"
+                                          class="btn theme-btn-2"
+                                          data-cy='btn-save-account-detail-change'>Save Changes</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="account-detail-content-right">
+                            <div class="account-detail-change-password">
+                              <h3>Change Password</h3>
+                              {% include 'change_password.html' %}
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- PRODUCT TAB AREA END -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- WISHLIST AREA END -->
+    </div>
+  </main>
+{% endblock content %}

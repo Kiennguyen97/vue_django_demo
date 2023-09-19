@@ -1,0 +1,79 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Nationwide Stockists{% endblock %}
+{% block og-pagetitle %}Nationwide Stockists{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/store-locations.css' %}">
+{% endblock %}
+{% load static %}
+{% block content %}
+{{ config|json_script:"config" }}
+
+<script type="text/javascript">
+  const config = document.getElementById('config').textContent;
+  const context = JSON.parse(config);
+</script>
+
+<main class="body">
+    <div class="container">
+        {% include 'breadcrumbs.html' %}
+        <div class="page-store-locations">
+            <h1 class="page-heading">Nationwide Stockists</h1>
+            <div class="page-content page-content--centered">
+                <p>Our products are available from hundreds of building, plumbing and electrical stockists across New Zealand. 
+                    Use the store locator below to find a store nearby. We also have a 
+                    <a href="{% url 'concept-showroom' %}">Concept Showroom</a> 
+                    in Penrose, Auckland and an online 
+                    <a href="https://www.trademe.co.nz/stores/Newtech-Bathroomware" target="_blank">Outlet Store</a>.
+                </p>
+                <div id="merchants">
+                    <div class="merchant-list" id="vue-app">
+                        <div>
+                            <div class="region-filter">
+                                Choose a region: 
+                                <select id="region-select" @change="selectedRegion($event)">
+                                    <option v-for="opt in config.items" v-bind:value="opt.uuid" v-text="opt.name"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="region" v-show="items.store_lists.length || items.resellers.length">
+                            <h2 v-text="selected.name"></h2>
+                            <div v-if="items.store_lists.length">
+                                <h3>Stockists with product available for viewing in store:</h3>
+                                <p>Please phone your local stockist to check what items are available for viewing in store.</p>
+                                <div class="stockists">
+                                    <div class="merchant" v-for="item in items.store_lists">
+                                        {% include 'store_location/item/default.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="items.resellers.length">
+                                <h3 class="resellers-toggle" @click="resellers_toggle = !resellers_toggle">
+                                    Other stockists:
+                                    <span class="arrow" v-bind:class="resellers_toggle ? 'open': ''"></span>
+                                </h3>
+                                <div class="resellers-wrap" v-show="resellers_toggle">
+                                    <div class="merchant" v-for="item in items.resellers">
+                                        {% include 'store_location/item/default.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+{% if DJANGO_ENVIRON == "prod" %}
+  <script src="{% static 'js/npm/vue.min.js' %}"></script>
+{% else %}
+  <script src="{% static 'js/npm/vue.js' %}"></script>
+{% endif %}
+<script src="{% static 'js/custom/store-location.js' %}"></script>
+{% endblock %}

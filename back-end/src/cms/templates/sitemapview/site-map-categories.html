@@ -1,0 +1,28 @@
+{%load static%}
+<div class="container">
+  <h1>Sitemap</h1>
+
+  <ul>
+    <li>
+      <h3>Categories</h3>
+      {% for c in cat %}
+      <ul>
+        <li>
+          <a href="{{c.slug}}"
+            >{{c.name}}</a
+          >
+          {% if c.has_children %}
+          <ul>
+              {% for children in c.children %}
+                <li>
+                  <a href="{{children.slug}}">{{children.name}}</a>
+                </li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+      </ul>
+      {% endfor %}
+    </li>
+  </ul>
+</div>

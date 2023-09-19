@@ -1,0 +1,182 @@
+{% load static %}
+<section class="nav" id="nav">
+  <div id="search-results-heading">
+    <h1 class="page-heading">
+       0 results for '{{search_term}}'
+    </h1>
+  </div>
+
+  <section class="skuSearchResults"></section>
+
+  <nav class="navBar navBar--sub">
+    <ul class="navBar-section account-navigation">
+      <li class="navBar-item">
+        <a
+          id="search-results-product-count"
+          class="navBar-action-color--active"
+          href="#"
+          data-product-results-toggle=""
+          @click="underlineMethod($event)"
+        >
+          Products ()
+        </a>
+      </li>
+      <li class="navBar-item">
+        <a
+          id="information-and-new"
+          class="navBar-action"
+          href="#"
+          data-content-results-toggle=""
+          @click="underlineMethod($event)"
+        >
+          News &amp; Information ()
+        </a>
+      </li>
+      <li class="navBar-item navBar-item--separate">
+        <a
+          class="navBar-action toggleLink"
+          data-collapsible="advanced-search-content"
+          href="#"
+          aria-controls="advanced-search-content"
+          aria-expanded="false"
+        >
+          <span class="toggleLink-text toggleLink-text--off" @click="showSearchForm(false)">
+            Hide Search Form
+          </span>
+          <span class="toggleLink-text toggleLink-text--on" @click="showSearchForm(true)">
+            Show Search Form
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- snippet location forms_search -->
+  <div class="page" v-if=" advanceStatus === true">
+    <div class="page-content page-content--centered">
+      <form
+        class="advancedSearch-form toggle-content is-open"
+        action=""
+        id="advanced-search-content"
+      >
+        <input type="hidden" name="mode" value="1" />
+        <h5 class="advancedSearch-title">Advanced Search</h5>
+        <div class="form-row">
+          <fieldset class="form-fieldset form-column">
+            <div class="form-field">
+              <label class="form-label" for="search_query_adv">
+                Search Keyword
+                <small>Required</small>
+              </label>
+              <input
+                type="text"
+                class="form-input"
+                name="search_query_adv"
+                data-error-message="Search field cannot be empty."
+                id="search_query_adv"
+                value="Ravani Double Tier Wall Vanity"
+              />
+              <span></span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="search-form-brand"> Brands </label>
+              <select class="form-select" name="brand" id="search-form-brand">
+                <option value="">No Preference</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="form-fieldset form-column">
+            <div class="form-field">
+              <label class="form-label"> Categories </label>
+              <div class="form-field-group" data-search-category-tree=""></div>
+            </div>
+            <div class="form-field">
+              <input
+                type="checkbox"
+                class="form-checkbox"
+                name="searchsubs"
+                value="ON"
+                id="search-form-searchsubs"
+                checked=""
+              />
+              <label class="form-label" for="search-form-searchsubs"
+                >Automatically search sub categories</label
+              >
+            </div>
+          </fieldset>
+        </div>
+        <hr />
+        <div class="form-row">
+          <div class="form-field search-price-range">
+            <h5 class="advancedSearch-title">Search By Price</h5>
+            <p class="form-label" for="search-form-price_from">Price Range</p>
+            <label>
+              <span class="is-srOnly">Price Range</span>
+              <span>From</span
+              ><input
+                type="number"
+                step="any"
+                class="form-input"
+                name="price_from"
+                id="search-form-price_from"
+                value=""
+              />
+            </label>
+            <label>
+              <span class="is-srOnly">Price Range</span>
+              <span>to</span
+              ><input
+                type="number"
+                step="any"
+                class="form-input"
+                name="price_to"
+                id="search-form-price_to"
+                value=""
+              />
+            </label>
+          </div>
+        </div>
+        <hr />
+        <h5 class="advancedSearch-title">Search By Setting</h5>
+        <div class="form-row form-row--half">
+          <div class="form-field">
+            <label class="form-label" for="search-form-featured">
+              Featured Products
+            </label>
+            <select
+              class="form-select"
+              name="featured"
+              id="search-form-featured"
+            >
+              <option value="">No Preference</option>
+              <option value="1">Only Featured Products</option>
+              <option value="2">Only Non-Featured Products</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="search-form-shipping">
+              Free Shipping
+            </label>
+            <select
+              class="form-select"
+              name="shipping"
+              id="search-form-shipping"
+            >
+              <option value="">No Preference</option>
+              <option value="1">Only Free Shipping</option>
+              <option value="2">Only Paid Shipping</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <input
+            id="advanced-search-submit"
+            class="button button--primary"
+            type="submit"
+            value="Search"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

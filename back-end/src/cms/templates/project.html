@@ -1,0 +1,219 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Projects{% endblock %}
+{% block og-pagetitle %}Projects{% endblock %}
+{% block page-content %}
+    At Newtech we design beautiful bathroomware products. Get inspired by some of the stunning bathroom projects we have
+    been involved in. Get the look today!
+{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom/cms/project.css' %}">
+{% endblock %}
+{% block content %}
+<div class="page-main">
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ltn__breadcrumb-inner">
+                        <div class="ltn__breadcrumb-list">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'index' %}">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>Projects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB AREA END -->
+    <div class="main">
+        <div class="project-main">
+            <div class="pm-top container">
+                <h1>Projects</h1>
+            </div>
+            <div class="list-project">
+                <div class="lp-items">
+                    {% for project in projects %}
+                    <div class="lpi-item">
+                        <a href="{{ project.get_absolute_url }}">
+                            <div class="image">
+                                <img src="{{ project.get_img_url }}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>{{ project.title }} {% if project.type_laundry %}| <span
+                                        class="laundry">{{project.type_laundry}}</span>{% endif %}</h4>
+                                <p>{{ project.short_description }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    {% comment %}
+                    <div class="lpi-item">
+                        <a href="">
+                            <div class="image">
+                                <img src="{% static 'img/project/project03.jpeg' %}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>Ben Lomond Drive | <span class="laundry">Dunedin</span></h4>
+                                <p>Modern and stylish. This Dunedin home accentuates the beauty of Newtech
+                                    bathroomware...</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lpi-item">
+                        <a href="">
+                            <div class="image">
+                                <img src="{% static 'img/project/project04.jpeg' %}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>Twin Peaks | <span class="laundry">Queenstown</span></h4>
+                                <p>This remarkable home in Queenstown discovers the elegance of solid timber vanities...
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lpi-item">
+                        <a href="">
+                            <div class="image">
+                                <img src="{% static 'img/project/project05.jpeg' %}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>Rueben Drive | <span class="laundry">Rolleston</span></h4>
+                                <p>Designed with the family in mind this Rolleston home makes the most of LED mirror
+                                    lighting...</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lpi-item">
+                        <a href="">
+                            <div class="image">
+                                <img src="{% static 'img/project/project06.jpeg' %}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>Washed Oak Ravani | <span class="laundry">Auckland</span></h4>
+                                <p>A scandinavian design with Washed Oak bathroom vanities matched with LED mirrors...
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lpi-item">
+                        <a href="">
+                            <div class="image">
+                                <img src="{% static 'img/project/project07.jpeg' %}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>Waiuku</h4>
+                                <p>A luxurious modern day family bathroom in Waiuku. The brief was to create an eco,
+                                    energy...</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lpi-item">
+                        <a href="">
+                            <div class="image">
+                                <img src="{% static 'img/project/project08.jpeg' %}" alt="">
+                            </div>
+                            <div class="content">
+                                <h4>Alba Takapuna</h4>
+                                <p>lba Takapuna is a recently completed boutique complex of just 19 high quality
+                                    apartments...</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="tesimanation">
+        <div class="testi-bottom container">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="test-content">
+                        <p>The hinge arrived today and we couldn't be happier! Thanks ever so much for handling this
+                            through the warranty process. As we didn't have the appropriate paperwork, we were more than
+                            willing to pay for the hinge out of pocket. Your willingness to deal with this as you did
+                            makes us even happier having chosen Newtech products for our renovation.</p>
+                        <span>Scott - Ashburton</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="test-content">
+                        <p>Just want to pass on how impressed we were with your customer service. You persisted in
+                            trying to fix our issue. We think you all went above and beyond what most businesses
+                            would've done. Very impressed! We will certainly recommend you to our friends</p>
+                        <span>James</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="test-content">
+                        <p>I have very high praise for your wonderful sales, customer service and accounts staff ...
+                            absolutely top class service and communications</p>
+                        <span>Karen - Silverdale</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="test-content">
+                        <p>Very happy with service from Newtech and they have a great range of products at good prices
+                        </p>
+                        <span>Joanne - Westport</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="test-content">
+                        <p>I wish to shout out how AWESOME the team is up there! You've gone above and beyond so many
+                            times. It is not every day we feel appreciated. Thank you</p>
+                        <span>Cass</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="test-content">
+                        <p>No other supplier gives us the level of service that Newtech do, and this is why you guys are
+                            always my go to supplier.</p>
+                        <span>Leanne</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB AREA END -->
+</div>
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+    function customOwl(item, loop, dots, nav, marginCustom, item1, item2) {
+        $(item).owlCarousel({
+            loop: loop,
+            dots: dots,
+            margin: marginCustom,
+            nav: nav,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            autoplay: true,
+            autoplayHoverPause: true,
+            items: 2,
+            responsive: {
+                0: {
+                    items: item1,
+                },
+                767: {
+                    items: item1,
+                },
+                992: {
+                    items: item2,
+                }
+            },
+        });
+    }
+    window.addEventListener('load', () => {
+        customOwl(".tesimanation .testi-bottom .owl-carousel", true, true, true, 100, 1, 2);
+    })
+</script>
+{% endblock scripts %}

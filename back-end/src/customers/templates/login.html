@@ -1,0 +1,109 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Login{% endblock %}
+{% block og-pagetitle %}Login{% endblock %}
+{% load static %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/login-register.css' %}">
+{% endblock %}
+{% block content %}
+  <main id="maincontent" class="page-main">
+    <!-- Message AREA START -->
+    {% include 'message.html' %}
+    <!-- Message AREA END -->
+    <!-- LOGIN AREA START -->
+    <div class="ltn__login-area pb-65">
+      <div class="container login-container">
+        <div class="row">
+          <div class="col-lg-7 paddingright50">
+            <div class="lg-content-left">
+              <div class="lg-main">
+                <div class="lg-content-text">
+                  <h2>Create an account with us to order today</h2>
+                  <div class="lg-register">
+                    <p>
+                      <a href="{% url 'contact' %}">Contact Us</a> today to setup a Trade
+                    Account
+                  </p>
+                  <p>
+                    Or
+                  <a href="{% url 'register' %}" class="register-link">Register here</a
+                  >
+                  to create a Guest Account
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="lg-banner">
+            <img src="{% static 'img/home-new/Group_756.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 paddingleft50">
+        <div class="account-login-inner">
+          <h2>Or Login for existing customers</h2>
+          <form id="login-form"
+                action="#"
+                class="ltn__form-box contact-form-box"
+                method="post">
+            <!-- <input type="text" name="email" placeholder="Email*">
+                                <input type="password" name="password" placeholder="Password*"> -->
+            {% csrf_token %} {{ form.as_table }}
+            <div class="go-to-btn mt-20">
+              <a href="{% url 'reset_password' %}"><small>Forgot Password</small></a>
+            </div>
+            {% if cls_name in FORM_RECAPTCHA %}
+              <span>
+                This site is protected by reCAPTCHA and the Google
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+              <a href="https://policies.google.com/terms">Terms of Service</a> apply.</span>
+          {% endif %}
+          <div class="btn-wrapper mt-0">
+            {% if cls_name in FORM_RECAPTCHA %}
+              <button title="Submit"
+                      class="theme-btn-1 btn btn-block g-recaptcha"
+                      data-sitekey="{{ RECAPTCHA_SITE_KEY }}"
+                      data-callback='onSubmitLogin'
+                      data-action='submit'>
+                Login
+              </button>
+            {% else %}
+              <button class="theme-btn-1 btn btn-block" type="submit">Login</button>
+            {% endif %}
+          </div>
+        </form>
+        <div class="rappid-link-custom">
+          <img src="{% static 'img/home-new/svgexport-1.png' %}" alt="" />
+          <p>
+            Looking for our new Rappid App?
+            <br />
+          Click <a href="https://stock.amtechsolutions.co.nz">Here</a> to login
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- LOGIN AREA END -->
+</main>
+{% endblock content %}
+{% block scripts %}
+  {% if cls_name in FORM_RECAPTCHA %}
+    <script type="text/javascript">
+  function onSubmitLogin(e){
+    var form = document.forms['login-form'];
+    
+  // Trigger HTML5 validity.
+    var reportValidity = form.reportValidity();
+
+  // Then submit if form is OK.
+    if(reportValidity){
+        form.submit();
+    }
+  }
+    </script>
+  {% endif %}
+{% endblock scripts %}

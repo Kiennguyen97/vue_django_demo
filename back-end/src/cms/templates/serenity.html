@@ -1,0 +1,86 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Serenity Range by Newtech{% endblock %}
+{% block og-pagetitle %}Serenity Range by Newtech{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/cms-custom.css' %}">
+{% endblock %}
+{% block content %}
+<div class="body">
+    <main class="page-main">
+        <div class="page-content">
+            <div class="shg-box">
+                <div class="shg-box-overlay"></div>
+                <div class="shg-box-content">
+                    <div class="shogun-image-container">
+                        <img src="{% static 'img/serenity/serenity.png' %}"
+                             class="shogun-image ">
+                    </div>
+                </div>
+            </div>
+            <div class="shg-box">
+                <div class="shg-box-overlay"></div>
+                <div class="shg-box-content">
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/colors.png' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/features.png' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/arrow.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container shogun-image-linked">
+                        <a class="shogun-image-link" href="/categories/harrow"
+                           target="_blank">
+                            <img class="shogun-image"
+                                 src="{% static 'img/serenity/harrow.png' %}">
+                        </a>
+                    </div>
+                    <div class="shogun-image-container shogun-image-linked">
+                        <a class="shogun-image-link" href="/categories/oxley" target="_blank">
+                            <img class="shogun-image"
+                                 src="{% static 'img/serenity/oxley.png' %}">
+                        </a>
+                    </div>
+                    <div class="shogun-image-container shogun-image-linked">
+                        <a class="shogun-image-link" href="/categories/francisco"
+                           target="_blank">
+                            <img class="shogun-image"
+                                 src="{% static 'img/serenity/francisco.png' %}">
+                        </a>
+                    </div>
+                    <div class="shogun-image-container shogun-image-linked">
+                        <a class="shogun-image-link" href="/categories/porscha"
+                           target="_blank">
+                            <img class="shogun-image"
+                                 src="{% static 'img/serenity/porscha.png' %}">
+                        </a>
+                    </div>
+                    <div class="shogun-image-container shogun-image-linked">
+                        <a class="shogun-image-link"
+                           href="{% url 'product-search-page' %}?q=toni"
+                           target="_blank">
+                            <img class="shogun-image"
+                                 src="{% static 'img/serenity/vessel.png' %}">
+                        </a>
+                    </div>
+                    <div class="shogun-image-container shogun-image-linked">
+                        <a class="shogun-image-link"
+                           href="https://view.publitas.com/newtech-bathroomware/serenity-range/"
+                           target="_blank">
+                            <img class="shogun-image"
+                                 src="{% static 'img/serenity/brochure.png' %}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}

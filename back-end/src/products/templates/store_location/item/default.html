@@ -1,0 +1,8 @@
+<div>
+    <h4><span v-text="item.name"></span></h4>
+    <div v-text="item.street"></div>
+    <div v-if="item.suburb" v-text="item.suburb"></div>
+    <div v-text="item.district"></div>
+    <div class="phone">P&nbsp;<a v-bind:href="'tel: +' + item.phone_number" v-text="item.phone_number"></a></div>
+    <div class="map-link"><a v-bind:href="item.map_view" target="_blank">View on Google maps</a></div>
+</div>

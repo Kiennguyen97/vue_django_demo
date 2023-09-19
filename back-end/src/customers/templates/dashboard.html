@@ -1,0 +1,166 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Dashboard{% endblock %}
+{% block og-pagetitle %}Dashboard{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/sidebar-customer.css' %}">
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/npm/lightpick.css' %}">
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <div class="dashboard-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">My Dashboard</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <div class="col-lg-9 col-md-12 col-12">
+              <div class="short-information">
+                <div class="si-top">
+                  <div class="sit-contentbox">
+                    <div class="welcome-tex">
+                      Hi, <strong>{{ user.first_name }}</strong>
+                    </div>
+                  </div>
+                  <div class="info-detail">
+                    <div class="id-left id-content">
+                      <h4>Account Details</h4>
+                      <ul class="lis-info">
+                        <li>
+                          <p>
+                            Email Address
+                          </p>
+                          <span><a href="malto: {{ user.email }}">{{ user.email }}</a></span>
+                        </li>
+                        <li>
+                          <p>
+                            Account Type
+                          </p>
+                          {% if user.is_trade %}
+                            <span>Credit Account</span>
+                          {% else %}
+                            <span>Retail Account</span>
+                          {% endif %}
+                        </li>
+                        <li>
+                          <p>
+                            Account Name
+                          </p>
+                          <span>{{ user.first_name }} {{ user.last_name }}</span>
+                        </li>
+                        {% if user.odoo_ref %}
+                          <li>
+                            <p>
+                              Account Number
+                            </p>
+                            <span>#{{ user.odoo_ref }}</span>
+                          </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                    <div class="id-right id-content">
+                      <h4>Your Sales Person</h4>
+                      <ul class="lis-info">
+                        {% if user.is_trade and user.company_id %}
+                          <li>
+                            <p>
+                              Name
+                            </p>
+                            <span>{{ user.company_id.sales_name }}</span>
+                          </li>
+                          <li>
+                            <p>
+                              Email
+                            </p>
+                            <span><a href="mailto:{{ user.company_id.sales_email }}">{{ user.company_id.sales_email }}</a></span>
+                          </li>
+                        {% else %}
+                          <li>
+                            <p>
+                              Name
+                            </p>
+                            <span>{{ default_selas_person_name }}</span>
+                          </li>
+                          <li>
+                            <p>
+                              Email
+                            </p>
+                            <span><a href="mailto:{{ default_selas_person_email }}">{{ default_selas_person_email }}</a></span>
+                          </li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="si-bottom"
+                     x-data="{ tabs: [ { 'id': 'last-month-tab', 'target': 'pills-last-month', 'name': 'Last Month' }, { 'id': 'this-month-tab', 'target': 'pills-this-month', 'name': 'This Month' }, { 'id': 'custom-range-tab', 'target': 'pills-custom-range', 'name': 'Custom Range' } ], from: '', to: '', month_names_short: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], chart_setting: { type: 'line', data: { labels: [], datasets: [ { label: 'No. Orders', data: [], borderColor: [ '#8098E0' ], backgroundColor: [ '#8098E0' ], yAxisID: 'order', }, { label: '$ Spent', data: [], borderColor: [ '#FFC956' ], backgroundColor: [ '#FFC956' ], yAxisID: 'money_spent', } ] }, options: { responsive: true, maintainAspectRatio: false, scales: { order: { type: 'linear', display: true, position: 'right', max: 0, min: 0, ticks: { stepSize: 50, color: '#8098E0', font: { family: 'Zona Pro', size: 12, weight: 'bold', } } }, money_spent: { type: 'linear', display: true, position: 'left', max: 0, min: 0, ticks: { stepSize: 50, color: '#FFC956', font: { family: 'Zona Pro', size: 12, weight: 'bold', } } }, }, plugins: { legend: { display: true, position: 'bottom', labels: { padding: 40, color: 'rgb(76, 90, 133)', boxHeight: 1, font: { family: 'Zona Pro', size: 14, weight: 'bold', lineHeight: 1.2, }  } } } } }, current_tab: 'this-month-tab', changeTab(tabid){ const d = new Date(); this.current_tab = tabid; if (tabid == 'this-month-tab'){ let month = ('0' + (d.getMonth() + 1)).slice(-2), last_day_of_month = new Date(d.getFullYear(), month, 0), chart_labels = [...Array(last_day_of_month.getDate()).keys()].map(i => i + 1); from_date = d.getFullYear() + '-' + month + '-01', to_date = d.getFullYear() + '-' + month + '-' + last_day_of_month.getDate(); this.reloadChart(from_date, to_date, {'days': chart_labels}, month) } if (tabid == 'last-month-tab'){ d.setMonth(d.getMonth() - 1) let month = ('0' + (d.getMonth() + 1)).slice(-2), last_day_of_month = new Date(d.getFullYear(), d.getMonth(), 0), chart_labels = [...Array(last_day_of_month.getDate()).keys()].map(i => i + 1); from_date = d.getFullYear() + '-' + month + '-01', to_date = d.getFullYear() + '-' + month + '-' + last_day_of_month.getDate(); this.reloadChart(from_date, to_date, {'days': chart_labels}, month) } }, reloadChart(from, to, type_chart, month){ let self = this; // console.log(from) // console.log(to) self.from = from; self.to = to; fetch( '/customers/api/reload', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRFToken': '{{ csrf_token }}', 'Class-Name': 'customer_dashboard' }, body: JSON.stringify( { from: new Date(from), to: new Date(to), month: Number(month), type_chart: type_chart } ) } ).then((response) => response.json()) .then((json) => { self.chart_setting.data.labels = json.chart_labels self.chart_setting.data.datasets[0].data = json.datasets_order self.chart_setting.data.datasets[1].data = json.datasets_money_spent self.chart_setting.options.scales.order.max = json.max_order self.chart_setting.options.scales.order.ticks.stepSize = json.order_size self.chart_setting.options.scales.money_spent.max = json.max_money_spent self.chart_setting.options.scales.money_spent.ticks.stepSize = json.money_spent_size let ctx = document.getElementById('chart'); ctx_chart.destroy(); ctx_chart = new Chart(ctx, self.chart_setting); });  }, init(){ const d = new Date(); let month = ('0' + (d.getMonth() + 1)).slice(-2), last_day_of_month = new Date(d.getFullYear(), month, 0), chart_labels = [...Array(last_day_of_month.getDate()).keys()].map(i => i + 1); from_date = d.getFullYear() + '-' + month + '-01', to_date = d.getFullYear() + '-' + month + '-' + last_day_of_month.getDate(); this.reloadChart(from_date, to_date, {'days': chart_labels}, month); } }"
+                     x-init="$nextTick(() => { let picker = new Litepicker({ element: document.getElementById('custom-range-tab'), autoApply: false, singleMode: false, position: 'right' }); let ctx = document.getElementById('chart'); ctx_chart = new Chart(ctx, $data.chart_setting); picker.on('button:apply', (d1, d2) => { let chart_labels = [], from_date = d1.getFullYear() + '-' + ('0' + (d1.getMonth() + 1)).slice(-2) + '-' + ('0' + d1.getDate()).slice(-2), to_date = d2.getFullYear() + '-' + ('0' + (d2.getMonth() + 1)).slice(-2) + '-' + ('0' + d2.getDate()).slice(-2), type_chart = {}; if (d2.getFullYear() == d1.getFullYear()){ if (d2.getMonth() == d1.getMonth()){ let size = d2.getDate() - d1.getDate() + 1; chart_labels = [...Array(size).keys()].map(i => i + d1.getDate()); type_chart = {'days': chart_labels}; } if (d2.getMonth() > d1.getMonth()){ let size = d2.getMonth() - d1.getMonth() + 1; let months = [...Array(size).keys()].map(i => i + d1.getMonth() + 1) chart_labels = [...Array(size).keys()].map(i => $data.month_names_short[(i + d1.getMonth())]); type_chart = {'months': months, 'chart_labels': chart_labels}; } }else{ let size = d2.getFullYear() - d1.getFullYear() + 1; chart_labels = [...Array(size).keys()].map(i => i + d1.getFullYear()); type_chart = {'years': chart_labels, 'chart_labels': chart_labels}; } $data.reloadChart(from_date, to_date, type_chart, 0) }); })">
+                  <div class="sib-box">
+                    <div class="sib-left">
+                      <div class="box-content">
+                        <span class="title">Order History</span>
+                        <span class="total-number">${{ order_totals | floatformat:2 }}</span>
+                        <span class="total-order">{{ order_count }} orders</span>
+                      </div>
+                    </div>
+                    <div class="sib-right">
+                      <div class="list-tab">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                          <template x-for="tab in tabs">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link"
+                                      x-bind:id="tab.id"
+                                      data-bs-toggle="pill"
+                                      data-bs-target="#pills-last-month"
+                                      type="button"
+                                      role="tab"
+                                      aria-controls="pills-home"
+                                      :class="current_tab == tab.id ? 'active' : ''"
+                                      @click="changeTab(tab.id)"
+                                      x-text="tab.name">
+                              </button>
+                            </li>
+                          </template>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="time-range">
+                      <label>
+                        <span x-text="'Time range: '"></span><span x-text="from"></span> - <span x-text="to"></span>
+                      </label>
+                    </div>
+                    <div class="tab-pane fade show active"
+                         id="pills-last-month"
+                         role="tabpanel"
+                         aria-labelledby="last-month-tab">
+                      <canvas id="chart" width="400" height="400"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/npm/chart.min.js' %}" defer></script>
+  <script src="{% static 'js/npm/litepicker.js' %}" defer></script>
+  <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+  <script src="{% static 'js/cdn/htmx.min.js' %}" defer></script>
+  <script type="text/javascript">var ctx_chart;</script>
+{% endblock %}

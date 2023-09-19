@@ -1,0 +1,137 @@
+{% load static %}
+<link type="text/css" href="{% static 'css/custom/home/product-container.css' %}" rel="stylesheet">
+<div class="pro-container">
+  <div class="container">
+    <div class="main full">
+      <div class="home-intro">
+        <!--
+                    <h2 class="page-heading">WELCOME TO NEWTECH</h2>
+            
+                    <p>Here at Newtech we are all about bathroomware and creating an experience for our customers,
+                    from innovative high quality bathroomware right through to our customer service and nationwide dispatch.
+                    We pride ourselves on offering the very best service and support, backed by an industry leading team.
+                    All our products are available for purchase from all leading bathroom showrooms nationwide.
+                    Whether you are a merchant, tradesperson, developer or private home owner we will provide you with all the
+                    information you need to make your best purchasing decision - we hope you enjoy your journey with us.
+                    </p>
+            
+                    <div class="button-box"><a href="/categories" class="button button--tertiary">VIEW ALL OUR PRODUCTS</a></div>
+                  -->
+
+        <div class="category-grid">
+          <div class="category-grid-item">
+            <a href="/categories/web/vanities-by-type">
+              <img
+                src="{% static 'img/home/container/c1.jpg' %}"
+              />
+              <div class="category-grid-title">
+                <span>Vanities</span>
+              </div>
+            </a>
+          </div>
+          <div class="category-grid-item">
+            <a href="/categories/web/baths">
+              <img
+                src="{% static 'img/home/container/c2.webp' %}"
+              />
+              <div class="category-grid-title">
+                <span>Baths</span>
+              </div>
+            </a>
+          </div>
+          <div class="category-grid-item">
+            <a href="/categories/web/laundry">
+              <img
+                src="{% static 'img/home/container/c3.jpg' %}"
+              />
+              <div class="category-grid-title">
+                <span>Laundries</span>
+              </div>
+            </a>
+          </div>
+          <div class="category-grid-item">
+            <a href="/categories/web/basins">
+              <img
+                src="{% static 'img/home/container/c4.webp' %}"
+              />
+              <div class="category-grid-title">
+                <span>Basins</span>
+              </div>
+            </a>
+          </div>
+          <div class="category-grid-item">
+            <a href="/categories/web/heated-towel-rails">
+              <img
+                src="{% static 'img/home/container/c5.jpg' %}"
+              />
+              <div class="category-grid-title">
+                <span>Towel Rails</span>
+              </div>
+            </a>
+          </div>
+          <div class="category-grid-item">
+            <a href="/categories/web/mirrors">
+              <img
+                src="{% static 'img/home/container/c6.jpg' %}"
+              />
+              <div class="category-grid-title">
+                <span>Mirrors</span>
+              </div>
+            </a>
+          </div>
+          <!--
+                        <div class="category-grid-item">
+                            <a href="/categories/accessories">
+                                <img src="https://cdn11.bigcommerce.com/s-j70d65jl8z/stencil/e6e759f0-8a0c-013b-0aac-3eea7a1ac334/img/home/accessories.jpg">
+                                <div class="category-grid-title">
+                                    <span>Accessories</span>
+                                </div>
+                            </a>
+                        </div>-->
+        </div>
+      </div>
+      {% if prods|length %}
+      <div class="home-featured">
+        <h2 class="page-heading">Featured Products</h2>
+        <ul class="product-grid product-grid--maxCol4"
+            data-product-type="featured">
+          {% for prod in prods %}
+          <li class="product">
+            {% include 'product/item/default.html' %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      <div class="gallery-homepage" style="display: none;">
+        <h2 class="project-gallery-heading">Project Gallery</h2>
+        <div class="slider slick-load">
+              <section class="heroCarousel2">
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S1.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S2.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S3.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S4.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S5.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S6.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S7.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S8.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S9.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S10.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S11.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S13.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S14.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S15.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S16.jpg' %}" alt="" /></a></div>
+                  <div class="slide-img"><a href="/categories/web/heated-towel-rails"><img src="{% static 'img/home/container/slider/S17.jpg' %}" alt="" /></a></div>
+              </section>
+              <button class="slick-prev"><img src="{% static 'img/home/pre.png' %}" alt=""></button>
+              <button class="slick-next"><img src="{% static 'img/home/next.png' %}" alt=""></button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% block scripts %}
+<script>
+</script>
+{% endblock scripts%}

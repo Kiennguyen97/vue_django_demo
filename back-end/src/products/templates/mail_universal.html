@@ -1,0 +1,54 @@
+{% block content %}
+	{% load static %}
+	<table style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;width: 100%;">
+		<tr>
+			<td>
+				<table style="text-align: left;">
+					<tr>
+						<td>
+							<div>
+								Here is detail information:
+							</div>
+							<table style="border-collapse:collapse;">
+								<tr>
+									<td>
+										<ul style="padding-left: 10px; margin: 0;">
+											<li>
+												<label>Towel Rail selection:</label>
+												<strong>{{ towel_rail }}</strong>
+											</li>
+											<li>
+												<label>Name:</label>
+												<strong>{{ name }}</strong>
+											</li>
+											<li>
+												<label>Which store did you purchase your bathroom products from?:</label>
+												<strong>{{ company_name }}</strong>
+											</li>
+											<li>
+												<label>Shipping Address:</label>
+												<strong>{{ shipping_address }}</strong>
+											</li>
+											<li>
+												<label>Email Address:</label>
+												<strong>{{ email }}</strong>
+											</li>
+											<li>
+												<label>Best contact phone number:</label>
+												<strong>{{ phone }}</strong>
+											</li>
+											<li>
+												<label>Proof of purchase:</label>
+												<strong>[See attached file]</strong>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+{% endblock content %}

@@ -1,0 +1,182 @@
+{% load static %}
+<script type="text/javascript">
+    function searchData() {
+        return {
+            results: {
+                items: [],
+                total_count: 0,
+            },
+            search_term: "",
+            is_search: false,
+            search_url: "{% url 'product-search-page' %}",
+            exact_items: [],
+            open: false,
+            init() {
+                let self = this;
+                window.onclick = function (event) {
+                    let header_search_form_el = document.getElementsByClassName("header-search-1-form");
+                    self.open = header_search_form_el[0].contains(event.target);
+                }
+            },
+            fetchResults(event) {
+                this.search_term = event.target.value;
+                if (controller) {
+                    controller.abort()
+                }
+                controller = new AbortController()
+                signal = controller.signal
+                this.exact_items = [];
+                let self = this
+                if (this.search_term != "") {
+                    fetch(
+                        "{% url 'product-search' %}" + "?product-search=" + this.search_term,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRFToken": "{{ csrf_token }}"
+                            },
+                            signal: signal
+                        }
+                    )
+                    .then((response) => response.json())
+                    .then((json) => {
+                        self.results = json;
+                        self.results.items.forEach(function (item, index) {
+                            if (item.is_exact) {
+                                self.exact_items.push(item);
+                            }
+                        });
+                        this.open = true;
+                        this.is_search = true;
+                    });
+                } else {
+                    this.is_search = false;
+                }
+            },
+            searchSubmit() {
+                if (this.search_term != "") {
+                    window.location.href = this.search_url + "?q=" + this.search_term;
+                }
+            },
+            get_url_search() {
+                return this.search_url + "?q=" + this.search_term;
+            },
+            convertPrice(price) {
+                return price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+            },
+            get_item_price(item) {
+                let price = "$" + this.convertPrice(item.price);
+                if (!item.prod_can_purchase) {
+                    price = "POA";
+                } else {
+                    if (parseInt(item.number_total) > 0) {
+                        price = "From $" + this.convertPrice(item.price);
+                    }
+                }
+                return price;
+            },
+        };
+    }
+</script>
+<div class="search-form" x-data="searchData()">
+    <div class="header-search-1-form">
+        <form id="form-search-header"
+              method="get"
+              action="{% url 'product-search-page' %}">
+            <fieldset class="form form-fieldset">
+                <div class="form-field">
+                    <input class="form-input" id="rp-input-search"
+                           data-cy="search-input"
+                           autocomplete="off"
+                           type="text"
+                           name="q"
+                           placeholder="Search by Keywords"
+                           @input.debounce.500ms="fetchResults($event)"/>
+                    <template x-if="search_term !== ''">
+                        <a class="search-action" x-bind:href="get_url_search"><i class="far fa-search"></i></a>
+                    </template>
+                    <template x-if="!open || search_term === ''">
+                        <span class="search-action"><i class="far fa-search"></i></span>
+                    </template>
+                </div>
+            </fieldset>
+            <template x-if="open">
+                <div class="quicksearch-results-container">
+                    <div class="container">
+                        <template x-if="!results.items.length && is_search">
+                            <div class="no-result">0 product results for '<span
+                                    x-text="search_term"></span>'
+                            </div>
+                        </template>
+                        <template x-if="results.total_count > 0">
+                            <div class="product-count">
+                                <span x-text="results.total_count + ' results for'"></span>
+                                '<span x-text="search_term"></span>'
+                            </div>
+                        </template>
+                        <template x-if="exact_items.length">
+                            <div class="sku-quicksearch-results">
+                                Exact SKU Match: <a x-bind:href="exact_items[0].get_absolute_url" x-bind:title="exact_items[0].name"
+                                                    x-text="exact_items[0].name"></a>
+                            </div>
+                        </template>
+                        <template x-if="results.items.length">
+                            <div class="quicksearch-results">
+                                <a class="modal-close" x-on:click="open = false;" href="javascript:void(0)">×</a>
+                                <ul class="products product-grid items product-items">
+                                    <template x-for="item in results.items">
+                                        <li class="item product product-item">
+                                            <article class="card card-alternate">
+                                                <figure class="card-figure">
+                                                    <a x-bind:href="item.get_absolute_url" x-bind:title="item.name">
+                                                <span class="card-img-container">
+                                                    <img class="card-image lazyload"
+                                                         src="{% static 'img/cms/loading.svg' %}"
+                                                         x-bind:data-src="item.get_img_urls[0]" data-sizes="auto"
+                                                         x-bind:title="item.name">
+                                                </span>
+                                                    </a>
+                                                    <figcaption class="card-figcaption"></figcaption>
+                                                </figure>
+                                                <div class="card-body">
+                                                    <h4 class="card-title">
+                                                        <a class="card-link"
+                                                           x-bind:href="item.get_absolute_url"
+                                                           x-bind:title="item.name"
+                                                           x-text="item.name"></a>
+                                                    </h4>
+                                                    <div class="product-info-price card-text">
+                                                        <div class="price product-item-price">
+                                                            <div class="price-box price-final_price">
+                                                            <span class="price-container price-final_price tax weee">
+                                                                <span :id="'product-price-' + item.sku"
+                                                                      class="price-wrapper ">
+                                                                    <span class="price"
+                                                                          x-text="get_item_price(item)"></span>
+                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </template>
+                                </ul>
+                                <div class="actions">
+                                    <a x-bind:href="get_url_search">
+                                    <span>
+                                        View All Products
+                                    </span>
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </form>
+    </div>
+</div>

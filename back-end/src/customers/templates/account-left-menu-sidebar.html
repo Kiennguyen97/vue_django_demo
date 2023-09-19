@@ -1,0 +1,108 @@
+{% block css %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/sidebar-customer.css' %}">
+{% endblock %}
+<div class="ltn__tab-menu-list mb-50 menu-account-sidebar">
+  <h5 class="nav-title mobile-show">My Account</h5>
+  <div class="nav nav-items">
+    <a href="{% url 'dashboard' %}" data-cy="account-detail-nav-link">
+      <img src="{% static 'img/home-new/dashboard.png' %}" alt="Dashboard">
+      <img class="icon-hover"
+           src="{% static 'img/home-new/dashboard-hover.png' %}"
+           alt="Dashboard">
+      Dashboard
+    </a>
+    {% if user.is_active and user.role == 'admin'  %}
+      <a href="{% url 'update_customer' user.id %}"
+         class="accordion-button"
+         type="button"
+         data-bs-toggle="collapse"
+         data-bs-target="#panelsStayOpen-collapseOne"
+         data-cy="account-detail-nav-link">
+        <img src="{% static 'img/home-new/user-detail.png' %}"
+             alt="Account Details">
+        <img class="icon-hover"
+             src="{% static 'img/home-new/user-detail-hover.png' %}"
+             alt="Account Details">
+        Account Details
+      </a>
+      <div id="panelsStayOpen-collapseOne"
+           class="accordion-collapse collapse"
+           aria-labelledby="panelsStayOpen-headingOne">
+        <a href="{% url 'update_customer' user.id %}"
+           data-cy="account-detail-nav-link">
+          <img src="{% static 'img/home-new/user-cus.png' %}" alt="My Details">
+          <img class="icon-hover"
+               src="{% static 'img/home-new/user-cus-hover.png' %}"
+               alt="My Details">
+          My Details
+        </a>
+        <a href="{% url 'user_management' %}" data-cy="account-detail-nav-link">
+          <img src="{% static 'img/home-new/user-group.png' %}"
+               alt="User Management">
+          <img class="icon-hover"
+               src="{% static 'img/home-new/user-group-hover.png' %}"
+               alt="User Management">
+          User Management
+        </a>
+      </div>
+    {% else %}
+      <a href="{% url 'update_customer' user.id %}" data-cy="account-details">
+        <img src="{% static 'img/home-new/user-cus.png' %}" alt="Account Details">
+        <img class="icon-hover"
+             src="{% static 'img/home-new/user-cus-hover.png' %}"
+             alt="Account Details">
+        Account Details
+      </a>
+    {% endif %}
+    <a href="{% url 'order_history' user.id %}"
+       data-cy="order-history-nav-link">
+      <img src="{% static 'img/home-new/order.png' %}" alt="Orders">
+      <img class="icon-hover"
+           src="{% static 'img/home-new/order-hover.png' %}"
+           alt="Orders">
+      Orders
+    </a>
+    {% if user.company_id  %}
+      <a href="{% url 'invoices' user.id %}" data-cy="order-history-nav-link">
+        <img src="{% static 'img/home-new/invoices.png' %}" alt="Invoices">
+        <img class="icon-hover"
+             src="{% static 'img/home-new/invoices-hover.png' %}"
+             alt="Invoices">
+        Invoices
+      </a>
+      <a href="{% url 'backorder' user.id %}"
+         data-cy="order-backorder-nav-link">
+        <img src="{% static 'img/home-new/backorder.png' %}" alt="Backorders">
+        <img class="icon-hover"
+             src="{% static 'img/home-new/backorder-hover.png' %}"
+             alt="Backorders">
+        Backorders
+      </a>
+    {% endif %}
+    <a href="{% url 'favourites' %}" data-cy="favourites-nav-link">
+      <img src="{% static 'img/home-new/heart-solid.png' %}" alt="Favourites">
+      <img class="icon-hover"
+           src="{% static 'img/home-new/heart-solid-hover.png' %}"
+           alt="Favourites">
+      Favourites
+    </a>
+    <a href="{% url 'address_book' user.id %}"
+       data-cy="address-book-nav-link">
+      <img src="{% static 'img/home-new/location.png' %}" alt="Address Book">
+      <img class="icon-hover"
+           src="{% static 'img/home-new/location-hover.png' %}"
+           alt="Address Book">
+      Address Book
+    </a>
+    <a href="{% url 'sign_out' %}" data-cy="sign-out-nav-link">
+      <img src="{% static 'img/home-new/log-out.png' %}" alt="Logout">
+      <img class="icon-hover"
+           src="{% static 'img/home-new/log-out-hover.png' %}"
+           alt="Logout">
+      Logout
+    </a>
+  </div>
+</div>

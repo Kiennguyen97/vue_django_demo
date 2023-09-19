@@ -1,0 +1,165 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Laundry{% endblock %}
+{% block og-pagetitle %}Laundry{% endblock %}
+{% block page-content %}
+Select from sixteen pre-designed laundry styles - designed to suit your budget and lifestyle
+{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom/laundry.css' %}" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="laundry-content" id="vue-app">
+        <div class="banner-image banner-top">
+            <div class="bt-image animate__animated">
+                <div class="content">
+                    <img src="{% static 'img/laundry/laundry_scroll_banner.png' %}">
+                </div>
+            </div>
+        </div>
+        <div class="laundry-collection">
+            <div class="bt-image">
+                <div class="content">
+                    <img src="{% static 'img/laundry/laundry_04.png' %}">
+                </div>
+            </div>
+        </div>
+        <div class="step-work">
+            <div class="step-1 step-item">
+                <div class="s-banner-top">
+                    <img src="{% static 'img/laundry/laundry_07.png' %}">
+                </div>
+                <div class="s-step-content">
+                    <div class="list-step">
+                        {% for item in products %}
+                        <div class="ls-item">
+                            <figure class="card-figure">
+                                <a href="{{item.get_absolute_url}}">
+                                    <div class="card-img-container">
+                                        {% if item.get_img_urls.0 %}
+                                        <img class="card-image" src="{{item.get_img_urls.0}}">
+                                        {% else %}
+                                        <img class="card-image" src="{% static 'img/home-new/placeholder.png' %}">
+                                        {% endif %}
+                                    </div>
+                                </a>
+                            </figure>
+                            <p class="name">
+                                <a href="{{item.get_absolute_url}}"><strong>{{item.name}}</strong></a>
+                            </p>
+                            <p class="meta-decription">{{item.description_short}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="step-2 step-item">
+                <div class="s-banner-top">
+                    <img class="desktop" src="{% static 'img/laundry/laundry_39.png' %}">
+                    <img class="mobile" src="{% static 'img/laundry/laundry_39_mobile.png' %}">
+                </div>
+                <div class="s-step-content">
+                    <div class="step-description">
+                        <strong>Cabinetry Finishes</strong>
+                    </div>
+                    <div class="list-cabinetry">
+                        <div class="lb-item">
+                            <strong>Woodgrain</strong>
+                            <p>Finishes</p>
+                            <img src="{% static 'img/laundry/laundry_42.png' %}">
+                        </div>
+                        <div class="lb-item">
+                            <strong>Solid</strong>
+                            <p>Colours</p>
+                            <img src="{% static 'img/laundry/laundry_45.png' %}">
+                        </div>
+                    </div>
+                    <div class="step-description">
+                        <strong>Quartz 20mm Benchtop Finishes</strong>
+                    </div>
+                    <div class="list-benchtop">
+                        <div class="list-bg bg-small">
+                            <div class="lb-item">
+                                <img src="{% static 'img/laundry/laundry_48.png' %}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-3 step-item">
+                <div class="s-banner-top">
+                    <img class="desktop" src="{% static 'img/laundry/laundry_50.png' %}">
+                    <img class="mobile" src="{% static 'img/laundry/laundry_50_mobile.png' %}">
+                </div>
+                <div class="s-step-content">
+                    <div class="list-extras">
+                        <div class="le-item">
+                            <p><strong>Handle Options</strong></p>
+                            <img src="{% static 'img/laundry/laundry_53.png' %}">
+                        </div>
+                        <div class="le-item">
+                            <div class="le-left">
+                                <img src="{% static 'img/laundry/laundry_56.png' %}">
+                            </div>
+                            <div class="le-right">
+                                <p><strong>Extrusion Options</strong></p>
+                                <img src="{% static 'img/laundry/laundry_59.png' %}">
+                            </div>
+                        </div>
+                        <div class="le-item">
+                            <div class="le-left">
+                                <p><strong>Wall Floating Shelves</strong></p>
+                                <img src="{% static 'img/laundry/laundry_66.png' %}">
+                            </div>
+                            <div class="le-right">
+                                <img src="{% static 'img/laundry/laundry_64.png' %}">
+                            </div>
+                        </div>
+                        <div class="le-item">
+                            <div class="le-left">
+                                <p><strong>Stainless Steel Sink</strong></p>
+                                <img src="{% static 'img/laundry/laundry_71.png' %}">
+                            </div>
+                            <div class="le-right">
+                                <p><strong>Drying Rack</strong></p>
+                                <img src="{% static 'img/laundry/laundry_74.png' %}">
+                                <p><strong>Tapware Options</strong></p>
+                                <img src="{% static 'img/laundry/laundry_77.png' %}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-4 step-item">
+                <div class="s-banner-top">
+                    <a href="{% url 'store_locations' %}"><img src="{% static 'img/laundry/laundry_80.png' %}"></a>
+                </div>
+            </div>
+        </div>
+        <div class="overview-steps">
+            <strong class="title">How it all works in 4 easy steps</strong>
+            <img src="{% static 'img/laundry/laundry_83.png' %}">
+        </div>
+        <div class="banner-bottom">
+            <div class="bt-image">
+                <img src="{% static 'img/laundry/laundry_87.png' %}">
+            </div>
+            <div class="actions">
+                <a href="https://view.publitas.com/newtech-bathroomware/laundry-collection-by-newtech/page/1"
+                   target="_blank">
+                    Download the brochure
+                </a>
+                <a href="https://view.publitas.com/newtech-bathroomware/laundry-collection-package-order-form/page/1"
+                   target="_blank">
+                    Download the Laundry Package Order Form
+                </a>
+                <a href="https://view.publitas.com/newtech-bathroomware/laundry-collection-custom-order-form/page/1"
+                   target="_blank">
+                    Download the Laundry Custom Form
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

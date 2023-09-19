@@ -1,0 +1,23 @@
+{% for invoice in invoices %}
+  <tr>
+    <td data-th="Invoice Name">{{ invoice.name }}</td>
+    <td data-th="Total Price exc GST">${{ invoice.total_exc_gst }}</td>
+    <td data-th="Total Price inc GST">${{ invoice.total_inc_gst }}</td>
+    <td data-th="Invoice Date">{{ invoice.date_invoice | date:'d M Y' }}</td>
+    <td data-th="Invoice Due Date">{{ invoice.due_date | date:'d M Y' }}</td>
+    {% if invoice.invoice_source %}
+      <td data-th="Invoice Source">{{ invoice.invoice_source }}</td>
+    {% else %}
+      <td data-th="Invoice Source">{{ '' }}</td>
+    {% endif %}
+    <td data-th="Payment Status">{{ invoice.payment_status }}</td>
+    <td data-th="Download">
+      <a href="{{ invoice.file_download }}" target="_blank"><i class="fas fa-file-pdf"></i></a>
+    </td>
+  </tr>
+{% endfor %}
+{% if not invoices %}
+  <tr class="invoice-table-no-result">
+    <td colspan="8" class="invoice-no-result">No result found</td>
+  </tr>
+{% endif %}

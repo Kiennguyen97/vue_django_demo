@@ -1,0 +1,132 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Edit Address{% endblock %}
+{% block og-pagetitle %}Edit Address{% endblock %}
+{% block css_bottom %}
+  {% load static %}
+  <link rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/custom/address-add.css' %}">
+{% endblock %}
+{% load static %}
+{% block content %}
+  <main id="maincontent" class="page-main account">
+    <div class="main-container">
+      {% include 'message.html' %}
+      <!-- EDIT ADDRESS START -->
+      <div class="edit-address">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="page-title">Edit Address</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-12 col-12">{% include 'account-left-menu-sidebar.html' %}</div>
+            <div class="col-lg-9 col-md-12 col-12">
+              <form action=""
+                    method="post"
+                    x-data="{ addresss: [], checked: false, open: false, init(){ let id_street_address_1 = document.getElementById('id_street_address_1'); let id_street_address_2 = document.getElementById('id_street_address_2'); let id_city = document.getElementById('id_city'); let id_address_postal = document.getElementById('id_address_postal'); let id_latitude = document.getElementById('id_latitude'); let id_longitude = document.getElementById('id_longitude');  id_street_address_1.readOnly = true; id_street_address_2.readOnly = true; id_city.readOnly = true; id_address_postal.readOnly = true; id_latitude.readOnly = true; id_longitude.readOnly = true;  if (!id_street_address_1.value || !id_city.value || !id_address_postal.value) { if (document.getElementById('id_address_suggestion').hasAttribute('required') == false) { const att = document.createAttribute('required'); document.getElementById('id_address_suggestion').setAttributeNode(att,'') } }  let address_suggestion = document.getElementById('id_address_suggestion'), search_address_handle, self = this; id_address_suggestion.oninput = function(el) { let url = '{% url 'get_address_suggestion' %}?term=' + el.target.value; clearTimeout(search_address_handle); search_address_handle = setTimeout(function(){ fetch(url).then((response)=>{ if (response.ok){ return response.json(); } }).then((data)=>{ self.addresss = data; console.log(self.addresss) self.open = true; }) }, 1000) } }, enterAddressManually() { document.getElementById('id_address_suggestion').value = null; if(this.checked == false) { if (document.getElementById('id_address_suggestion').hasAttribute('required')) { document.getElementById('id_address_suggestion').removeAttribute('required'); } id_street_address_1.readOnly = false; id_street_address_2.readOnly = false; id_city.readOnly = false; id_address_postal.readOnly = false; id_latitude.value = null; id_longitude.value = null; this.checked = true; } else { if (!document.getElementById('id_address_suggestion').hasAttribute('required')) { const att = document.createAttribute('required'); document.getElementById('id_address_suggestion').setAttributeNode(att,'') } // if (!id_street_address_1.value || !id_city.value || !id_address_postal.value) { //  const att = document.createAttribute('required'); //  document.getElementById('id_address_suggestion').setAttributeNode(att,'') // } id_street_address_1.readOnly = true; id_street_address_2.readOnly = true; id_city.readOnly = true; id_address_postal.readOnly = true; id_latitude.value = null; id_longitude.value = null; this.checked = false; } }, selectAddress(address_id, label){ let url = '{% url 'get_address_suggestion_detail' %}?address_id=' + address_id; fetch(url).then((response)=>{ if (response.ok){ return response.json(); } }).then((data)=>{ let latitude = data.location.wgs84_lat; let longitude = data.location.wgs84_lon; id_latitude.value = latitude; id_longitude.value = longitude;   let street = data.structured_address.street_number + ' ' + data.structured_address.street_name + ' ' + data.structured_address.road_type; document.getElementById('id_address_suggestion').value = label; document.getElementById('id_street_address_1').value = street; document.getElementById('id_street_address_2').value = data.structured_address.suburb; if (data.structured_address.town == null){ document.getElementById('id_city').value = data.structured_address.suburb; }else{ document.getElementById('id_city').value = data.structured_address.town; } document.getElementById('id_address_postal').value = data.structured_address.postcode; this.open = false; }) }, closeSearchAddress(){ if (this.open == true) { this.open = false; } } }">
+                {% csrf_token %}
+                <div class="form-group form-group-name">
+                  <label>Name</label>
+                  <p>
+                    {{ form.name }}
+                  </p>
+                </div>
+                <div class="form-group form-group-address-1">
+                  <label>Street address 1</label>
+                  <p>
+                    {{ form.street_address_1 }}
+                  </p>
+                </div>
+                <div class="form-group form-group-phone">
+                  <label>Phone</label>
+                  <p>
+                    {{ form.phone }}
+                  </p>
+                </div>
+                <div class="form-group form-group-address-2">
+                  <label>Street address 2</label>
+                  <p>
+                    {{ form.street_address_2 }}
+                  </p>
+                </div>
+                <div hidden>
+                  <label>Latitude</label>
+                  <p>
+                    {{ form.latitude }}
+                  </p>
+                </div>
+                <div hidden>
+                  <label>Longitude</label>
+                  <p>
+                    {{ form.longitude }}
+                  </p>
+                </div>
+                <div class="form-group search-for-address">
+                  <label>Search For Address</label>
+                  <div class="action-search-address">
+                    <p class="action-search-address-label">
+                      Enter address manually
+                    </p>
+                    <div class="switch">
+                      <input type="checkbox" @click="enterAddressManually()">
+                      <span class="slider round"></span>
+                    </div>
+                  </div>
+                  <p>
+                    <input type="text"
+                           id="id_address_suggestion"
+                           name="address_suggestion"
+                           placeholder="Enter a suggested address"
+                           tabindex="3">
+                  </p>
+                  <!-- <p>{{ form.street_address_1 }}</p> -->
+                  <template x-if="open">
+                    <ul class="ui-autocomplete ui-items">
+                      <li class="close-search-address" @click="closeSearchAddress()">
+                        <span>x</span>
+                      </li>
+                      <template x-for="item in addresss">
+                        <li class="ui-item">
+                          <span x-text="item.label" @click="selectAddress(item.id, item.label)"></span>
+                        </li>
+                      </template>
+                    </ul>
+                  </template>
+                </div>
+                <div class="form-group two-fields">
+                  <div class="postal-group">
+                    <label>Postal Code</label>
+                    <p>
+                      {{ form.address_postal }}
+                    </p>
+                  </div>
+                  <div class="address-group address-type">
+                    <label>Address Type</label>
+                    <p>
+                      {{ form.type_address }}
+                    </p>
+                  </div>
+                </div>
+                <div class="form-group form-group-city">
+                  <label>City</label>
+                  <p>
+                    {{ form.city }}
+                  </p>
+                </div>
+                <button class="btn-2 btn theme-btn-1 btn-block mb-40"
+                        type="submit"
+                        data-cy="btn-save-edit-address-form">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- EDIT ADDRESS END -->
+    </div>
+  </main>
+{% endblock content %}
+{% block scripts %}
+  <script defer src="{% static 'js/cdn/alpine.min.js' %}"></script>
+{% endblock %}

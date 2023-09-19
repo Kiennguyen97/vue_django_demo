@@ -1,0 +1,167 @@
+.title-2 {
+  border-left: none;
+}
+.step-checkout h4 {
+  background: #73c6f0;
+  font-family: "ZonaPro-Bold", sans-serif;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: #00accf;
+  border: 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  margin-bottom: 0;
+}
+.step-checkout .step-content {
+  margin: 0 0 20px;
+  padding: 25px 15px 20px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+}
+.shipping-address-items .shipping-address-item {
+  max-width: calc((100% - 30px) / 3);
+  margin-right: 15px;
+  border-radius: 5px;
+  width: 100%;
+}
+.shipping-address-items .shipping-address-item:nth-child(3) {
+  margin-right: 0;
+}
+.shipping-address-items .shipping-address-item .shipping-address-detail {
+  margin-bottom: 0;
+}
+.shipping-address-items .shipping-address-item .theme-btn-1 {
+  border-radius: 4px;
+  color: #fff;
+  background: #73c6f0;
+  font-family: "ZonaPro-Bold", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  position: static;
+  margin-top: 20px;
+  float: right;
+  padding: 8px 10px 5px;
+  line-height: 20px;
+}
+
+.checkout-content .theme-btn-1 {
+  border-radius: 4px;
+  color: #fff;
+  background: #4c5a85;
+  font-family: "ZonaPro-Bold", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 8px 10px 5px;
+  line-height: 20px;
+}
+.checkout-content .theme-btn-1:hover {
+  background: #4c5a85;
+}
+.checkout-content .theme-btn-1:after {
+  display: none;
+}
+.address-shipping-billing:after {
+  display: none;
+}
+
+.step-checkout .ltn__checkout-single-content-info {
+  padding: 0;
+  border: none;
+}
+
+h1.page-title {
+  font-size: 30px;
+  color: #4c5a85;
+}
+.step-checkout .step-content {
+  display: none;
+}
+.ltn__checkout-single-content {
+  margin-bottom: 20px;
+}
+.step-checkout.shipping-address-wrapper,
+.step-checkout.billing-address-wrapper {
+  margin-bottom: 20px;
+}
+.checkout-content .col-lg-8 .step-checkout h4 {
+  position: relative;
+}
+.checkout-content .col-lg-8 .step-checkout h4:after {
+  content: "\f107";
+  font-family: "Font Awesome 5 Pro";
+  position: absolute;
+  right: 20px;
+}
+.opener.step-checkout .step-content {
+  display: inline-block;
+  width: 100%;
+}
+.checkout-content .theme-btn-1 {
+  max-width: 190px;
+  display: block;
+  margin-bottom: 20px;
+}
+.step-checkout .step-content .btn-next {
+  float: right;
+  border-radius: 4px;
+  color: #fff;
+  background: #4c5a85;
+  font-family: "ZonaPro-Bold", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 8px 10px 5px;
+  line-height: 20px;
+}
+.ltn__add_new_billing_modal-area .modal-title,
+.ltn__add_new_address_modal-area .modal-title {
+  margin-bottom: 10px;
+}
+.ltn__add_new_billing_modal-area .modal-dialog,
+.ltn__add_new_address_modal-area .modal-dialog {
+  margin: 104px auto;
+  max-width: 900px;
+}
+.ltn__add_new_billing_modal-area .modal-body input,
+.ltn__add_new_address_modal-area .modal-body input {
+  height: 50px;
+  margin-bottom: 0;
+}
+.ltn__add_new_billing_modal-area .modal-footer button,
+.ltn__add_new_address_modal-area .modal-footer button {
+  height: 45px;
+  margin: 0;
+  font-size: 14px;
+  padding: 7px 15px;
+  max-width: 118px;
+  width: 100%;
+  line-height: 33px;
+}
+.ltn__add_new_billing_modal-area .modal-footer .btn.btn-secondary,
+.ltn__add_new_address_modal-area .modal-footer .btn.btn-secondary {
+  margin-right: 25px;
+}
+@media screen and (max-width: 991px) {
+  .ltn__checkout-area .checkout-content .col-lg-8 {
+    order: 2;
+  }
+  .ltn__checkout-area .checkout-content .col-lg-4 {
+    order: 1;
+  }
+  .shoping-cart-total {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .shipping-address-items .shipping-address-item {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}

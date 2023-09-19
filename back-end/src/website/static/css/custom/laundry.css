@@ -1,0 +1,309 @@
+.laundry-content {
+    max-width: 1366px;
+    margin: 0 auto 110px;
+}
+
+.banner-image {
+    display: flex;
+    align-items: center;
+    background: url('../../img/laundry/Castlepoint_Alaskan_Handles04.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin-left: 0;
+    margin-right: 0;
+    min-height: 600px;
+    background-position: center center;
+    overflow: hidden;
+}
+
+.banner-image .bt-image {
+    width: 100%;
+}
+
+.step-item {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: inline-block;
+    width: 100%;
+}
+
+.step-1 .s-banner-top {
+    max-width: 420px;
+    margin-bottom: -50px;
+}
+
+.list-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0 8px;
+    margin: 0 7%;
+}
+
+.list-step .ls-item a {
+    text-decoration: none;
+}
+
+.list-step .ls-item .name {
+    margin-top: 12px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.ls-item .image {
+    position: relative;
+}
+
+.list-cabinetry .list-bg {
+    display: inline-block;
+    width: 100%;
+    margin: 0 -15px;
+}
+
+.list-cabinetry .list-bg .lb-item {
+    padding: 0 15px;
+    width: calc(100% / 3);
+    float: left;
+    margin-bottom: 30px;
+}
+
+.step-2 {
+    display: inline-flex;
+    gap: 0 20px;
+    text-transform: uppercase;
+    padding-right: 7%;
+}
+
+.step-2 .step-description {
+    margin-bottom: 21px;
+    font-size: 16px;
+}
+
+.step-2 .s-banner-top {
+    width: calc(100% / 3);
+}
+
+.step-2 .s-step-content {
+    margin-top: 40px;
+    width: calc(100% - (100% / 3));
+}
+
+.lb-item strong {
+    font-size: 34px;
+}
+
+.lb-item,
+.le-item {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.lb-item:first-child {
+    margin-top: 0;
+}
+
+.lb-item p {
+    margin-bottom: 0;
+}
+
+.le-item {
+    display: inline-flex;
+    gap: 0 30px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.le-item:last-child {
+    margin-top: 0;
+}
+
+.le-item:first-child {
+    display: block;
+}
+
+.le-item p {
+    margin-top: 20px;
+}
+
+.le-item img + p {
+    margin-top: 30px;
+}
+
+.le-item:first-child strong {
+    display: inline-block;
+    width: 100%;
+}
+
+.list-extras {
+    margin: 30px 7% 0;
+}
+
+.overview-steps {
+    margin: 35px 7% 0;
+}
+
+.overview-steps strong {
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 11px;
+    padding: 0 1%;
+}
+
+.banner-bottom {
+    margin-top: 50px;
+}
+
+.banner-bottom .bt-image {
+    max-width: 280px;
+    margin: auto;
+}
+
+.banner-bottom .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 20px;
+    margin: 20px 20% 0;
+}
+
+.banner-bottom .actions a {
+    border: 1px solid #414042;
+    padding: 10px 20px;
+    border-radius: 8px;
+    min-height: 64px;
+    color: #414042;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-bottom .actions a:hover {
+    background-color: #414042;
+    color: #fff;
+}
+
+.mobile {
+    display: none;
+}
+
+/*Animation*/
+
+:root {
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+}
+
+.animate__animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-duration: var(--animate-duration);
+    animation-duration: var(--animate-duration);
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animate__animated.animate__delay-1s {
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-delay: var(--animate-delay);
+    animation-delay: var(--animate-delay);
+}
+
+.animate__fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+}
+
+@media (prefers-reduced-motion: reduce), print {
+    .animate__animated {
+        -webkit-animation-duration: 1ms;
+        animation-duration: 1ms;
+        -webkit-transition-duration: 1ms;
+        transition-duration: 1ms;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .banner-image .content {
+        margin-left: 15%;
+    }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+    .banner-image .content {
+        margin-left: 7%;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .banner-image .content {
+        margin-left: 3%;
+    }
+
+    .list-step {
+        grid-template-columns: 50% 50%;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .step-2,
+    .mobile {
+        display: block;
+    }
+
+    .step-2 {
+        padding-right: 0;
+    }
+
+    .step-2 .s-step-content {
+        margin-right: 7%;
+        margin-left: 7%;
+    }
+
+    .step-2 .s-banner-top,
+    .step-2 .s-step-content {
+        width: auto;
+    }
+
+    .step-2 .s-banner-top {
+        max-width: 300px;
+    }
+
+    .le-item {
+        display: inline-block;
+        margin: 20px 0;
+    }
+
+    .le-item:nth-child(3) {
+        margin-top: 0;
+    }
+
+    .le-item img + p {
+        margin-top: 20px;
+    }
+
+    .banner-bottom .actions {
+        margin: 0 20%;
+        display: block;
+    }
+
+    .banner-bottom .actions a {
+        display: inline-flex;
+        width: 100%;
+        margin: 5px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .banner-image .content {
+        margin-left: 0;
+    }
+}

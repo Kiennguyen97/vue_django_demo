@@ -1,0 +1,164 @@
+{% extends base_template %}
+{% load static %}
+{% load humanize %}
+{% block cart-content %}
+{{ config|json_script:"config" }}
+<script type="text/javascript">
+  var config = document.getElementById('config').textContent;
+  var context = JSON.parse(config);
+</script>
+<div class="container cart-page" x-data="{checkoutAction(){var refresh = window.location.protocol + '//' + window.location.host + window.location.pathname + '?action=checkout'; window.history.pushState({ path: refresh }, '', refresh); document.getElementById('checkout-show-button').click(); }}">
+    {% if cart_items %}
+    <h1 class="page-heading">Your Cart ({{total_quantity}}{% if total_quantity > 1%} items{% else %} item{% endif %})</h1>
+    <table class="cart">
+        <thead class="cart-header">
+        <th scope="col" colspan="1" class="cart-header-item cart-item-info">Items</th>
+        <th scope="col" colspan="1" class="cart-header-item">Price</th>
+        <th scope="col" colspan="1" class="cart-header-item cart-item-quantity">Quantity</th>
+        <th scope="col" colspan="1" class="cart-header-item">Total</th>
+        <th scope="col" colspan="1" class="cart-header-item cart-item-action"></th>
+        </thead>
+        <tbody class="cart-list">
+        {% for item in cart_items %}
+        <tr class="cart-item">
+            <td class="cart-item-block cart-item-info">
+                <img class="product-item-photo"
+                     src="{{ item.product.get_img_urls.0 }}"
+                     alt="{{ item.product.name }}"
+                     title="{{ item.product.name }}"
+                     width="146"/>
+                <div class="product-item-details">
+                    <h4 class="cart-item-name">
+                        <a href="{{ item.product.get_absolute_url }}">
+                            {{ item.product.name }}
+                        </a>
+                    </h4>
+                    {% if item.get_product_sku %}
+                    <div class="sku-box">
+                        <span class="sku-label">Code:</span>
+                        <span class="sku">{{ item.get_product_sku }}</span>
+                    </div>
+                    {% endif %}
+                    {% if item.items %}
+                    <div class="definition-list-box">
+                        <label class="label">Option:</label>
+                        <div class="definition-list">
+                            <p>
+                                {% for item_option in item.items %}
+                                {{item_option.option.get_option_name_no_html}}{% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <dl class="definition-list">
+                            {% for item_option in item.items %}
+                            <dt class="definition-list-key">{{item_option.option.get_option_label}}:</dt>
+                            <dd class="definition-list-value">{{item_option.option.get_option_name_no_html}}</dd>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    {% endif %}
+                    {% if item.cannot_purchase %}
+                    <div class="inside-alert">
+                        <img src="{% static 'img/alert-warning.png' %}">
+                        This product cannot be purchased
+                    </div>
+                    {% endif %}
+                </div>
+            </td>
+            <td class="cart-item-block cart-item-price">
+                <span class="cart-item-value ">${{item.get_price | floatformat:2 | intcomma}}</span>
+            </td>
+            <td class="cart-item-block cart-item-quantity">
+                <div class="form-increment" x-data="{cartQty: {{ item.product_quantity }} }">
+                    <button @click="cartQty--;if(cartQty<1){cartQty=1;}"
+                            class="button button--icon"
+                            hx-post="/cart/items-update"
+                            hx-vals='{"id":"{{ item.uuid }}", "action": "update"}'
+                            hx-include="#item-{{ item.uuid }}">
+                        <i class="fal fa-minus"></i>
+                    </button>
+                    <input id="item-{{ item.uuid }}"
+                           type="number"
+                           x-model="cartQty"
+                           :value="cartQty ; if(cartQty<1){cartQty=1;}"
+                           name="qtybutton"
+                           class="form-input form-input--incrementTotal cart-item-qty-input cart-qty"
+                           hx-post="/cart/items-update"
+                           hx-trigger="change"
+                           hx-vals='{"id":"{{ item.uuid }}", "action": "update"}'/>
+                    <button @click="cartQty++"
+                            class="button button--icon"
+                            hx-post="/cart/items-update"
+                            hx-vals='{"id":"{{ item.uuid }}", "action": "update"}'
+                            hx-include="#item-{{ item.uuid }}">
+                        <i class="fal fa-plus"></i>
+                    </button>
+                </div>
+            </td>
+            <td class="cart-item-block cart-item-subtotal">
+                <span class="cart-item-label">Subtotal:</span>
+                <strong class="cart-item-value">${{item.get_subtotal | floatformat:2 | intcomma}}</strong>
+            </td>
+            <td class="cart-item-block cart-item-action">
+                <a class="cart-remove icon"
+                   data-toggle="modal"
+                   data-target="#modal_delete_{{ item.uuid }}"
+                   id="action-delete">
+                    <i class="fal fa-times"></i>
+                </a>
+                <div class="modal fade custom-modal" id="modal_delete_{{ item.uuid }}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="icon warning">!</div>
+                                <div class="content">
+                                    Are you sure you want to delete this item?
+                                </div>
+                            </div>
+                            <div class="modal-footer buttons">
+                                <button type="button" class="btn btn--primary confirm"
+                                        hx-post="/cart/items-update"
+                                        id="action-delete"
+                                        hx-vals='{"id":"{{ item.uuid }}", "action": "delete"}'
+                                        data-dismiss="modal">OK</button>
+                                <button type="button" class="btn btn--secondary cancel" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="cart-bottom">
+        <div class="cart-tax">
+            Cart includes ${{total_gst | floatformat:2 | intcomma}} of GST.
+        </div>
+        <div class="cart-total">
+            <div class="cart-total-label">
+                <label>Grand total:</label>
+            </div>
+            <div class="cart-total-value cart-total-grand">
+                <span>${{ total_total | floatformat:2 | intcomma }}</span>
+            </div>
+        </div>
+        <!--<div class="cart-tax2">
+            Cart includes ${{total_gst | floatformat:2 | intcomma}} of GST.
+        </div>-->
+    </div>
+    {% if cart_obj.can_purchase %}
+    <div class="cart-actions">
+        <button href="" class="checkout-show button" @click="checkoutAction">Proceed to Checkout</button>
+        <a href="" class="checkout-show button" id="checkout-show-button" style="display: none"
+           data-toggle="modal"
+           data-target="#quote-modal">Proceed to Checkout</a>
+    </div>
+    {% endif %}
+    {% include 'cart/checkout_cart.html' %}
+    {% else %}
+    <h3 class="cart-empty">Your cart is empty.</h3>
+    {% endif %}
+</div>
+{% endblock cart-content %}

@@ -1,0 +1,22 @@
+{% load static %}
+<table class="table data grouped" id="product-resource-table">
+  <thead>
+    <tr>
+      <th scope="col" class="item" scope="col">File Name</th>
+      <th scope="col" class="item" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for obj in object.get_resource_urls %}
+      <tr>
+        <td scope="row" data-th="name" class="product-resource-name">{{ obj.filename }}</td>
+        <td scope="row" data-th="action" class="product-resource-action">
+          <a href="{{ obj.url }}" target="_blank">
+            <span class="icon-download"></span>
+            <span>Download</span>
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

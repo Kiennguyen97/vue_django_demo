@@ -1,0 +1,102 @@
+.w-13 {
+    max-width: 66.67%;
+    width: 100%;
+    margin: 0 auto;
+}
+.ltn__blog-details-wrap h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #444;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    letter-spacing: .25px;
+    margin-bottom: 42px;
+    text-align: center;
+}
+.list-gallery {
+    position: relative;
+}
+.list-gallery .owl-carousel .owl-nav button {
+    margin: 0;
+    font-size: 20px;
+    position: absolute;
+}
+.list-gallery .owl-carousel .owl-nav button:hover {
+    background: #fff;
+    color: #869791;
+}
+.list-gallery .owl-carousel button.owl-prev {
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    margin: 0;
+}
+.list-gallery .owl-carousel button.owl-next {
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    margin: 0;
+}
+.list-gallery .owl-carousel .owl-dots button span {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+}
+.list-gallery .owl-carousel .owl-dots button:not(:last-child) span {
+    margin-right: 10px;
+}
+.shogun-heading-component {
+    margin-top: 50px;
+    padding-top: 50px;
+    text-align: center;
+    border-top: 2px solid #ddd;
+}
+.ltn__page-details-area {
+    margin-bottom: 100px;
+}
+.ltn__blog-details-content h4 {
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.ltn__blog-details-content p {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Proxima-Nova,Arial,Helvetica,sans-serif;
+    color: #333;
+}
+
+@media screen and (max-width: 1199.98px) {
+    .w-13 {
+        max-width: 100%;
+    }
+    .list-gallery .owl-carousel .owl-nav button {
+        width: 50px;
+        height: 50px;
+        background: #000;
+        color: #fff;
+    }
+    .list-gallery .owl-carousel button.owl-next {
+        right: -15px;
+    }
+    .list-gallery .owl-carousel button.owl-prev {
+        left: -15px;
+    }
+
+}
+@media screen and (max-width: 575.98px) {
+    .ltn__breadcrumb-area {
+        display: none;
+    }
+    .ltn__blog-details-wrap h2 {
+        margin: 30px 0 21px;
+    }
+    .list-gallery .owl-carousel .owl-nav button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}

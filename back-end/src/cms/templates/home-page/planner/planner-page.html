@@ -1,0 +1,153 @@
+{% load static %}
+<link
+  type="text/css"
+  href="{% static 'css/custom/home/planner/planner.css' %}"
+  rel="stylesheet"
+/>
+<div class="clearFix"></div>
+<div class="planner-page">
+  <div class="planner-bannner">
+    <div class="planner-page-banner">
+      <a href="https://youtu.be/MKQpHDZFVk8" target="_blank">
+        <img src="{% static 'img/home/planner/p1.webp' %}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="text-area">
+    <div class="inside-text">
+      <span>
+        Planning and designing your dream bathroom has never been easier with
+        our 3D online planner
+        <span>design@home</span>
+      </span>
+      <p>
+        Get started today with our free easy-to-use online planner
+        <span>design@home</span> and create accurate <br />
+        and beautiful bathroom designs in minutes.
+      </p>
+    </div>
+  </div>
+  <div class="design-home">
+    <div class="img-design-home">
+      <a href="https://planner.newtech.co.nz/" target="_blank">
+        <img src="{% static 'img/home/planner/p2.webp' %}" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="easy-step">
+    <div class="main-easy-step">
+      <div class="left-line"></div>
+      <div class="easy-word">4 Easy Steps with<span>design@home</span></div>
+      <div class="right-line"></div>
+    </div>
+    <div class="inside-elements">
+      <div class="start">
+        <div class="left-img">
+          <img data-src="{% static 'img/home/planner/start.webp' %}" alt="" />
+        </div>
+        <div class="right-text">
+            <p><span style="font-size: 26px;"><strong>Start.</strong></span></p>
+          <p>
+            Start with setting up your room layout. Pick from a range of
+            predefined room shapes, then enter your specific room dimensions. If
+            your room is a different shape, simply select "Free Room" and create
+            your custom shape. Optionally, you can load a saved plan or use a
+            furnished room template.
+          </p>
+        </div>
+      </div>
+      <div class="clearFix"></div>
+      <div class="build">
+        <div class="left-text">
+            <p><span style="font-size: 26px;"><strong>Build.</strong></span></p>
+          <p>
+            To style your new bathroom, simply add your preferred wall linings,
+            doors and flooring. Click on the element in the bathroom and select
+            from the left column the appropriate property you want to modify.
+            There is an entire range of materials and colours to choose from.
+          </p>
+        </div>
+        <div class="right-img">
+          <img data-src="{% static 'img/home/planner/build.webp' %}" alt="" />
+        </div>
+      </div>
+      <div class="clearFix"></div>
+      <div class="design">
+        <div class="left-img">
+          <img data-src="{% static 'img/home/planner/design.webp' %}" alt="" />
+        </div>
+        <div class="right-text">
+            <p><span style="font-size: 26px;"><strong>Design.</strong></span></p>
+          <p>
+            Bring your bathroom to life by adding your favourite Newtech
+            products from the online catalogue displayed on the left hand side.
+            Simply click on the product you wish to add, or drag-and-drop a
+            product to your desired location - it's that easy. Once you have
+            chosen your products you can modify colours, basins and any optional
+            upgrades according to your colour scheme.
+          </p>
+        </div>
+      </div>
+      <div class="clearFix"></div>
+      <div class="view">
+        <div class="left-text">
+            <p><span style="font-size: 26px;"><strong>View & Finish</strong></span></p>
+          <p>
+            Your bathroom is now complete! You can view your finalised design
+            before saving and printing, or revisit your individual play at any
+            stage by reloading and editing. Once you are happy with your design,
+            simply contact us at
+            <a href="mailto:design@newtech.co.nz">design@newtech.co.nz</a> to
+            make your bathroom a reality.
+          </p>
+        </div>
+        <div class="right-img">
+          <img data-src="{% static 'img/home/planner/view.webp' %}" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="click-to-launch">
+        <div class="inside-click">
+            <a href="https://planner.newtech.co.nz/" target="_blank">click here to launch DESIGN@HOME </a>
+        </div>
+    </div>
+    {% comment %} <div class="overlay"></div> {% endcomment %}
+  </div>
+</div>
+{% block scripts %}
+<script type="text/javascript">
+  const images = document.querySelectorAll("[data-src]");
+  function preloaImage(img){
+    const src = img.getAttribute("data-src");
+    if(!src){
+      return;
+    }
+    //img.classList.add('loading');
+    //img.removeAttribute('alt'); // remove the alt attribute
+    //img.removeAttribute('title'); // remove the title attribute
+    window.setTimeout(()=>{
+      img.src = src;
+    },500)
+  }
+  const imgOptions = {
+    threshold:0,
+    rootMargin:"0px 0px 300px 0px"
+  };
+  const imgObserver = new IntersectionObserver((entries,imgObserver)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting){
+        return;
+      }else{
+        preloaImage(entry.target);
+        imgObserver.unobserve(entry.target);
+      }
+    })
+  },imgOptions)
+  images.forEach(image=>{
+    imgObserver.observe(image);
+  })
+</script>
+{% endblock scripts %}

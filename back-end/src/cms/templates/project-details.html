@@ -1,0 +1,114 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Projects{% endblock %}
+{% block og-pagetitle %}Projects{% endblock %}
+{% block page-content %}
+    At Newtech we design beautiful bathroomware products. Get inspired by some of the stunning bathroom projects we have
+    been involved in. Get the look today!
+{% endblock %}
+{% block css_bottom %}
+{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/custom/cms/project-detail.css' %}">
+{% endblock %}
+{% block content %}
+  <main id="maincontent" class="page-main">
+    <div class="main-container">
+      <!-- BREADCRUMB AREA START -->
+      <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image"
+           data-bs-bg="{% static 'img/bg/14.jpg' %}">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="ltn__breadcrumb-inner">
+                <div class="ltn__breadcrumb-list">
+                  <ul>
+                    <li>
+                      <a href="{% url 'index' %}"><span class="breadcrumb-icon"></span>
+                    Home</a
+                    >
+                  </li>
+                  <li>
+                  <a href="{% url 'projects' %}"><span class="ltn__secondary-color"></span> Projects</a
+                  >
+                </li>
+                <li>{{ project.title }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BREADCRUMB AREA END -->
+  {% include 'message.html' %}
+  <!-- PAGE DETAILS AREA START (blog-details) -->
+  <div class="ltn__page-details-area ltn__blog-details-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ltn__blog-details-wrap w-13">
+            <div class="ltn__page-details-inner ltn__blog-details-inner">
+              <h2 class="ltn__blog-title">{{ project.title }} {% if project.author %}| {{project.author}} {% endif %}</h2>
+            </div>
+            <div class="list-gallery">
+              <div class="owl-carousel owl-theme">
+                {% for img in project.additional_images.all %}
+                <div class="item">
+                  <img src="{{ img.get_img_url }}" height=200 width=200>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="ltn__blog-details-content">
+              <h4 class="ltn__blog-details-subtitle">
+                {{ project.subtitle }}
+              </h4>
+              {{ project.body|safe }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="w-13">
+            <h2 class="shogun-heading-component">Get the Look!</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAGE DETAILS AREA END -->
+</div>
+</main>
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+    function customOwl(item, loop, dots, nav, marginCustom, item1, item2) {
+        $(item).owlCarousel({
+            loop: loop,
+            dots: dots,
+            margin: marginCustom,
+            nav: nav,
+            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+            autoplay: true,
+            autoplayHoverPause: true,
+            autoHeight:true,
+            items: 1,
+            responsive: {
+                0: {
+                    items: item1,
+                },
+                767: {
+                    items: item1,
+                },
+                992: {
+                    items: item2,
+                }
+            },
+        });
+    }
+    window.addEventListener('load', () => {
+        customOwl(".list-gallery .owl-carousel", true, true, true, 100, 1, 1);
+    })
+</script>
+{% endblock scripts %}

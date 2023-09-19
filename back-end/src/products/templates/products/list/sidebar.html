@@ -1,0 +1,17 @@
+<aside class="page-sidebar" id="faceted-search-container" v-if="childs.length">
+    <nav>
+        <div class="sidebarBlock">
+            <h5 class="sidebarBlock-heading">{{category.name}}</h5>
+            <ul class="navList">
+                <li class="navList-item" v-for="child in childs">
+                    <a class="navList-action" 
+                        v-bind:href="child.slug" 
+                        v-bind:alt="child.name" 
+                        v-bind:title="child.name"
+                        v-text="child.name">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>

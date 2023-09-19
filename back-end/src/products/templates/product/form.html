@@ -1,0 +1,51 @@
+{% load static %}
+<div class="ntProductView-form">
+    {% csrf_token %}
+    <h1 class="ntProductView-title" v-text="config.name"></h1>
+    <div class="ntProductView-details" v-html="config.description_long" v-bind:class="config.can_purchase ? '' : 'no-pricebox'"></div>
+    <div class="ntProductView-buy" v-if="config.can_purchase">
+        {% include 'product/addtocart.html' %}
+    </div>
+    <div class="info" v-if="config.can_purchase">
+        <div data-purchasing-message=""></div>
+        <span class="sku">SKU:</span>
+        <span v-text="get_product_sku()"></span>
+		<span class="dimensions" v-text="get_dimensions()"></span>
+    </div>
+    <div id="preview-cart-modal" class="modal fade modal-listcate "
+         tabindex="-1"
+         role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog option-picker size open" role="document">
+            <div class="modal-content">
+                <a href="#" class="modal-close" aria-label="Close" role="button" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </a>
+                <div class="previewCart">
+                    <section class="previewCartCheckout">
+                        <h2>Cart Updated</h2>
+                        <div class="previewCartCheckout-subtotal">
+                            Order subtotal
+                            <strong class="previewCartCheckout-price" v-text="'$'+ data_cart.subtotal">
+                            </strong>
+                        </div>
+                        <p v-if="data_cart.count > 1" v-text="'Your cart contains ' + data_cart.count + ' items'"></p>
+                        <p v-else v-text="'Your cart contains ' + data_cart.count + ' items'"></p>
+                        <a href="" class="button button--primary" role="button" data-reveal-close="">
+                            Continue Shopping
+                        </a>
+                        <a href="{% url 'cart' %}?action=checkout" class="button button--primary">
+                            Proceed to Checkout
+                        </a>
+                        <a href="{% url 'cart' %}" class="button">
+                            View Cart
+                        </a>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'product/options.html' %}
+    {% include 'product/resource.html' %}
+</div>

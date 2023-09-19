@@ -1,0 +1,524 @@
+/* TODO: TASK2371 */
+.modal.fade.modal-listcate {
+    background: transparent;
+    padding-right: 0 !important;
+}
+
+.modal.fade.modal-listcate .option-picker {
+    border: solid 3px #18becd;
+    background: #fff;
+    max-width: 550px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+#quote-modal .modal-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-height: 100vh
+}
+
+#quote-modal .quote-modal-header {
+    border-bottom: 1.5px solid #18becd;
+    padding: 1rem 2.25rem
+}
+
+#quote-modal .quote-modal-header .quote-modal-header-title {
+    margin: 0
+}
+
+#quote-modal .quote-modal-header .bread .current {
+    font-weight: 700;
+    color: #18becd
+}
+
+#quote-modal .quote-modal-body {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 2.25rem 2.25rem
+}
+
+#quote-modal .error {
+    color: #cc4749
+}
+
+#quote-modal .error p {
+    margin-bottom: 0.5rem;
+    font-size: 15px;
+    text-align: center;
+}
+
+#quote-modal .label {
+    width: 30%
+}
+
+#quote-modal h2,
+#quote-modal h4 {
+    color: #18becd;
+    margin-top: 0;
+    margin-bottom: 11px;
+}
+
+.quote-terms {
+    display: none
+}
+
+#merchant-picker {
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background-color: #fff;
+    border: solid 3px #18becd;
+    box-shadow: none;
+    padding-right: 0 !important;
+    z-index: 20000
+}
+
+@media only screen and (max-width: 551px) {
+    #merchant-picker {
+        min-height: 100vh
+    }
+}
+
+#merchant-picker .column,
+#merchant-picker .columns {
+    min-width: 0
+}
+
+#merchant-picker>:first-child {
+    margin-top: 0
+}
+
+#merchant-picker>.modal-dialog {
+    height: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+@media only screen and (min-width: 551px) {
+    #merchant-picker {
+        left: 0;
+        margin: 0 auto;
+        max-width: 80%;
+        right: 0;
+        width: 900px
+    }
+}
+
+@media only screen and (min-width: 551px) {
+    #merchant-picker {
+        top: 50vh !important
+    }
+}
+
+@media (min-width: 551px) {
+    #merchant-picker {
+        position: fixed;
+        transform: translateY(-50%);
+        height: 90vh
+    }
+}
+
+#merchant-picker .modal-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    height: 100%;
+    border: none;
+}
+
+#merchant-picker #merchant-picker-title {
+    font-size: 25px;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    border-bottom: 1px solid #18becd;
+    padding: 1rem 2.25rem;
+    color: #18becd
+}
+
+#merchant-picker #merchant-picker-list {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 31px;
+    overflow-y: scroll
+}
+
+#merchant-picker #merchant-picker-buttons {
+    border-top: 1px solid #e5e5e5;
+    padding: 1rem 2.25rem;
+    text-align: right
+}
+
+#merchant-picker #merchant-picker-buttons button {
+    margin-bottom: 0
+}
+
+#merchant-picker .region-filter {
+    padding-bottom: 20px;
+    font-size: 21px;
+}
+
+#merchant-picker .region-filter select {
+    width: auto;
+}
+
+#merchant-picker .merchant-list h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #18becd
+}
+
+#merchant-picker .merchant-list h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: none;
+    margin: 0
+}
+
+input[type=radio]+label {
+    cursor: pointer;
+}
+
+/*TODO: END TASK2371*/
+.quote-customer .quote-address-form {
+    max-width: 100%;
+    width: 100%;
+}
+
+.quote-customer .quote-address-form input {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    height: 30px;
+}
+
+#quote-modal h4.pad-above {
+    padding-top: 20px;
+}
+
+.quote-modal-body .quote-modal-buttons {
+    float: right;
+    padding-top: 20px;
+}
+
+.quote-modal-body .quote-modal-buttons button {
+    margin-bottom: 0;
+}
+
+.cart-merchant-logo {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    float: right;
+}
+
+.cart-merchant-logo img {
+    max-width: 250px;
+}
+
+.merchant-list .region {
+    display: inline-block;
+    width: 100%;
+}
+
+.merchant-list .stockists {
+    width: calc((100% - 42px)/3);
+    margin-right: 21px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.merchant-list .stockists:nth-child(3n+1) {
+    margin-right: 0;
+}
+
+.merchant-list .merchant button {
+    margin-top: 14px;
+}
+
+.cart-merchants #merchant>div {
+    margin-bottom: 15px;
+}
+
+.cart-merchants .button.button--choose {
+    margin-bottom: 0;
+}
+
+.payment-confirm-directcredit p {
+    margin-bottom: 10px;
+}
+
+.quote-thanks {
+    color: #18becd;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    display: inline-block;
+    width: 100%;
+}
+
+.thanks .thanks-link {
+    width: 100%;
+    display: block;
+}
+
+.quote-thanks .cart-merchant-logo {
+    float: none;
+    margin: 20px 0;
+}
+
+.quote-thanks a {
+    color: #18becd;
+}
+
+.placed_order {
+    position: relative;
+    min-width: 120px;
+    height: 40px;
+    text-align: center;
+}
+
+
+/* :not(:required) hides these rules from IE9 and below */
+.placed_order:not(:required) {
+    /* hide "loading..." text */
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: gray;
+    border: 0;
+}
+
+.placed_order:not(:required):after {
+    content: '';
+    display: block;
+    font-size: 5px;
+    width: 5px;
+    height: 5px;
+    margin-top: -0.5em;
+    text-align: center;
+    -webkit-animation: spinner 1500ms infinite linear;
+    -moz-animation: spinner 1500ms infinite linear;
+    -ms-animation: spinner 1500ms infinite linear;
+    -o-animation: spinner 1500ms infinite linear;
+    animation: spinner 1500ms infinite linear;
+    border-radius: 5px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    body.modal-open {
+        padding-top: 0;
+        padding-right: 0 !important;
+    }
+
+    body.modal-open .page-main {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 767.98px) {
+    .modal.fade.modal-listcate .option-picker {
+        max-width: calc(100% - 30px);
+    }
+
+    #quote-modal .quote-modal-header {
+        padding: 11px;
+    }
+
+    #quote-modal .quote-modal-body {
+        padding: 11px;
+    }
+
+    .quote-customer .quote-address-form,
+    .quote-customer .quote-address-form tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .quote-customer .quote-address-form tr,
+    .quote-customer .quote-address-form tr td {
+        display: block;
+        width: 100%;
+    }
+
+    #quote-modal .label {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .quote-customer .quote-address-form input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .quote-modal-body .quote-modal-buttons {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .quote-modal-body .quote-modal-buttons button {
+        width: calc((100% - 15px)/2);
+        margin-right: 15px;
+        float: left;
+    }
+
+    .quote-modal-body .quote-modal-buttons button:last-child {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .delivery-details .quote-modal-buttons button,
+    .payment-details .quote-modal-buttons button {
+        width: calc((100% - 30px)/3);
+        margin-right: 15px;
+    }
+
+    .button+.button {
+        margin-left: 0;
+    }
+
+    #merchant-picker {
+        max-width: calc(100% - 30px);
+        width: 100%;
+        margin: 0 15px;
+        top: 20vh;
+        height: 600px;
+        bottom: unset;
+        min-height: unset;
+    }
+
+    .merchant-list .stockists {
+        width: calc((100% - 21px)/2);
+    }
+
+    .merchant-list .stockists:nth-child(3n+1) {
+        margin-right: 21px;
+    }
+
+    .merchant-list .stockists:nth-child(2n+3) {
+        margin-right: 0;
+    }
+
+    #merchant-picker .region-filter select {
+        width: 100%;
+    }
+
+    #merchant-picker #merchant-picker-list,
+    #merchant-picker #merchant-picker-title {
+        padding: 15px;
+    }
+
+    .cart-merchant-logo {
+        float: none;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .quote-modal-body .quote-modal-buttons button {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .merchant-list .stockists {
+        width: 100%;
+    }
+
+    .merchant-list .stockists:nth-child(3n+1) {
+        margin-right: 0;
+    }
+
+    .merchant-list .stockists:nth-child(2n+3) {
+        margin-right: 0;
+    }
+}

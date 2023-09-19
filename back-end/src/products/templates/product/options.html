@@ -1,0 +1,79 @@
+{% load static %}
+<div class="ntProductView-options" v-if="config.can_purchase && (config.options.RECTANGLE.length || config.options.RADIO.length)">
+    <label class="form-label form-label--alternate form-label--inlineSmall" v-if="config.options.RECTANGLE.length">
+      Options:
+    </label>
+    <div class="option-grid">
+		<template v-for="opt in config.options.RECTANGLE" v-if="config.options.RECTANGLE.length">
+			<div v-bind:class="opt.cls + ' rectagle'" v-if="opt.active">
+				<div class="selection" @click="openRectagleOption(opt)" v-bind:class="opt.is_error ? 'error' : ''"
+					 v-if="opt.active">
+					<label class="form-label" v-html="opt.name"></label>
+					<div class="img-wrap">
+						<img v-show="opt.default_option && opt.default_option.image_url && opt.default_option.active" v-bind:src="opt.default_option.image_url"/>
+						<div class="no-img-label" v-html="get_default_option_name(opt)"
+							 v-show="opt.default_option && !opt.default_option.image_url && opt.default_option.active"></div>
+					</div>
+					<div class="img-label" v-html="get_option_name(opt)" v-show="opt.default_option && opt.default_option.image_url && opt.default_option.active"></div>
+				</div>
+				<div class="modal fade modal-listcate"
+					 v-bind:id="'modal-' + opt.uuid"
+					 tabindex="-1"
+					 role="dialog"
+					 aria-labelledby="exampleModalLabel"
+					 aria-hidden="true">
+					<div class="modal-dialog option-picker size open" role="document">
+						<div class="modal-content">
+							<template v-for="o in opt.options">
+								<div class="option" v-if="o.active">
+									<input type="radio"
+										   class="form-radio"
+										   v-bind:id="opt.uuid + '-' + o.id"
+										   v-bind:value="o.id"
+										   v-model="opt.default_option_id"
+										   @change="selectedOption(o, opt)"
+										   v-bind:checked="o.id == opt.default_option_id"
+										   v-bind:name="opt.uuid + '-' + o.id"/>
+									<label class="form-option"
+										   v-bind:data-product-attribute-value="o.id"
+										   v-bind:for="opt.uuid + '-' + o.id"
+										   @click="countClick(o)">
+										<img alt="img" v-if="o.image_url" v-bind:src="o.image_url">
+										<div class="img-option" v-text="get_o_name(o)" v-if="o.image_url"></div>
+										<div class="no-img-option" v-if="!o.image_url"><span v-html="o.name"></span>
+										</div>
+									</label>
+								</div>
+							</template>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+		<template v-for="opt in config.options.RADIO" v-if="config.options.RADIO.length">
+			<div v-bind:class="opt.cls + ' radio'" v-if="opt.active">
+				<div class="form-field radio" v-bind:class="opt.is_error ? 'error' : ''">
+					<label class="form-label form-label--alternate form-label--inlineSmall" v-text="opt.name">
+					</label>
+					<div v-for="o in opt.options">
+						<template v-if="o.active">
+							<input class="form-radio" type="radio"
+								   v-bind:id="opt.uuid + '-' + o.id"
+								   v-bind:value="o.id"
+								   v-model="opt.default_option_id"
+								   @change="selectedOption(o, opt)"
+								   v-bind:checked="o.id == opt.default_option_id"
+								   v-bind:name="opt.uuid">
+							<label class="form-label"
+								   v-bind:data-product-attribute-value="o.id"
+								   v-bind:for="opt.uuid + '-' + o.id"
+								   v-text="o.name"></label>
+						</template>
+					</div>
+					<div v-show="opt.is_error">This field is required</div>
+				</div>
+			</div>
+		</template>
+    </div>
+</div>
+

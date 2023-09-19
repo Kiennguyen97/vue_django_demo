@@ -1,0 +1,81 @@
+{% extends 'base-newtech.html' %}
+{% block pagetitle %}Oxley Vanity{% endblock %}
+{% block og-pagetitle %}Oxley Vanity{% endblock %}
+{% block css_bottom %}
+{% load static %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/custom/cms/cms-custom.css' %}">
+{% endblock %}
+{% block content %}
+<div class="body">
+    <main class="page-main">
+        <div class="page-content">
+            <div class="shg-box">
+                <div class="shg-box-content">
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/oxley/oxley.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/oxley/product-oxley.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/oxley/color.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/basin.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/extrusion.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/oxley/oxley-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/oxley/product-oxley-luxe.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/oxley/color.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/slab-top.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/vessel-basin.jpg' %}">
+                    </div>
+                    <div class="shogun-image-container">
+                        <img class="shogun-image"
+                             src="{% static 'img/serenity/extrusion-luxe.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="buttons-bottom">
+                    <div class="shg-btn-wrapper">
+                        <a class="shg-btn shg-cse"
+                           href="https://view.publitas.com/newtech-bathroomware/serenity-range/" target="_blank">
+                            VIEW THE BROCHURE
+                        </a>
+                    </div>
+                    <div class="shg-btn-wrapper">
+                        <a class="shg-btn shg-cse contact"
+                           href="{% url 'contact' %}" target="_blank">
+                            CONTACT US FOR FURTHER DETAILS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}
