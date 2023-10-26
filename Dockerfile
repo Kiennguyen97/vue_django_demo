@@ -28,3 +28,5 @@ WORKDIR /vue-web
 COPY ./back-end/src/requirements.txt /vue-web/
 RUN pip install -r requirements.txt
 COPY ./back-end/src /vue-web/
+
+EXPOSE 8100

@@ -90,6 +90,33 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  methods: {
+    async testApi () {
+      // eslint-disable-next-line camelcase
+      let api_url = 'http://localhost:8110/api/product/reload'
+      let response = await fetch(api_url,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Class-Name': 'CATEGORY_VIEW'
+          },
+
+          body: JSON.stringify({
+            'page_number': 1,
+            'number_item': 24,
+            'uuid': 'ea80f9b1-6fb6-43ae-9748-af1b6d2d2474',
+            'first': false,
+            'ordering': '-name',
+            'ordering_news': '',
+            'is_search': false
+          })
+        }
+      )
+      let res = await response.json()
+      console.log(res)
+    }
   }
 }
 </script>

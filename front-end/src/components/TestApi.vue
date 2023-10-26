@@ -86,10 +86,10 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'TestApi',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'http://localhost:8110/api/product/reload'
     }
   },
   methods: {

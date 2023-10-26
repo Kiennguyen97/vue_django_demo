@@ -170,7 +170,7 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ORIGIN_WHITELIST = [
     'http://newtech-web.net',
-    'http://localhost:8080',
+    # 'http://localhost:8080',
 ]
 
 # Optional: Allow credentials in CORS requests
